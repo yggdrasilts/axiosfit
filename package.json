@@ -10,7 +10,7 @@
     "build": "npm run clean && npm test && tsc -p tsconfig.prod.json",
     "clean": "rm -rf allure* coverage dist documentation",
     "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
-    "compodoc": "npx compodoc -p tsconfig.json",
+    "compodoc": "npx compodoc -p tsconfig.prod.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "rm -rf coverage && npm run allure:clean && jest --config ./config/jest.config.js"
   },
