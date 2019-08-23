@@ -22,7 +22,6 @@
     "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
     "compodoc": "npx compodoc -p tsconfig.prod.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "postinstall": "npm run build",
     "test": "rm -rf coverage && npm run allure:clean && jest --config ./config/jest.config.js"
   },
   "dependencies": {
