@@ -2,8 +2,18 @@
   "name": "@yggdrasilts/axiosfit",
   "version": "0.1.0",
   "author": "David Lopez <davidlopez.david@gmail.com>",
-  "license": "ISC",
-  "description": "",
+  "contributors": ["David Lopez <davidlopez.david@gmail.com>"],
+  "license": "MIT",
+  "description": "Project inspired in Retrofit.",
+  "keywords": [],
+  "bugs": {
+    "url": "https://gitlab.com/yggdrasilts/axiosfit/issues"
+  },
+  "homepage": "https://gitlab.com/yggdrasilts/axiosfit",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/yggdrasilts/axiosfit"
+  },
   "scripts": {
     "allure:clean": "rm -rf allure-*",
     "allure:serve": "npm test && allure serve",
@@ -13,6 +23,10 @@
     "compodoc": "npx compodoc -p tsconfig.prod.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "rm -rf coverage && npm run allure:clean && jest --config ./config/jest.config.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "rxjs": "^6.5.2"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
@@ -26,8 +40,8 @@
     "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   },
-  "dependencies": {
-    "axios": "^0.19.0",
-    "rxjs": "^6.5.2"
+  "engines": {
+    "node": ">= 12.3.0",
+    "npm": ">= 6.9.0"
   }
 }
