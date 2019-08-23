@@ -1,4 +1,4 @@
-import { HTTP, GET, Param, Observable, AxiosResponse } from '../../src';
+import { HTTP, GET, Path, Observable, AxiosResponse } from '../../src';
 
 @HTTP('/test')
 export class TestService {
@@ -8,12 +8,12 @@ export class TestService {
   }
 
   @GET('/demo/:id')
-  public getWithParam(@Param('id') id: string): Observable<AxiosResponse<string>> {
+  public getWithParam(@Path('id') id: string): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @GET('/demo/:id/:id2')
-  public getWithParams(@Param('id') id: string, @Param('id2') id2: string): Observable<AxiosResponse<string>> {
+  public getWithParams(@Path('id') id: string, @Path('id2') id2: string): Observable<AxiosResponse<string>> {
     return null;
   }
 }
