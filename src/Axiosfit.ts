@@ -1,21 +1,7 @@
-import { AxiosRequestConfig, AxiosInterceptorManager, AxiosResponse } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 
 import { serviceMap } from './decorators/Utilities';
-
-interface AxiosfitInterceptorRequest {
-  onFulFilled?: (value: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
-  onRejected?: (error: any) => any;
-}
-
-interface AxiosfitInterceptorResponse {
-  onFulFilled?: (value: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
-  onRejected?: (error: any) => any;
-}
-
-interface AxiosfitInterceptor {
-  request?: AxiosfitInterceptorRequest;
-  response?: AxiosfitInterceptorResponse;
-}
+import { AxiosfitInterceptor } from './interfaces/Interfaces';
 
 // tslint:disable-next-line: max-classes-per-file
 export class Axiosfit<S> {
@@ -29,9 +15,6 @@ export class Axiosfit<S> {
   }
 
   addInterceptor(interceptor: AxiosfitInterceptor): Axiosfit<S> {
-    if (interceptor && !interceptor.request && !interceptor.response) {
-      return this;
-    }
     this.interceptors.push(interceptor);
     return this;
   }
@@ -39,6 +22,7 @@ export class Axiosfit<S> {
   create<T>(type: new () => T): S {
     const service = new type();
     serviceMap[service.constructor.name].setConfig(this.config);
+    serviceMap[service.constructor.name].setInterceptors(this.interceptors);
     this.service = (serviceMap[service.constructor.name] as unknown) as S;
     return this.service;
   }

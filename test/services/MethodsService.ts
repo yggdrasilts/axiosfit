@@ -9,6 +9,16 @@ export class MethodsService {
     return null;
   }
 
+  @GET(MethodsRoutes.GET.DEMO_WITH_REQUEST_INTERCEPTOR.URL)
+  public getDemoAddingReqInterceptor(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(MethodsRoutes.GET.DEMO_WITH_RESPONSE_INTERCEPTOR.URL)
+  public getDemoAddingResInterceptor(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
   @GET(MethodsRoutes.GET.WITH_PARAM.URL)
   public getWithParam(@Path(MethodsRoutes.GET.WITH_PARAM.PARAMS.ID) id: string): Observable<AxiosResponse<string>> {
     return null;

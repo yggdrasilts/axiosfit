@@ -11,6 +11,18 @@ app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req,
   res.send('noParameters');
 });
 
+app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO_WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {
+  res.json({
+    headers: req.headers
+  });
+});
+
+app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO_WITH_RESPONSE_INTERCEPTOR.URL), function (req, res) {
+  res.json({
+    data: 'noParameters_ResponseInterceptor'
+  });
+});
+
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_PARAM.URL), function (req, res) {
   res.send(`with param: ${req.params.id}`);
 });

@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IAxiosfit, ISegment } from '../interfaces/Interfaces';
+import { IAxiosfit, ISegment, AxiosfitInterceptor } from '../interfaces/Interfaces';
 
 /**
  * Contains the url mappings.
@@ -55,6 +55,23 @@ export const createServiceMap = function(constructor) {
       setConfig(config: AxiosRequestConfig) {
         // TODO: mixin configs
         this.axiosConfig = config;
+      }
+
+      /**
+       * Set axios interceptors.
+       *
+       * @param {AxiosfitInterceptor} interceptors Array with the interceptors.
+       */
+      setInterceptors(interceptors: AxiosfitInterceptor[]) {
+        const defaultError = (error: any) => console.log(error);
+        for (const interceptor of interceptors) {
+          if (interceptor.request) {
+            this.axiosInstance.interceptors.request.use(interceptor.request.onFulFilled, interceptor.request.onRejected || defaultError);
+          }
+          if (interceptor.response) {
+            this.axiosInstance.interceptors.response.use(interceptor.response.onFulFilled, interceptor.response.onRejected || defaultError);
+          }
+        }
       }
 
       /**
