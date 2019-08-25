@@ -1,36 +1,9 @@
-import * as mockServer from 'mock-json-server';
-
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
-import { TestService } from './services/TestService';
+import { MethodsService } from './services/MethodsService';
 
-let mockApp;
-
-describe('testService', () => {
-  const testService = new Axiosfit<TestService>().baseUrl('http://localhost:8000').create(TestService);
-
-  beforeAll(() => {
-    mockApp = mockServer(
-      {
-        '/test/demo': {
-          get: 'getDemo',
-        },
-        '/test/demo/param1': {
-          get: 'getWithParam',
-        },
-        '/test/demo/param1/param2': {
-          get: 'getWithParams',
-        },
-      },
-      8000,
-      'localhost',
-    );
-    mockApp.start();
-  });
-
-  afterAll(() => {
-    mockApp.stop();
-  });
+describe('MethodsService', () => {
+  const methodsService = new Axiosfit<MethodsService>().baseUrl(process.env.MOCK_SERVER_URL).create(MethodsService);
 
   describe('GET methods', () => {
     it('without parameters', done => {
@@ -43,8 +16,8 @@ describe('testService', () => {
         done.fail();
       };
 
-      testService.getDemo().subscribe((response: AxiosResponse<string>) => {
-        okFunc(response, 'getDemo');
+      methodsService.getDemo().subscribe((response: AxiosResponse<string>) => {
+        okFunc(response, 'noParameters');
       }, errorFunc);
     });
 
@@ -58,8 +31,8 @@ describe('testService', () => {
         done.fail();
       };
 
-      testService.getWithParam('param1').subscribe((response: AxiosResponse<string>) => {
-        okFunc(response, 'getWithParam');
+      methodsService.getWithParam('param1').subscribe((response: AxiosResponse<string>) => {
+        okFunc(response, 'with param: param1');
       }, errorFunc);
     });
 
@@ -73,8 +46,8 @@ describe('testService', () => {
         done.fail();
       };
 
-      testService.getWithParams('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
-        okFunc(response, 'getWithParams');
+      methodsService.getWithParams('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
+        okFunc(response, 'with params: param1, param2');
       }, errorFunc);
     });
   });

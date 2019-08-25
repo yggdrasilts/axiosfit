@@ -1,6 +1,8 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  globalSetup: '<rootDir>/setup.ts',
+  globalTeardown: '<rootDir>/teardown.ts',
   setupFilesAfterEnv: ["jest-allure/dist/setup"],
   moduleFileExtensions: [
     'js',

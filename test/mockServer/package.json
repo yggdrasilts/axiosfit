@@ -1,0 +1,10 @@
+{
+  "name": "mockserver",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
+}

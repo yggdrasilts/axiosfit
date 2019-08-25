@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": false,
+    "outDir": "./test/mockServer/services",
+    "baseUrl": "./test",
+    "incremental": true,
+  },
+  "exclude": [
+    "node_modules",
+    "src"
+  ],
+  "include": [
+    "test/services/MethodsRoutes.ts"
+  ]
+}
