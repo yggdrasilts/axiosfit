@@ -24,4 +24,9 @@ export declare class MethodsRoutes {
             };
         };
     };
+    static POST: {
+        DEMO: {
+            URL: string;
+        };
+    };
 }

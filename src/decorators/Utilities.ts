@@ -26,7 +26,7 @@ export const createServiceMap = function(constructor) {
        * Contains the urls for every method.
        *
        * @private
-       * @type {Map<string, string>} key: methodName, value: url.
+       * @type {Map<string, string>} key: methodName; value: url.
        */
       private urlMap: Map<string, string> = new Map();
 
@@ -34,9 +34,17 @@ export const createServiceMap = function(constructor) {
        * Contains all the segments to replace in the urls.
        *
        * @private
-       * @type {Map<string, Map<number, string>>} key: methodName, value, segment map where: [key: index, value: segmentName]
+       * @type {Map<string, Map<number, string>>} key: methodName; value: segment map where: [key: index, value: segmentName]
        */
       private segmentsMap: Map<string, Map<number, string>> = new Map();
+
+      /**
+       * Contains the data to be sent in a post request.
+       *
+       * @private
+       * @type {Map<string, number>} key: methodName; value: parameter index where the data object is.
+       */
+      private dataMap: Map<string, number> = new Map();
 
       /**
        * Sets the service common endpoint.
@@ -107,8 +115,34 @@ export const createServiceMap = function(constructor) {
         this.segmentsMap[key].set(segment.index, segment.name);
       }
 
+      /**
+       * Gets the segments to be replaced in the correspondent url.
+       *
+       * @param {string} key Key to localize the segments.
+       * @returns {Map<number, string>} Segments to be replaced.
+       */
       getSegments(key: string): Map<number, string> {
         return this.segmentsMap[key];
+      }
+
+      /**
+       * Stores the data to be sent.
+       *
+       * @param {string} key Key to localize the data.
+       * @param {number} parameterIndex Where the data object is.
+       */
+      setData(key: string, parameterIndex: number): void {
+        this.dataMap.set(key, parameterIndex);
+      }
+
+      /**
+       * Gets the data to be sent.
+       *
+       * @param {string} key Key to localize the data.
+       * @returns {number} Where the data object is.
+       */
+      getData(key: string): number {
+        return this.dataMap.get(key);
       }
 
       get baseEndpoint(): string {

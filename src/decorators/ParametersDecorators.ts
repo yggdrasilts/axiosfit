@@ -10,12 +10,23 @@ import { IAxiosfit } from '../interfaces/Interfaces';
 export function Path(paramName: string) {
   // tslint:disable-next-line: only-arrow-functions
   return function(target: any, methodName: string, parameterIndex: number) {
-    const name = target.constructor.name;
-    let service: IAxiosfit = serviceMap[name];
+    let service: IAxiosfit = serviceMap[target.constructor.name];
     if (!service) {
       createServiceMap(target.constructor);
-      service = serviceMap[name];
+      service = serviceMap[target.constructor.name];
     }
     service.addSegment(methodName, { name: paramName, index: parameterIndex });
+  };
+}
+
+export function Body() {
+  // tslint:disable-next-line: only-arrow-functions
+  return function(target: any, methodName: string, parameterIndex: number) {
+    let service: IAxiosfit = serviceMap[target.constructor.name];
+    if (!service) {
+      createServiceMap(target.constructor);
+      service = serviceMap[target.constructor.name];
+    }
+    service.setData(methodName, parameterIndex);
   };
 }

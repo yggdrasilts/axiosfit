@@ -20,6 +20,9 @@ export interface IAxiosfit {
 
   addSegment(key: string, segment: ISegment): void;
   getSegments(key: string): Map<number, string>;
+
+  setData(key: string, parameterIndex: number): void;
+  getData(key: string): number;
 }
 
 export interface AxiosfitInterceptor {

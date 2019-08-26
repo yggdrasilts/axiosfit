@@ -1,4 +1,4 @@
-import { HTTP, GET, Path, Observable, AxiosResponse } from '../../src';
+import { HTTP, GET, Path, Observable, AxiosResponse, POST, Body } from '../../src';
 import { MethodsRoutes } from './MethodsRoutes';
 
 // tslint:disable-next-line: max-classes-per-file
@@ -29,6 +29,11 @@ export class MethodsService {
     @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID) id: string,
     @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID2) id2: string,
   ): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @POST(MethodsRoutes.GET.DEMO.URL)
+  public postDemo(@Body() body: any): Observable<AxiosResponse<string>> {
     return null;
   }
 }

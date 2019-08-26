@@ -25,4 +25,10 @@ export class MethodsRoutes {
       },
     },
   };
+
+  static POST = {
+    DEMO: {
+      URL: '/demo',
+    },
+  };
 }

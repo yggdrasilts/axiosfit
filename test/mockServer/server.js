@@ -1,7 +1,16 @@
 const methodsRoutes = require('./services/MethodsRoutes').MethodsRoutes;
 
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+
+// parse application/json
+app.use(bodyParser.json())
 
 const buildUrl = (base, url) => {
   return base + url;
@@ -13,6 +22,12 @@ app.get(methodsRoutes.GET.DEMO.URL, function (req, res) {
 
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
   res.send('noParameters');
+});
+
+app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
+  res.json({
+    received: req.body
+  });
 });
 
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO_WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {

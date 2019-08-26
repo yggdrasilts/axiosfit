@@ -27,4 +27,9 @@ MethodsRoutes.GET = {
         },
     },
 };
+MethodsRoutes.POST = {
+    DEMO: {
+        URL: '/demo',
+    },
+};
 exports.MethodsRoutes = MethodsRoutes;

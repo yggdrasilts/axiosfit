@@ -74,5 +74,21 @@ describe('TEST Methods', () => {
         }, errorFunc);
       });
     });
+
+    describe('POST methods', () => {
+      it('without parameters', done => {
+        const errorFunc = (error: AxiosError<any>) => {
+          expect(error).toBeNull();
+          done.fail();
+        };
+
+        methodsService.postDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+          expect(response.data).toEqual({
+            received: { data: 'data' },
+          });
+          done();
+        }, errorFunc);
+      });
+    });
   });
 });
