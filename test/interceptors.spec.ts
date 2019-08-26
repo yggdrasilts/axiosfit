@@ -1,4 +1,4 @@
-import { Axiosfit, AxiosResponse, AxiosError, AxiosfitInterceptor, AxiosfitInterceptorRequest, AxiosRequestConfig } from '../src';
+import { Axiosfit, AxiosResponse, AxiosError, AxiosfitInterceptor, AxiosRequestConfig } from '../src';
 
 import { MethodsService } from './services/MethodsService';
 

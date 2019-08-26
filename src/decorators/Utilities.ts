@@ -71,6 +71,7 @@ export const createServiceMap = function(constructor) {
        * @param {AxiosfitInterceptor} interceptors Array with the interceptors.
        */
       setInterceptors(interceptors: AxiosfitInterceptor[]) {
+        // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.log(error);
         for (const interceptor of interceptors) {
           if (interceptor.request) {

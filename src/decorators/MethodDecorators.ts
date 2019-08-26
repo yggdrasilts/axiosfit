@@ -34,7 +34,6 @@ export function POST(endpoint: string) {
     // tslint:disable-next-line: only-arrow-functions
     descriptor.value = function<T = any>(...args: any[]): Observable<AxiosResponse<T>> {
       const service = prepareService(target, methodName, endpoint, args);
-      console.log('LLLLL', args[service.getData(methodName)]);
       return defer(() => service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
     };
     return descriptor;

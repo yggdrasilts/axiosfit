@@ -19,11 +19,12 @@
   "scripts": {
     "allure:clean": "rm -rf allure-*",
     "allure:serve": "npm test && allure serve",
-    "build": "npm run clean && npm test && tsc -p tsconfig.prod.json",
+    "build": "npm run clean && npm run lint && npm test && tsc -p tsconfig.prod.json",
     "clean": "rm -rf allure* coverage dist documentation",
     "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
     "compodoc": "npx compodoc -p tsconfig.prod.json",
     "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
     "prepublish": "npm run build",
     "test": "rm -rf coverage && npm run allure:clean && tsc -p tsconfig.test.json && DEBUG=testcontainers jest --config ./config/jest.config.js"
   },

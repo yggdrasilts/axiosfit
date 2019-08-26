@@ -33,7 +33,7 @@ export class MethodsService {
   }
 
   @POST(MethodsRoutes.GET.DEMO.URL)
-  public postDemo(@Body() body: any): Observable<AxiosResponse<string>> {
+  public postDemo(@Body() body: any): Observable<AxiosResponse<any>> {
     return null;
   }
 }
