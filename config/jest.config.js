@@ -17,7 +17,7 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ['text', 'html'],
-  coverageDirectory: '../coverage',
+  coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['test/services'],
   coverageThreshold: {
     global: {
