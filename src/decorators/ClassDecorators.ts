@@ -12,6 +12,6 @@ export function HTTP(endpointPath?: string) {
     if (!serviceMap[constructor.name]) {
       createServiceMap(constructor);
     }
-    serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath);
+    serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath || '');
   };
 }

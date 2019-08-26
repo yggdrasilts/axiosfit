@@ -29,7 +29,6 @@ export function GET(endpoint: string) {
         }
       }
       service.addUrl(methodName, replacedEndpoint);
-
       return defer(() => service.instance.get<T>(service.getUrl(methodName), service.config));
     };
     return descriptor;

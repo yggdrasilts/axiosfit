@@ -7,6 +7,10 @@ const buildUrl = (base, url) => {
   return base + url;
 };
 
+app.get(methodsRoutes.GET.DEMO.URL, function (req, res) {
+  res.send('noParameters');
+});
+
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
   res.send('noParameters');
 });
