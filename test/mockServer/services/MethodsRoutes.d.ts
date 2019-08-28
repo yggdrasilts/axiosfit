@@ -24,7 +24,27 @@ export declare class MethodsRoutes {
             };
         };
     };
+    static DELETE: {
+        DEMO: {
+            URL: string;
+        };
+    };
+    static HEAD: {
+        DEMO: {
+            URL: string;
+        };
+    };
     static POST: {
+        DEMO: {
+            URL: string;
+        };
+    };
+    static PUT: {
+        DEMO: {
+            URL: string;
+        };
+    };
+    static PATCH: {
         DEMO: {
             URL: string;
         };

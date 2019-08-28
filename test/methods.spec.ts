@@ -75,6 +75,23 @@ describe('TEST Methods', () => {
       });
     });
 
+    describe('DELETE methods', () => {
+      it('without parameters', done => {
+        const okFunc = (response: AxiosResponse<string>, check: string) => {
+          expect(response.data).toBe(check);
+          done();
+        };
+        const errorFunc = (error: AxiosError<any>) => {
+          expect(error).toBeNull();
+          done.fail();
+        };
+
+        methodsService.deleteDemo().subscribe((response: AxiosResponse<string>) => {
+          okFunc(response, 'DELETE noParameters');
+        }, errorFunc);
+      });
+    });
+
     describe('POST methods', () => {
       it('without parameters', done => {
         const errorFunc = (error: AxiosError<any>) => {
@@ -83,6 +100,38 @@ describe('TEST Methods', () => {
         };
 
         methodsService.postDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+          expect(response.data).toEqual({
+            received: { data: 'data' },
+          });
+          done();
+        }, errorFunc);
+      });
+    });
+
+    describe('PUT methods', () => {
+      it('without parameters', done => {
+        const errorFunc = (error: AxiosError<any>) => {
+          expect(error).toBeNull();
+          done.fail();
+        };
+
+        methodsService.putDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+          expect(response.data).toEqual({
+            received: { data: 'data' },
+          });
+          done();
+        }, errorFunc);
+      });
+    });
+
+    describe('PATCH methods', () => {
+      it('without parameters', done => {
+        const errorFunc = (error: AxiosError<any>) => {
+          expect(error).toBeNull();
+          done.fail();
+        };
+
+        methodsService.patchDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
           expect(response.data).toEqual({
             received: { data: 'data' },
           });

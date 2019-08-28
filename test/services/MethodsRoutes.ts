@@ -26,7 +26,31 @@ export class MethodsRoutes {
     },
   };
 
+  static DELETE = {
+    DEMO: {
+      URL: '/demo',
+    },
+  };
+
+  static HEAD = {
+    DEMO: {
+      URL: '/demo',
+    },
+  };
+
   static POST = {
+    DEMO: {
+      URL: '/demo',
+    },
+  };
+
+  static PUT = {
+    DEMO: {
+      URL: '/demo',
+    },
+  };
+
+  static PATCH = {
     DEMO: {
       URL: '/demo',
     },

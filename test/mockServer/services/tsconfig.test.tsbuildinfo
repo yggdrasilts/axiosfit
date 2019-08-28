@@ -126,8 +126,8 @@
         "signature": "63b66918290d794f73832a6d0325be5026236674fe8c0cb0b68d162000d7bbe8"
       },
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/test/services/MethodsRoutes.ts": {
-        "version": "195f96a38f0d0a3178452ea4dffedfd2251d362f26fd3edc09a8a396a0fd88f6",
-        "signature": "cac48bc1db75113d3dad735558678cd1e02609ffe8ba207f410a0a2130f751ab"
+        "version": "a96ddf9d6220ecbcec90542b5197031d8049dc5bac533e8825a200e48aef46fd",
+        "signature": "01d97c5c48bd5d2b7a70250b5ba2be4c92633c437acf799861c53bb4805b29b0"
       },
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/allure-js-commons/index.d.ts": {
         "version": "2cef23b7112d97e8ef5ce0ffd5b33d0d120145526e7a99adbe41912101332818",
@@ -1349,7 +1349,6 @@
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
-      "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/test/services/MethodsRoutes.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/allure-js-commons/index.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@babel/types/lib/index.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/babel__generator/index.d.ts",
@@ -1408,7 +1407,8 @@
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/stack-utils/index.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/strip-ansi/index.d.ts",
       "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/yargs-parser/index.d.ts",
-      "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/yargs/index.d.ts"
+      "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/node_modules/@types/yargs/index.d.ts",
+      "/media/kratos/00477a74-e81d-4026-8bc0-53cdd8ff420a/Development/Gitlab/yggdrasilts/Axiosfit/test/services/MethodsRoutes.ts"
     ]
   },
   "version": "3.5.3"

@@ -27,7 +27,27 @@ MethodsRoutes.GET = {
         },
     },
 };
+MethodsRoutes.DELETE = {
+    DEMO: {
+        URL: '/demo',
+    },
+};
+MethodsRoutes.HEAD = {
+    DEMO: {
+        URL: '/demo',
+    },
+};
 MethodsRoutes.POST = {
+    DEMO: {
+        URL: '/demo',
+    },
+};
+MethodsRoutes.PUT = {
+    DEMO: {
+        URL: '/demo',
+    },
+};
+MethodsRoutes.PATCH = {
     DEMO: {
         URL: '/demo',
     },

@@ -1,4 +1,4 @@
-import { HTTP, GET, Path, Observable, AxiosResponse, POST, Body } from '../../src';
+import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse } from '../../src';
 import { MethodsRoutes } from './MethodsRoutes';
 
 // tslint:disable-next-line: max-classes-per-file
@@ -32,8 +32,28 @@ export class MethodsService {
     return null;
   }
 
-  @POST(MethodsRoutes.GET.DEMO.URL)
+  @DELETE(MethodsRoutes.DELETE.DEMO.URL)
+  public deleteDemo(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @HEAD(MethodsRoutes.HEAD.DEMO.URL)
+  public headDemo(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @POST(MethodsRoutes.POST.DEMO.URL)
   public postDemo(@Body() body: any): Observable<AxiosResponse<any>> {
+    return null;
+  }
+
+  @PUT(MethodsRoutes.PUT.DEMO.URL)
+  public putDemo(@Body() body: any): Observable<AxiosResponse<any>> {
+    return null;
+  }
+
+  @PATCH(MethodsRoutes.PUT.DEMO.URL)
+  public patchDemo(@Body() body: any): Observable<AxiosResponse<any>> {
     return null;
   }
 }

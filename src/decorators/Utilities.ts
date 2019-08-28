@@ -7,6 +7,9 @@ import { IAxiosfit, ISegment, AxiosfitInterceptor } from '../interfaces/Interfac
  */
 export const serviceMap: Map<string, IAxiosfit> = new Map();
 
+/**
+ * Creates the serviceMap with the correspondent Axiosfit service.
+ */
 // tslint:disable-next-line: only-arrow-functions
 export const createServiceMap = function(constructor) {
   if (!serviceMap[constructor.name]) {

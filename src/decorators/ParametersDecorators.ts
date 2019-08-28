@@ -19,6 +19,10 @@ export function Path(paramName: string) {
   };
 }
 
+/**
+ * Parameter decorator.
+ * Indicates that this parameter is used as body to be sent as data.
+ */
 export function Body() {
   // tslint:disable-next-line: only-arrow-functions
   return function(target: any, methodName: string, parameterIndex: number) {

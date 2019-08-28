@@ -20,11 +20,31 @@ app.get(methodsRoutes.GET.DEMO.URL, function (req, res) {
   res.send('noParameters');
 });
 
+app.delete(buildUrl(methodsRoutes.BASE, methodsRoutes.DELETE.DEMO.URL), function (req, res) {
+  res.send('DELETE noParameters');
+});
+
+app.head(buildUrl(methodsRoutes.BASE, methodsRoutes.HEAD.DEMO.URL), function (req, res) {
+  res.send('HEAD noParameters');
+});
+
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
   res.send('noParameters');
 });
 
-app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
+app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.POST.DEMO.URL), function (req, res) {
+  res.json({
+    received: req.body
+  });
+});
+
+app.put(buildUrl(methodsRoutes.BASE, methodsRoutes.PUT.DEMO.URL), function (req, res) {
+  res.json({
+    received: req.body
+  });
+});
+
+app.patch(buildUrl(methodsRoutes.BASE, methodsRoutes.PATCH.DEMO.URL), function (req, res) {
   res.json({
     received: req.body
   });
