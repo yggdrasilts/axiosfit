@@ -1,14 +1,17 @@
 # Axiosfit
 
-Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients.
-
-Axiosfit use [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the observable powers.
+Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the observable powers.
 
 ## Install
 
 `npm i @yggdrasilts/axiosfit`
 
 ## Usage
+
+### Available Decorators
+
+#### Class Decorator
+* @HTTP(endpointPath?: string)
 
 ### Example
 

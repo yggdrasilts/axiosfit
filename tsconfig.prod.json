@@ -3,7 +3,10 @@
   "compilerOptions": {
     "sourceMap": false,
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
-    "test"
+    "test/**/*"
   ]
 }
