@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+  "name": "Axiosfit",
+  "output": "./documentation/",
+  "tsconfig": "./tsconfig.prod.json",
+  "open": true,
+  "serve": true,
+  "theme": "material",
+  "hideGenerator": true
+}

@@ -22,7 +22,7 @@
     "build": "npm run clean && npm run lint && npm test && tsc -p tsconfig.prod.json",
     "clean": "rm -rf allure* coverage dist documentation",
     "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
-    "compodoc": "npx compodoc -p tsconfig.prod.json",
+    "compodoc": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "prepublish": "npm run build",

@@ -6,12 +6,31 @@ Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/)
 
 `npm i @yggdrasilts/axiosfit`
 
+## Documentation
+
+This project use [compodoc](https://compodoc.app/) to generate the full documentation. To see it, executes `npm run compodoc`.
+
 ## Usage
 
 ### Available Decorators
 
-#### Class Decorator
-* @HTTP(endpointPath?: string)
+#### Class Decorators
+
+* [@HTTP(endpointPath?: string)](miscellaneous/functions.html#HTTP)
+
+#### Method Decorators
+
+* [@GET(endpoint: string)](miscellaneous/functions.html#GET)
+* [@POST(endpoint: string)](miscellaneous/functions.html#POST)
+* [@PUT(endpoint: string)](miscellaneous/functions.html#PUT)
+* [@DELETE(endpoint: string)](miscellaneous/functions.html#DELETE)
+* [@HEAD(endpoint: string)](miscellaneous/functions.html#HEAD)
+* [@PATCH(endpoint: string)](miscellaneous/functions.html#PATCH)
+
+#### Parameter Decorators
+
+* [@Path(paramName: string)](miscellaneous/functions.html#Path)
+* [@Body()](miscellaneous/functions.html#Body)
 
 ### Example
 
@@ -56,7 +75,9 @@ const okFunc = (response: AxiosResponse<string>) => console.log('OK', response.d
 const errorFunc = (error: AxiosError<any>) => console.error('KO', error);
 
 testClient
-  .getTestingClient()
   .demo()
   .subscribe(okFunc, errorFunc);
 ```
+
+## Testing
+ // TODO
