@@ -6,6 +6,7 @@ documentation
 # compiled output
 /dist
 node_modules
+/test/mockServer/services
 
 # Logs
 logs
