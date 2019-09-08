@@ -18,7 +18,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsServiceNoBase.getDemo().subscribe((response: AxiosResponse<string>) => {
+        methodsServiceNoBase.performGetRequest().subscribe((response: AxiosResponse<string>) => {
           okFunc(response, 'noParameters');
         }, errorFunc);
       });
@@ -39,7 +39,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.getDemo().subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequest().subscribe((response: AxiosResponse<string>) => {
           okFunc(response, 'noParameters');
         }, errorFunc);
       });
@@ -54,7 +54,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.getWithParam('param1').subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: AxiosResponse<string>) => {
           okFunc(response, 'with param: param1');
         }, errorFunc);
       });
@@ -69,7 +69,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.getWithParams('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
           okFunc(response, 'with params: param1, param2');
         }, errorFunc);
       });
@@ -86,7 +86,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.deleteDemo().subscribe((response: AxiosResponse<string>) => {
+        methodsService.performDeleteRequest().subscribe((response: AxiosResponse<string>) => {
           okFunc(response, 'DELETE noParameters');
         }, errorFunc);
       });
@@ -99,7 +99,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.postDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+        methodsService.performPostRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
           expect(response.data).toEqual({
             received: { data: 'data' },
           });
@@ -115,7 +115,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.putDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+        methodsService.performPutRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
           expect(response.data).toEqual({
             received: { data: 'data' },
           });
@@ -131,7 +131,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.patchDemo({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
+        methodsService.performPatchRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
           expect(response.data).toEqual({
             received: { data: 'data' },
           });

@@ -4,8 +4,8 @@ import { MethodsRoutes } from './MethodsRoutes';
 // tslint:disable-next-line: max-classes-per-file
 @HTTP()
 export class MethodsServiceNoBase {
-  @GET(MethodsRoutes.GET.DEMO.URL)
-  public getDemo(): Observable<AxiosResponse<string>> {
+  @GET(MethodsRoutes.GET.REQUEST.URL)
+  public performGetRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 }

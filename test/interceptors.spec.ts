@@ -25,7 +25,7 @@ describe('MethodsService', () => {
         done.fail();
       };
 
-      methodsService.getDemoAddingReqInterceptor().subscribe((response: AxiosResponse<string>) => {
+      methodsService.performGetRequestAddingReqInterceptor().subscribe((response: AxiosResponse<string>) => {
         expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
         done();
       }, errorFunc);
@@ -58,7 +58,7 @@ describe('MethodsService', () => {
         done.fail();
       };
 
-      methodsService.getDemoAddingResInterceptor().subscribe((response: AxiosResponse<string>) => {
+      methodsService.performGetRequestAddingResInterceptor().subscribe((response: AxiosResponse<string>) => {
         expect(response.data).toEqual({ data: 'noParameters_ResponseInterceptor', newData: 'new' });
         done();
       }, errorFunc);

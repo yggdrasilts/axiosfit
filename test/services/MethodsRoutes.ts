@@ -1,24 +1,24 @@
 export class MethodsRoutes {
-  static BASE = '/test';
+  static BASE = '/axiosfit';
 
   static GET = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performGet',
     },
-    DEMO_WITH_REQUEST_INTERCEPTOR: {
-      URL: '/demo_with_req_interceptor',
+    WITH_REQUEST_INTERCEPTOR: {
+      URL: '/with_req_interceptor',
     },
-    DEMO_WITH_RESPONSE_INTERCEPTOR: {
-      URL: '/demo_with_res_interceptor',
+    WITH_RESPONSE_INTERCEPTOR: {
+      URL: '/with_res_interceptor',
     },
     WITH_PARAM: {
-      URL: '/demo/:id',
+      URL: '/performGet/:id',
       PARAMS: {
         ID: 'id',
       },
     },
     WITH_PARAMS: {
-      URL: '/demo/:id/:id2',
+      URL: '/performGet/:id/:id2',
       PARAMS: {
         ID: 'id',
         ID2: 'id2',
@@ -27,32 +27,32 @@ export class MethodsRoutes {
   };
 
   static DELETE = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performDelete',
     },
   };
 
   static HEAD = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performHead',
     },
   };
 
   static POST = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performPost',
     },
   };
 
   static PUT = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performPut',
     },
   };
 
   static PATCH = {
-    DEMO: {
-      URL: '/demo',
+    REQUEST: {
+      URL: '/performPatch',
     },
   };
 }
