@@ -1,0 +1,49 @@
+{
+  "GET": {
+    "performGetRequest": {
+      "check": "performGetRequest check response."
+    },
+    "performGetRequestAddingResInterceptor": {
+      "check": {
+        "data": "performGetRequestAddingResInterceptor check response."
+      }
+    },
+    "performGetRequestUsingAPathVariable": {
+      "check": "performGetRequestUsingAPathVariable check response: #1."
+    },
+    "performGetRequestUsingPathVariables": {
+      "check": "performGetRequestUsingPathVariables check response: #1, #2."
+    }
+  },
+  "POST": {
+    "performPostRequest": {
+      "check": {
+        "data": "performPostRequest check response."
+      }
+    }
+  },
+  "PUT": {
+    "performPutRequest": {
+      "check": {
+        "data": "performPutRequest check response."
+      }
+    }
+  },
+  "DELETE": {
+    "performDeleteRequest": {
+      "check": "performDeleteRequest check response."
+    }
+  },
+  "PATCH": {
+    "performPatchRequest": {
+      "check": {
+        "data": "performPatchRequest check response."
+      }
+    }
+  },
+  "HEAD": {
+    "performHeadRequest": {
+      "check": "performHeadRequest check response."
+    }
+  }
+}

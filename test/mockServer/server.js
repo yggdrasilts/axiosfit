@@ -4,6 +4,10 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 
+const testData = require('./testData.json');
+
+console.log(testData);
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
@@ -16,58 +20,50 @@ const buildUrl = (base, url) => {
   return base + url;
 };
 
-app.get(methodsRoutes.GET.DEMO.URL, function (req, res) {
-  res.send('noParameters');
+app.get(methodsRoutes.GET.REQUEST.URL, function (req, res) {
+  res.send(testData.GET.performGetRequest.check);
 });
 
-app.delete(buildUrl(methodsRoutes.BASE, methodsRoutes.DELETE.DEMO.URL), function (req, res) {
-  res.send('DELETE noParameters');
+app.delete(buildUrl(methodsRoutes.BASE, methodsRoutes.DELETE.REQUEST.URL), function (req, res) {
+  res.send(testData.DELETE.performDeleteRequest.check);
 });
 
-app.head(buildUrl(methodsRoutes.BASE, methodsRoutes.HEAD.DEMO.URL), function (req, res) {
-  res.send('HEAD noParameters');
+app.head(buildUrl(methodsRoutes.BASE, methodsRoutes.HEAD.REQUEST.URL), function (req, res) {
+  res.send(testData.HEAD.performHeadRequest.check);
 });
 
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO.URL), function (req, res) {
-  res.send('noParameters');
+app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.REQUEST.URL), function (req, res) {
+  res.send(testData.GET.performGetRequest.check);
 });
 
-app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.POST.DEMO.URL), function (req, res) {
-  res.json({
-    received: req.body
-  });
+app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.POST.REQUEST.URL), function (req, res) {
+  res.json(testData.POST.performPostRequest.check);
 });
 
-app.put(buildUrl(methodsRoutes.BASE, methodsRoutes.PUT.DEMO.URL), function (req, res) {
-  res.json({
-    received: req.body
-  });
+app.put(buildUrl(methodsRoutes.BASE, methodsRoutes.PUT.REQUEST.URL), function (req, res) {
+  res.json(testData.PUT.performPutRequest.check);
 });
 
-app.patch(buildUrl(methodsRoutes.BASE, methodsRoutes.PATCH.DEMO.URL), function (req, res) {
-  res.json({
-    received: req.body
-  });
+app.patch(buildUrl(methodsRoutes.BASE, methodsRoutes.PATCH.REQUEST.URL), function (req, res) {
+  res.json(testData.PATCH.performPatchRequest.check);
 });
 
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO_WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {
+app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {
   res.json({
     headers: req.headers
   });
 });
 
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.DEMO_WITH_RESPONSE_INTERCEPTOR.URL), function (req, res) {
-  res.json({
-    data: 'noParameters_ResponseInterceptor'
-  });
+app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_RESPONSE_INTERCEPTOR.URL), function (req, res) {
+  res.json(testData.GET.performGetRequestAddingResInterceptor.check);
 });
 
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_PARAM.URL), function (req, res) {
-  res.send(`with param: ${req.params.id}`);
+  res.send(testData.GET.performGetRequestUsingAPathVariable.check);
 });
 
 app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_PARAMS.URL), function (req, res) {
-  res.send(`with params: ${req.params.id}, ${req.params.id2}`);
+  res.send(testData.GET.performGetRequestUsingPathVariables.check);
 });
 
 app.listen(3000, function () {

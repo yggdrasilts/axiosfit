@@ -3,6 +3,8 @@ import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 import { MethodsService } from './services/MethodsService';
 import { MethodsServiceNoBase } from './services/MethodsServiceNoBase';
 
+import testData from './mockServer/testData.json';
+
 describe('TEST Methods', () => {
   describe('MethodsServiceNoBase', () => {
     const methodsServiceNoBase = new Axiosfit<MethodsServiceNoBase>().baseUrl(process.env.MOCK_SERVER_URL).create(MethodsServiceNoBase);
@@ -19,7 +21,7 @@ describe('TEST Methods', () => {
         };
 
         methodsServiceNoBase.performGetRequest().subscribe((response: AxiosResponse<string>) => {
-          okFunc(response, 'noParameters');
+          okFunc(response, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
     });
@@ -40,7 +42,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performGetRequest().subscribe((response: AxiosResponse<string>) => {
-          okFunc(response, 'noParameters');
+          okFunc(response, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
 
@@ -55,7 +57,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: AxiosResponse<string>) => {
-          okFunc(response, 'with param: param1');
+          okFunc(response, testData.GET.performGetRequestUsingAPathVariable.check);
         }, errorFunc);
       });
 
@@ -70,7 +72,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
-          okFunc(response, 'with params: param1, param2');
+          okFunc(response, testData.GET.performGetRequestUsingPathVariables.check);
         }, errorFunc);
       });
     });
@@ -87,7 +89,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performDeleteRequest().subscribe((response: AxiosResponse<string>) => {
-          okFunc(response, 'DELETE noParameters');
+          okFunc(response, testData.DELETE.performDeleteRequest.check);
         }, errorFunc);
       });
     });
@@ -100,9 +102,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performPostRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
-          expect(response.data).toEqual({
-            received: { data: 'data' },
-          });
+          expect(response.data).toEqual(testData.POST.performPostRequest.check);
           done();
         }, errorFunc);
       });
@@ -116,9 +116,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performPutRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
-          expect(response.data).toEqual({
-            received: { data: 'data' },
-          });
+          expect(response.data).toEqual(testData.PUT.performPutRequest.check);
           done();
         }, errorFunc);
       });
@@ -132,9 +130,7 @@ describe('TEST Methods', () => {
         };
 
         methodsService.performPatchRequest({ data: 'data' }).subscribe((response: AxiosResponse<string>) => {
-          expect(response.data).toEqual({
-            received: { data: 'data' },
-          });
+          expect(response.data).toEqual(testData.PATCH.performPatchRequest.check);
           done();
         }, errorFunc);
       });

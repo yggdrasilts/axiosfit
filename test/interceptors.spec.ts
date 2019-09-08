@@ -2,6 +2,8 @@ import { Axiosfit, AxiosResponse, AxiosError, AxiosfitInterceptor, AxiosRequestC
 
 import { MethodsService } from './services/MethodsService';
 
+import testData from './mockServer/testData.json';
+
 describe('MethodsService', () => {
   describe('REQUEST INTERCEPTORS', () => {
     it('without parameters', done => {
@@ -59,7 +61,7 @@ describe('MethodsService', () => {
       };
 
       methodsService.performGetRequestAddingResInterceptor().subscribe((response: AxiosResponse<string>) => {
-        expect(response.data).toEqual({ data: 'noParameters_ResponseInterceptor', newData: 'new' });
+        expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
         done();
       }, errorFunc);
     });
