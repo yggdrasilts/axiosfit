@@ -6,8 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2019-09-14
+### Updated
+
+- Updated dependencies: rxjs:6.5.3.
+- Updated devDependencies: allure-commandline:2.13.0, jest:24.9.0, testcontainers:2.0.0, ts-jest:24.1.0, tslint:5.20.0, typescript:3.6.3.
+- Updated README file.+
+
 ## [0.1.0] - 2019-09-08
 ### First version
 
 [Unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.1.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.1
 [0.1.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.0

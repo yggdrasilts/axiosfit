@@ -15,7 +15,7 @@ const startMockServer = async (): Promise<StartedTestContainer> => {
 
   const port = 3000;
   try {
-    const container = await GenericContainer.fromDockerfile(buildContext);
+    const container = await GenericContainer.fromDockerfile(buildContext).build();
 
     mockServer = await container.withExposedPorts(3000).start();
 
