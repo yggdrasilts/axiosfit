@@ -37,22 +37,60 @@ This project use [compodoc](https://compodoc.app/) to generate the full document
 - Create class with the endpoints methods:
 
 ```typescript
-import { HTTP, GET, Path, Observable, AxiosResponse } from '@yggdrasilts/axiosfit';
+import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse } from '../../src';
 
-@HTTP('/testing')
-export class TestingClient {
-  @GET('/demo')
-  public demo(): Observable<AxiosResponse<string>> {
+@HTTP(MethodsRoutes.BASE)
+export class MethodsService {
+  @GET(MethodsRoutes.GET.REQUEST.URL)
+  public performGetRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 
-  @GET('/demo/:id')
-  public demo1(@Path('id') id: string): Observable<AxiosResponse<string>> {
+  @GET(MethodsRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL)
+  public performGetRequestAddingReqInterceptor(): Observable<AxiosResponse<string>> {
     return null;
   }
 
-  @GET('/demo/:id/:id2')
-  public demo2(@Path('id') id: string, @Path('id2') id2: string): Observable<AxiosResponse<string>> {
+  @GET(MethodsRoutes.GET.WITH_RESPONSE_INTERCEPTOR.URL)
+  public performGetRequestAddingResInterceptor(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(MethodsRoutes.GET.WITH_PARAM.URL)
+  public performGetRequestUsingAPathVariable(@Path(MethodsRoutes.GET.WITH_PARAM.PARAMS.ID) id: string): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(MethodsRoutes.GET.WITH_PARAMS.URL)
+  public performGetRequestUsingPathVariables(
+    @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID) id: string,
+    @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID2) id2: string,
+  ): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @DELETE(MethodsRoutes.DELETE.REQUEST.URL)
+  public performDeleteRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @HEAD(MethodsRoutes.HEAD.REQUEST.URL)
+  public performHeadRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @POST(MethodsRoutes.POST.REQUEST.URL)
+  public performPostRequest(@Body() body: any): Observable<AxiosResponse<any>> {
+    return null;
+  }
+
+  @PUT(MethodsRoutes.PUT.REQUEST.URL)
+  public performPutRequest(@Body() body: any): Observable<AxiosResponse<any>> {
+    return null;
+  }
+
+  @PATCH(MethodsRoutes.PATCH.REQUEST.URL)
+  public performPatchRequest(@Body() body: any): Observable<AxiosResponse<any>> {
     return null;
   }
 }
@@ -63,7 +101,7 @@ export class TestingClient {
 ```typescript
 import { Axiosfit } from '@yggdrasilts/axiosfit';
 
-const testClient = new Axiosfit<TestingClient>().baseUrl('http://localhost:3000').create(TestingClient);
+const methodsService = new Axiosfit<MethodsService>().baseUrl(process.env.MOCK_SERVER_URL).create(MethodsService);
 ```
 
 - Call methods using observables:
@@ -74,10 +112,9 @@ import { AxiosResponse, AxiosError } from '@yggdrasilts/axiosfit';
 const okFunc = (response: AxiosResponse<string>) => console.log('OK', response.data);
 const errorFunc = (error: AxiosError<any>) => console.error('KO', error);
 
-testClient
-  .demo()
+methodsService
+  .performGetRequest()
   .subscribe(okFunc, errorFunc);
 ```
 
-## Testing
- // TODO
+NOTE: The example code can be seen in the [test](./test) folder.
