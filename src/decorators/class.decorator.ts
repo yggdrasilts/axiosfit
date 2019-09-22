@@ -1,4 +1,4 @@
-import { createServiceMap, serviceMap } from './Utilities';
+import { createServiceMap, serviceMap } from './utilities';
 
 /**
  * Class decorator.
@@ -6,12 +6,11 @@ import { createServiceMap, serviceMap } from './Utilities';
  *
  * @param {string} [endpointPath] Optional. Common endpoint for all the methods inside the class.
  */
-export function HTTP(endpointPath?: string) {
-  // tslint:disable-next-line: only-arrow-functions
-  return function(constructor) {
+export const HTTP = (endpointPath?: string) => {
+  return constructor => {
     if (!serviceMap[constructor.name]) {
       createServiceMap(constructor);
     }
     serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath || '');
   };
-}
+};

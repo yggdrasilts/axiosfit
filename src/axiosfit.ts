@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { serviceMap } from './decorators/Utilities';
-import { AxiosfitInterceptor } from './interfaces/Interfaces';
+import { AxiosfitInterceptor } from './interfaces';
+import { serviceMap } from './decorators/utilities';
 
 /**
  * Class to create the Axiosfit service to be used.

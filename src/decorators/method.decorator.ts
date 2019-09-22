@@ -1,9 +1,9 @@
 import { Observable, defer } from 'rxjs';
 import { AxiosResponse } from 'axios';
 
-import { serviceMap, createServiceMap } from './Utilities';
-import { IAxiosfit } from '../interfaces/Interfaces';
-import { Method } from '../http/Method';
+import { IAxiosfit } from 'src/interfaces';
+import { serviceMap, createServiceMap } from './utilities';
+import { Method } from '../http/enums';
 
 /**
  * Method decorator.
@@ -11,9 +11,9 @@ import { Method } from '../http/Method';
  *
  * @param {string} endpoint Method endpoint.
  */
-export function GET(endpoint: string) {
+export const GET = (endpoint: string) => {
   return noDataFunction(endpoint, Method.GET);
-}
+};
 
 /**
  * Method decorator.
@@ -21,9 +21,9 @@ export function GET(endpoint: string) {
  *
  * @param {string} endpoint Method endpoint.
  */
-export function DELETE(endpoint: string) {
+export const DELETE = (endpoint: string) => {
   return noDataFunction(endpoint, Method.DELETE);
-}
+};
 
 /**
  * Method decorator.
@@ -31,9 +31,9 @@ export function DELETE(endpoint: string) {
  *
  * @param {string} endpoint Method endpoint.
  */
-export function HEAD(endpoint: string) {
+export const HEAD = (endpoint: string) => {
   return noDataFunction(endpoint, Method.HEAD);
-}
+};
 
 /**
  * Method decorator.
@@ -41,9 +41,9 @@ export function HEAD(endpoint: string) {
  *
  * @param {string} endpoint Method endpoint.
  */
-export function POST(endpoint: string) {
+export const POST = (endpoint: string) => {
   return dataFunction(endpoint, Method.POST);
-}
+};
 
 /**
  * Method decorator.
@@ -51,9 +51,9 @@ export function POST(endpoint: string) {
  *
  * @param {string} endpoint Method endpoint.
  */
-export function PUT(endpoint: string) {
+export const PUT = (endpoint: string) => {
   return dataFunction(endpoint, Method.PUT);
-}
+};
 
 /**
  * Method decorator.
@@ -61,9 +61,9 @@ export function PUT(endpoint: string) {
  *
  * @param {string} endpoint Method endpoint.
  */
-export function PATCH(endpoint: string) {
+export const PATCH = (endpoint: string) => {
   return dataFunction(endpoint, Method.PATCH);
-}
+};
 
 /**
  * Function to be used for no data http methods.
@@ -71,12 +71,9 @@ export function PATCH(endpoint: string) {
  * @param {string} endpoint The endpoint.
  * @param {Method} method HTTP method that sents no data inside the body.
  */
-// tslint:disable-next-line: only-arrow-functions
-const noDataFunction = function(endpoint: string, method: Method) {
-  // tslint:disable-next-line: only-arrow-functions
-  return function(target: any, methodName: string, descriptor: PropertyDescriptor) {
-    // tslint:disable-next-line: only-arrow-functions
-    descriptor.value = function<T = any>(...args: any[]): Observable<AxiosResponse<T>> {
+const noDataFunction = (endpoint: string, method: Method) => {
+  return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
+    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> => {
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.GET:
@@ -97,12 +94,9 @@ const noDataFunction = function(endpoint: string, method: Method) {
  * @param {string} endpoint The endpoint.
  * @param {Method} method HTTP method that sents data inside the body.
  */
-// tslint:disable-next-line: only-arrow-functions
-const dataFunction = function(endpoint: string, method: Method) {
-  // tslint:disable-next-line: only-arrow-functions
-  return function(target: any, methodName: string, descriptor: PropertyDescriptor) {
-    // tslint:disable-next-line: only-arrow-functions
-    descriptor.value = function<T = any>(...args: any[]): Observable<AxiosResponse<T>> {
+const dataFunction = (endpoint: string, method: Method) => {
+  return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
+    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> => {
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.POST:

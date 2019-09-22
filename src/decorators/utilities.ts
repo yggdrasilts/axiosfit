@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IAxiosfit, ISegment, AxiosfitInterceptor } from '../interfaces/Interfaces';
+import { IAxiosfit, ISegment, AxiosfitInterceptor } from 'src/interfaces';
 
 /**
  * Contains the url mappings.
