@@ -24,6 +24,10 @@ app.get(methodsRoutes.GET.REQUEST.URL, function (req, res) {
   res.send(testData.GET.performGetRequest.check);
 });
 
+/*app.get(methodsRoutes.GET.REQUEST.URL, function (req, res) {
+  res.status(500).send('Something broke!');
+});*/
+
 app.delete(buildUrl(methodsRoutes.BASE, methodsRoutes.DELETE.REQUEST.URL), function (req, res) {
   res.send(testData.DELETE.performDeleteRequest.check);
 });

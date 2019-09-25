@@ -27,8 +27,8 @@ describe('MethodsService', () => {
         done.fail();
       };
 
-      methodsService.performGetRequestAddingReqInterceptor().subscribe((response: AxiosResponse<string>) => {
-        expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
+      methodsService.performGetRequestAddingReqInterceptor().subscribe((response: string) => {
+        expect(response).toHaveProperty('headers.authorization', 'Bearer token');
         done();
       }, errorFunc);
     });
@@ -60,8 +60,8 @@ describe('MethodsService', () => {
         done.fail();
       };
 
-      methodsService.performGetRequestAddingResInterceptor().subscribe((response: AxiosResponse<string>) => {
-        expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
+      methodsService.performGetRequestAddingResInterceptor().subscribe((response: string) => {
+        expect(response).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
         done();
       }, errorFunc);
     });

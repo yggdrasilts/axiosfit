@@ -11,8 +11,8 @@ describe('TEST Methods', () => {
 
     describe('GET methods', () => {
       it('without parameters', done => {
-        const okFunc = (response: AxiosResponse<string>, check: string) => {
-          expect(response.data).toBe(check);
+        const okFunc = (response: string, check: string) => {
+          expect(response).toBe(check);
           done();
         };
         const errorFunc = (error: AxiosError<any>) => {
@@ -20,7 +20,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsServiceNoBase.performGetRequest().subscribe((response: AxiosResponse<string>) => {
+        methodsServiceNoBase.performGetRequest().subscribe((response: string) => {
           okFunc(response, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
@@ -32,8 +32,8 @@ describe('TEST Methods', () => {
 
     describe('GET methods', () => {
       it('without parameters', done => {
-        const okFunc = (response: AxiosResponse<string>, check: string) => {
-          expect(response.data).toBe(check);
+        const okFunc = (response: string, check: string) => {
+          expect(response).toBe(check);
           done();
         };
         const errorFunc = (error: AxiosError<any>) => {
@@ -41,14 +41,14 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequest().subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequest().subscribe((response: string) => {
           okFunc(response, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
 
       it('with only one parameter', done => {
-        const okFunc = (response: AxiosResponse<string>, check: string) => {
-          expect(response.data).toBe(check);
+        const okFunc = (response: string, check: string) => {
+          expect(response).toBe(check);
           done();
         };
         const errorFunc = (error: AxiosError<any>) => {
@@ -56,14 +56,14 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: string) => {
           okFunc(response, testData.GET.performGetRequestUsingAPathVariable.check);
         }, errorFunc);
       });
 
       it('with some parameters', done => {
-        const okFunc = (response: AxiosResponse<string>, check: string) => {
-          expect(response.data).toBe(check);
+        const okFunc = (response: string, check: string) => {
+          expect(response).toBe(check);
           done();
         };
         const errorFunc = (error: AxiosError<any>) => {
@@ -71,7 +71,7 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
+        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: string) => {
           okFunc(response, testData.GET.performGetRequestUsingPathVariables.check);
         }, errorFunc);
       });
@@ -79,8 +79,8 @@ describe('TEST Methods', () => {
 
     describe('DELETE methods', () => {
       it('without parameters', done => {
-        const okFunc = (response: AxiosResponse<string>, check: string) => {
-          expect(response.data).toBe(check);
+        const okFunc = (response: string, check: string) => {
+          expect(response).toBe(check);
           done();
         };
         const errorFunc = (error: AxiosError<any>) => {
@@ -88,9 +88,15 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performDeleteRequest().subscribe((response: AxiosResponse<string>) => {
+        methodsService
+          .performDeleteRequest()
+          .then((response: AxiosResponse<string>) => {
+            okFunc(response.data, testData.DELETE.performDeleteRequest.check);
+          })
+          .catch(errorFunc);
+        /*methodsService.performDeleteRequest().subscribe((response: string) => {
           okFunc(response, testData.DELETE.performDeleteRequest.check);
-        }, errorFunc);
+        }, errorFunc);*/
       });
     });
 
