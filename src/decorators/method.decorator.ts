@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { Observable, defer } from 'rxjs';
+
 import { AxiosResponse } from 'axios';
 
 import { IAxiosfit } from 'src/interfaces';
@@ -69,7 +70,7 @@ export const PATCH = (endpoint: string) => {
 /**
  * Check if the type is a Promise.
  *
- * @param type Type to check.
+ * @param {any} type Type to check.
  */
 const isAPromise = <T>(type: new () => T): boolean => {
   try {
@@ -83,9 +84,9 @@ const isAPromise = <T>(type: new () => T): boolean => {
 /**
  * Function to return the results.
  *
- * @param consumer Function to be executed.
- * @param target The prototype of our class (or the constructor of the class if the decorated method is static).
- * @param methodName The name of the decorated method.
+ * @param {Function} consumer Function to be executed.
+ * @param {string} target The prototype of our class (or the constructor of the class if the decorated method is static).
+ * @param {string} methodName The name of the decorated method.
  */
 const resultFunction = <T = any>(
   consumer: Promise<AxiosResponse<T>>,
@@ -98,12 +99,6 @@ const resultFunction = <T = any>(
   } else {
     return defer(() => consumer);
   }
-  // TODO: Return only <T>
-  /*return defer(() => consumer).pipe(
-    map(response => {
-      return response.data;
-    }),
-  );*/
 };
 
 /**
@@ -147,7 +142,7 @@ const dataFunction = (endpoint: string, method: Method) => {
    * @param {PropertyDescriptor} descriptor An object that holds the decorated function and some meta-data regarding it.
    */
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
+    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> | T => {
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.POST:
