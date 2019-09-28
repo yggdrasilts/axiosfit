@@ -1,6 +1,5 @@
 import 'reflect-metadata';
-import { Observable, defer, isObservable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, defer } from 'rxjs';
 import { AxiosResponse } from 'axios';
 
 import { IAxiosfit } from 'src/interfaces';
@@ -67,15 +66,11 @@ export const PATCH = (endpoint: string) => {
   return dataFunction(endpoint, Method.PATCH);
 };
 
-// TODO: Create a deferFuncion to be use inside noDataFunction.
-/*const deferFunction = (consumer): Observable<T> => {
-  return defer(consumer).pipe(
-    map(response => {
-      return response.data;
-    }),
-  );
-};*/
-
+/**
+ * Check if the type is a Promise.
+ *
+ * @param type Type to check.
+ */
 const isAPromise = <T>(type: new () => T): boolean => {
   try {
     const service = new type();
@@ -86,36 +81,53 @@ const isAPromise = <T>(type: new () => T): boolean => {
 };
 
 /**
+ * Function to return the results.
+ *
+ * @param consumer Function to be executed.
+ * @param target The prototype of our class (or the constructor of the class if the decorated method is static).
+ * @param methodName The name of the decorated method.
+ */
+const resultFunction = <T = any>(
+  consumer: Promise<AxiosResponse<T>>,
+  target: string,
+  methodName: string,
+): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
+  const returnTypeIsPromise = isAPromise(Reflect.getMetadata('design:returntype', target, methodName));
+  if (returnTypeIsPromise) {
+    return consumer;
+  } else {
+    return defer(() => consumer);
+  }
+  // TODO: Return only <T>
+  /*return defer(() => consumer).pipe(
+    map(response => {
+      return response.data;
+    }),
+  );*/
+};
+
+/**
  * Function to be used for no data http methods.
  *
  * @param {string} endpoint The endpoint.
  * @param {Method} method HTTP method that sents no data inside the body.
  */
 const noDataFunction = (endpoint: string, method: Method) => {
+  /**
+   * @param {any} target The prototype of our class (or the constructor of the class if the decorated method is static).
+   * @param {string} methodName The name of the decorated method.
+   * @param {PropertyDescriptor} descriptor An object that holds the decorated function and some meta-data regarding it.
+   */
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
     descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
-      const returnTypeIsPromise = isAPromise<T>(Reflect.getMetadata('design:returntype', target, methodName));
-
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.GET:
-          if (returnTypeIsPromise) {
-            return service.instance.get<T>(service.getUrl(methodName), service.config);
-          } else {
-            return defer(() => service.instance.get<T>(service.getUrl(methodName), service.config));
-          }
+          return resultFunction(service.instance.get<T>(service.getUrl(methodName), service.config), target, methodName);
         case Method.DELETE:
-          if (returnTypeIsPromise) {
-            return service.instance.delete<T>(service.getUrl(methodName), service.config);
-          } else {
-            return defer(() => service.instance.delete<T>(service.getUrl(methodName), service.config));
-          }
+          return resultFunction(service.instance.delete<T>(service.getUrl(methodName), service.config), target, methodName);
         case Method.HEAD:
-          if (returnTypeIsPromise) {
-            return service.instance.head<T>(service.getUrl(methodName), service.config);
-          } else {
-            return defer(() => service.instance.head<T>(service.getUrl(methodName), service.config));
-          }
+          return resultFunction(service.instance.head<T>(service.getUrl(methodName), service.config), target, methodName);
       }
     };
     return descriptor;
@@ -129,29 +141,33 @@ const noDataFunction = (endpoint: string, method: Method) => {
  * @param {Method} method HTTP method that sents data inside the body.
  */
 const dataFunction = (endpoint: string, method: Method) => {
+  /**
+   * @param {any} target The prototype of our class (or the constructor of the class if the decorated method is static).
+   * @param {string} methodName The name of the decorated method.
+   * @param {PropertyDescriptor} descriptor An object that holds the decorated function and some meta-data regarding it.
+   */
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
     descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
-      const returnTypeIsPromise = isAPromise<T>(Reflect.getMetadata('design:returntype', target, methodName));
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.POST:
-          if (returnTypeIsPromise) {
-            return service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
-          } else {
-            return defer(() => service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
-          }
+          return resultFunction(
+            service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            target,
+            methodName,
+          );
         case Method.PUT:
-          if (returnTypeIsPromise) {
-            return service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
-          } else {
-            return defer(() => service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
-          }
+          return resultFunction(
+            service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            target,
+            methodName,
+          );
         case Method.PATCH:
-          if (returnTypeIsPromise) {
-            return service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
-          } else {
-            return defer(() => service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
-          }
+          return resultFunction(
+            service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            target,
+            methodName,
+          );
       }
     };
     return descriptor;
