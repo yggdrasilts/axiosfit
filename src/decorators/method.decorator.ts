@@ -76,7 +76,7 @@ export const PATCH = (endpoint: string) => {
   );
 };*/
 
-const isPromise = <T>(type: new () => T): boolean => {
+const isAPromise = <T>(type: new () => T): boolean => {
   try {
     const service = new type();
     return false;
@@ -93,36 +93,29 @@ const isPromise = <T>(type: new () => T): boolean => {
  */
 const noDataFunction = (endpoint: string, method: Method) => {
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = <T = any>(...args: any[]): Observable<T> | Promise<AxiosResponse<T>> => {
-      let returnType = Reflect.getMetadata('design:returntype', target, methodName);
-      console.log('methodName', methodName, 'returnType', returnType);
-      const returnTypeIsPromise = isPromise<T>(returnType);
-      console.log('isPromise', returnTypeIsPromise);
+    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
+      const returnTypeIsPromise = isAPromise<T>(Reflect.getMetadata('design:returntype', target, methodName));
 
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.GET:
-          return defer(() => service.instance.get<T>(service.getUrl(methodName), service.config)).pipe(
-            map(response => {
-              return response.data;
-            }),
-          );
+          if (returnTypeIsPromise) {
+            return service.instance.get<T>(service.getUrl(methodName), service.config);
+          } else {
+            return defer(() => service.instance.get<T>(service.getUrl(methodName), service.config));
+          }
         case Method.DELETE:
           if (returnTypeIsPromise) {
             return service.instance.delete<T>(service.getUrl(methodName), service.config);
           } else {
-            return defer(() => service.instance.delete<T>(service.getUrl(methodName), service.config)).pipe(
-              map(response => {
-                return response.data;
-              }),
-            );
+            return defer(() => service.instance.delete<T>(service.getUrl(methodName), service.config));
           }
         case Method.HEAD:
-          return defer(() => service.instance.head<T>(service.getUrl(methodName), service.config)).pipe(
-            map(response => {
-              return response.data;
-            }),
-          );
+          if (returnTypeIsPromise) {
+            return service.instance.head<T>(service.getUrl(methodName), service.config);
+          } else {
+            return defer(() => service.instance.head<T>(service.getUrl(methodName), service.config));
+          }
       }
     };
     return descriptor;
@@ -137,15 +130,28 @@ const noDataFunction = (endpoint: string, method: Method) => {
  */
 const dataFunction = (endpoint: string, method: Method) => {
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
-    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> => {
+    descriptor.value = <T = any>(...args: any[]): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
+      const returnTypeIsPromise = isAPromise<T>(Reflect.getMetadata('design:returntype', target, methodName));
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.POST:
-          return defer(() => service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          if (returnTypeIsPromise) {
+            return service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
+          } else {
+            return defer(() => service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          }
         case Method.PUT:
-          return defer(() => service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          if (returnTypeIsPromise) {
+            return service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
+          } else {
+            return defer(() => service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          }
         case Method.PATCH:
-          return defer(() => service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          if (returnTypeIsPromise) {
+            return service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config);
+          } else {
+            return defer(() => service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config));
+          }
       }
     };
     return descriptor;

@@ -5,7 +5,7 @@ import { MethodsRoutes } from './MethodsRoutes';
 @HTTP()
 export class MethodsServiceNoBase {
   @GET(MethodsRoutes.GET.REQUEST.URL)
-  public performGetRequest(): Observable<string> {
+  public performGetRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 }

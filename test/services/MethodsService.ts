@@ -5,22 +5,22 @@ import { MethodsRoutes } from './MethodsRoutes';
 @HTTP(MethodsRoutes.BASE)
 export class MethodsService {
   @GET(MethodsRoutes.GET.REQUEST.URL)
-  public performGetRequest(): Observable<string> {
+  public performGetRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @GET(MethodsRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL)
-  public performGetRequestAddingReqInterceptor(): Observable<string> {
+  public performGetRequestAddingReqInterceptor(): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @GET(MethodsRoutes.GET.WITH_RESPONSE_INTERCEPTOR.URL)
-  public performGetRequestAddingResInterceptor(): Observable<string> {
+  public performGetRequestAddingResInterceptor(): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @GET(MethodsRoutes.GET.WITH_PARAM.URL)
-  public performGetRequestUsingAPathVariable(@Path(MethodsRoutes.GET.WITH_PARAM.PARAMS.ID) id: string): Observable<string> {
+  public performGetRequestUsingAPathVariable(@Path(MethodsRoutes.GET.WITH_PARAM.PARAMS.ID) id: string): Observable<AxiosResponse<string>> {
     return null;
   }
 
@@ -28,17 +28,17 @@ export class MethodsService {
   public performGetRequestUsingPathVariables(
     @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID) id: string,
     @Path(MethodsRoutes.GET.WITH_PARAMS.PARAMS.ID2) id2: string,
-  ): Observable<string> {
+  ): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @DELETE(MethodsRoutes.DELETE.REQUEST.URL)
-  public performDeleteRequest(): Promise<AxiosResponse<string>> {
+  public performDeleteRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 
   @HEAD(MethodsRoutes.HEAD.REQUEST.URL)
-  public performHeadRequest(): Observable<string> {
+  public performHeadRequest(): Observable<AxiosResponse<string>> {
     return null;
   }
 

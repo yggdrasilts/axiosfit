@@ -20,8 +20,8 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsServiceNoBase.performGetRequest().subscribe((response: string) => {
-          okFunc(response, testData.GET.performGetRequest.check);
+        methodsServiceNoBase.performGetRequest().subscribe((response: AxiosResponse<string>) => {
+          okFunc(response.data, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
     });
@@ -41,8 +41,8 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequest().subscribe((response: string) => {
-          okFunc(response, testData.GET.performGetRequest.check);
+        methodsService.performGetRequest().subscribe((response: AxiosResponse<string>) => {
+          okFunc(response.data, testData.GET.performGetRequest.check);
         }, errorFunc);
       });
 
@@ -56,8 +56,8 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: string) => {
-          okFunc(response, testData.GET.performGetRequestUsingAPathVariable.check);
+        methodsService.performGetRequestUsingAPathVariable('param1').subscribe((response: AxiosResponse<string>) => {
+          okFunc(response.data, testData.GET.performGetRequestUsingAPathVariable.check);
         }, errorFunc);
       });
 
@@ -71,8 +71,8 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: string) => {
-          okFunc(response, testData.GET.performGetRequestUsingPathVariables.check);
+        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe((response: AxiosResponse<string>) => {
+          okFunc(response.data, testData.GET.performGetRequestUsingPathVariables.check);
         }, errorFunc);
       });
     });
@@ -88,15 +88,9 @@ describe('TEST Methods', () => {
           done.fail();
         };
 
-        methodsService
-          .performDeleteRequest()
-          .then((response: AxiosResponse<string>) => {
-            okFunc(response.data, testData.DELETE.performDeleteRequest.check);
-          })
-          .catch(errorFunc);
-        /*methodsService.performDeleteRequest().subscribe((response: string) => {
-          okFunc(response, testData.DELETE.performDeleteRequest.check);
-        }, errorFunc);*/
+        methodsService.performDeleteRequest().subscribe((response: AxiosResponse<string>) => {
+          okFunc(response.data, testData.DELETE.performDeleteRequest.check);
+        }, errorFunc);
       });
     });
 
