@@ -1,12 +1,19 @@
-const methodsRoutes = require('./services/MethodsRoutes').MethodsRoutes;
+const testRoutes = require('./services/TestRoutes').TestRoutes;
 
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 
-const testData = require('./testData.json');
+const buildUrl = require('./utils/utils').buildUrl;
 
-console.log(testData);
+const testData = require('./data/testData.json');
+
+const gets = require('./routes/gets');
+const deletes = require('./routes/deletes');
+const heads = require('./routes/heads');
+const posts = require('./routes/posts');
+const puts = require('./routes/puts');
+const patchs = require('./routes/patchs');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -16,55 +23,12 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json())
 
-const buildUrl = (base, url) => {
-  return base + url;
-};
-
-app.get(methodsRoutes.GET.REQUEST.URL, function (req, res) {
-  res.send(testData.GET.performGetRequest.check);
-});
-
-app.delete(buildUrl(methodsRoutes.BASE, methodsRoutes.DELETE.REQUEST.URL), function (req, res) {
-  res.send(testData.DELETE.performDeleteRequest.check);
-});
-
-app.head(buildUrl(methodsRoutes.BASE, methodsRoutes.HEAD.REQUEST.URL), function (req, res) {
-  res.send(testData.HEAD.performHeadRequest.check);
-});
-
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.REQUEST.URL), function (req, res) {
-  res.send(testData.GET.performGetRequest.check);
-});
-
-app.post(buildUrl(methodsRoutes.BASE, methodsRoutes.POST.REQUEST.URL), function (req, res) {
-  res.json(testData.POST.performPostRequest.check);
-});
-
-app.put(buildUrl(methodsRoutes.BASE, methodsRoutes.PUT.REQUEST.URL), function (req, res) {
-  res.json(testData.PUT.performPutRequest.check);
-});
-
-app.patch(buildUrl(methodsRoutes.BASE, methodsRoutes.PATCH.REQUEST.URL), function (req, res) {
-  res.json(testData.PATCH.performPatchRequest.check);
-});
-
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {
-  res.json({
-    headers: req.headers
-  });
-});
-
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_RESPONSE_INTERCEPTOR.URL), function (req, res) {
-  res.json(testData.GET.performGetRequestAddingResInterceptor.check);
-});
-
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_PARAM.URL), function (req, res) {
-  res.send(testData.GET.performGetRequestUsingAPathVariable.check);
-});
-
-app.get(buildUrl(methodsRoutes.BASE, methodsRoutes.GET.WITH_PARAMS.URL), function (req, res) {
-  res.send(testData.GET.performGetRequestUsingPathVariables.check);
-});
+app.use('/', gets);
+app.use('/', deletes);
+app.use('/', heads);
+app.use('/', posts);
+app.use('/', puts);
+app.use('/', patchs);
 
 app.listen(3000, function () {
   console.log('Mock Server listening on port 3000!');

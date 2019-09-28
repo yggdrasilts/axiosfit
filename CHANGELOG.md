@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-MM-DD
+### Changes
+
+- Manage responses with Observables or Promises.
+- Code refactor.
+
 ## [0.2.0] - 2019-09-22
 ### Changes
 
@@ -22,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [Unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.2.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.3.x%2F0.3.0
 [0.2.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.2.x%2F0.2.0
 [0.1.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.1
 [0.1.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.0

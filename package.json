@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "David Lopez <davidlopez.david@gmail.com>",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -28,11 +28,13 @@
     "compodoc": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint:test": "tslint -p tsconfig.test.json -c tslint.json",
     "prepublish": "npm run build",
     "test": "rm -rf coverage && npm run allure:clean && tsc -p tsconfig.test.json && DEBUG=testcontainers jest --config ./config/jest.config.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3"
   },
   "devDependencies": {

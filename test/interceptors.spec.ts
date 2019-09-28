@@ -1,12 +1,18 @@
 import { Axiosfit, AxiosResponse, AxiosError, AxiosfitInterceptor, AxiosRequestConfig } from '../src';
 
-import { MethodsService } from './services/MethodsService';
+import { TestObservableService } from './services/TestObservableService';
+import { TestPromiseService } from './services/TestPromiseService';
 
-import testData from './mockServer/testData.json';
+import testData from './mockServer/data/testData.json';
 
-describe('MethodsService', () => {
+describe('Testing Interceptors in MethodsService', () => {
+  const errorFunc = (error: AxiosError<any>, done: any) => {
+    expect(error).toBeNull();
+    done.fail();
+  };
+
   describe('REQUEST INTERCEPTORS', () => {
-    it('without parameters', done => {
+    it('without parameters using Observables', done => {
       const interceptor: AxiosfitInterceptor = {
         request: {
           onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
@@ -17,20 +23,54 @@ describe('MethodsService', () => {
         },
       };
 
-      const methodsService = new Axiosfit<MethodsService>()
+      const methodsService = new Axiosfit<TestObservableService>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .addInterceptor(interceptor)
-        .create(MethodsService);
+        .create(TestObservableService);
 
-      const errorFunc = (error: AxiosError<any>) => {
-        expect(error).toBeNull();
-        done.fail();
+      methodsService.performGetRequestAddingReqInterceptor().subscribe(
+        (response: AxiosResponse<string>) => {
+          expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
+          done();
+        },
+        error => errorFunc(error, done),
+      );
+    });
+
+    describe('Using Promises', () => {
+      const interceptor: AxiosfitInterceptor = {
+        request: {
+          onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
+            // tslint:disable-next-line: no-string-literal
+            config.headers['authorization'] = 'Bearer token';
+            return config;
+          },
+        },
       };
 
-      methodsService.performGetRequestAddingReqInterceptor().subscribe((response: AxiosResponse<string>) => {
-        expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
-        done();
-      }, errorFunc);
+      const methodsService = new Axiosfit<TestPromiseService>()
+        .baseUrl(process.env.MOCK_SERVER_URL)
+        .addInterceptor(interceptor)
+        .create(TestPromiseService);
+
+      it('not parameters, not async', done => {
+        methodsService
+          .performGetRequestAddingReqInterceptor()
+          .then((response: AxiosResponse<string>) => {
+            expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
+            done();
+          })
+          .catch(error => errorFunc(error, done));
+      });
+
+      it('not parameters, with async', async () => {
+        try {
+          const axiosResponse = await methodsService.performGetRequestAddingReqInterceptor();
+          expect(axiosResponse.data).toHaveProperty('headers.authorization', 'Bearer token');
+        } catch (error) {
+          expect(error).toBeNull();
+        }
+      });
     });
   });
 
@@ -50,20 +90,18 @@ describe('MethodsService', () => {
         },
       };
 
-      const methodsService = new Axiosfit<MethodsService>()
+      const methodsService = new Axiosfit<TestObservableService>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .addInterceptor(interceptor)
-        .create(MethodsService);
+        .create(TestObservableService);
 
-      const errorFunc = (error: AxiosError<any>) => {
-        expect(error).toBeNull();
-        done.fail();
-      };
-
-      methodsService.performGetRequestAddingResInterceptor().subscribe((response: AxiosResponse<string>) => {
-        expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
-        done();
-      }, errorFunc);
+      methodsService.performGetRequestAddingResInterceptor().subscribe(
+        (response: AxiosResponse<string>) => {
+          expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
+          done();
+        },
+        error => errorFunc(error, done),
+      );
     });
   });
 });

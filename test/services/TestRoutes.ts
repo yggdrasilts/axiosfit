@@ -1,7 +1,10 @@
-export class MethodsRoutes {
+export class TestRoutes {
   static BASE = '/axiosfit';
 
   static GET = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performGet',
     },
@@ -27,30 +30,45 @@ export class MethodsRoutes {
   };
 
   static DELETE = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performDelete',
     },
   };
 
   static HEAD = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performHead',
     },
   };
 
   static POST = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performPost',
     },
   };
 
   static PUT = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performPut',
     },
   };
 
   static PATCH = {
+    ERROR: {
+      URL: '/error',
+    },
     REQUEST: {
       URL: '/performPatch',
     },
