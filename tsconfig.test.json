@@ -18,6 +18,6 @@
     "src"
   ],
   "include": [
-    "test/services/MethodsRoutes.ts"
+    "test/services/TestRoutes.ts"
   ]
 }
