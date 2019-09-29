@@ -125,7 +125,10 @@ from the main (upstream) repository:
 
 ## <a name="development"></a> Development Setup
 
-You will need Node.js version 8.9.0+. <!-- TODO: Review nodejs version -->
+### Requirements
+
+ - [docker](https://docs.docker.com/install/) is needed to execute all test suites.
+ - You will need Node.js version 12.3.0+.
 
 1. After cloning the repo, run:
 
@@ -214,8 +217,6 @@ Must be one of the following:
 The scope should be the name of the npm package affected (as perceived by person reading changelog generated from commit messages).
 
 The following is the list of supported scopes:
-
-<!-- TODO: Review scopes -->
 
 - **axios**
 - **decorator**
