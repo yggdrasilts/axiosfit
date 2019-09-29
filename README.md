@@ -1,24 +1,30 @@
 # Axiosfit
 
-Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the Observable powers.
-
-Instead of using Observables you can use Promises as well.
+Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the Observable powers (*also, you can use Promises as well*).
 
 ## Install
 
-`npm i @yggdrasilts/axiosfit`
+`npm i --save @yggdrasilts/axiosfit`
 
 ## Documentation
 
 This project use [compodoc](https://compodoc.app/) to generate the full documentation. To see it, executes `npm run compodoc`.
 
-## Usage
+## Purpose
+
+This project is thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend or backend applications. 
+
+Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be store in an unique object and be managed. See our [Examples section](#samples_section) to know more about it.
 
 ### Available Decorators
+
+As we all know, to build a request is necessary a [URL](https://en.wikipedia.org/wiki/URL) and, using one of the top TypeScript feature, the [TypeScript Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html), Axiosfit give you some specifical Decorators to create an awesome service to store all the information to form your [URL](https://en.wikipedia.org/wiki/URL) to manage your HTTP requests.
 
 #### Class Decorators
 
 * [@HTTP(endpointPath?: string)](miscellaneous/functions.html#HTTP)
+
+**@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its *endpointPath* property. 
 
 #### Method Decorators
 
@@ -29,12 +35,133 @@ This project use [compodoc](https://compodoc.app/) to generate the full document
 * [@HEAD(endpoint: string)](miscellaneous/functions.html#HEAD)
 * [@PATCH(endpoint: string)](miscellaneous/functions.html#PATCH)
 
+To request any API server, it is needed to know with method is necessary. For this reason Axiosfit give you Decorators to indicates which method has to be used.
+
 #### Parameter Decorators
 
 * [@Path(paramName: string)](miscellaneous/functions.html#Path)
 * [@Body()](miscellaneous/functions.html#Body)
 
-### Example
+Another part are the *path* and the *body* of your request and Axiosfit also has these Decorators to configure your service.
+
+---
+
+Examples of using all of these Decartors are shown in the [Examples section](#samples_section)
+
+---
+
+## Usage
+
+To build an Axiosfit service a few steps need to be done:
+
+### 1. Create a service class
+
+A service class needs to be created because it will store all the requests information. The following code shows a simple service:
+
+```typescript
+@HTTP('/simple')
+export class SimpleService {
+  @GET('/service')
+  public getSimpleService(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+}
+```
+
+### 2. Create Axiosfit instance
+
+Once the service class is created, the Axiosfit instance can be built:
+
+```typescript
+const simpleService = new Axiosfit<SimpleService>()
+  .baseUrl('http://simpleservice.com')
+  .create(SimpleService);
+```
+
+### 3. Perform an Axiosfit request
+
+After all steps, the service can be managed as a typical class:
+
+```typescript
+simpleService.getSimpleService()
+  .subscribe(
+    axiosResponse => console.log(axiosResponse.data),
+    axiosError => console.error(axiosError)
+  );
+```
+
+### 4. Using Promises
+
+Axiosfit manage responses using Observables or Promises. The above example shows how to use Observables but, if you prefer use Promises, a minimal change has to be done:
+
+#### 4.1 Modify service class return type
+
+```typescript
+@HTTP('/simple')
+export class SimpleService {
+  @GET('/service')
+  public getSimpleService(): Promise<AxiosResponse<string>> {
+    return null;
+  }
+}
+```
+
+Once the change is made, you can use Axiosfit response like a typical Promise:
+
+```typescript
+simpleService.getSimpleService()
+  .then(axiosResponse => console.log(axiosResponse.data))
+  .catch(axiosError => console.error(axiosError));
+```
+
+### Other features
+
+#### Interceptors
+
+Interceptors are other [axios](https://github.com/axios/axios#interceptors) feature that Axiosfit implements.
+
+Both, a request and response interceptors must be createbe when the Axiosfit instance is created.
+
+```typescript
+const simpleService = new Axiosfit<SimpleService>()
+  .baseUrl('http://simpleservice.com')
+  .addInterceptor(interceptor)
+  .create(SimpleService);
+```
+
+##### Request Interceptor
+
+```typescript
+const interceptor: AxiosfitInterceptor = {
+  request: {
+    onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
+      // tslint:disable-next-line: no-string-literal
+      config.headers['authorization'] = 'Bearer token';
+      return config;
+    },
+  },
+};
+```
+
+##### Response Interceptor
+
+```typescript
+const interceptor: AxiosfitInterceptor = {
+  response: {
+    onFulFilled: (response: AxiosResponse): AxiosResponse => {
+      // tslint:disable-next-line: no-string-literal
+      const currentData = response.data;
+      response.data = {
+        ...currentData,
+        newData: 'new',
+      };
+      return response;
+    },
+  },
+};
+```
+
+## <a name="samples_section"></a>Examples
 
 - Create class with the endpoints methods:
 
@@ -168,7 +295,9 @@ export class TestService {
 ```typescript
 import { Axiosfit } from '@yggdrasilts/axiosfit';
 
-const methodsService = new Axiosfit<TestService>().baseUrl(process.env.MOCK_SERVER_URL).create(TestService);
+const methodsService = new Axiosfit<TestService>()
+  .baseUrl(process.env.MOCK_SERVER_URL)
+  .create(TestService);
 ```
 
 - Call methods using observables:
@@ -195,7 +324,6 @@ methodsService
   .performGetRequest()
   .then((response: AxiosResponse<string>) => console.log('OK', response.data))
   .catch((error: AxiosError<any>) => console.error('KO', error));
-  );
 ```
 
 NOTE: The example code can be seen in the [test](./test) folder.

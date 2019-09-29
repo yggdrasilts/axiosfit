@@ -9,7 +9,10 @@
   "description": "Project inspired in Retrofit.",
   "keywords": [
     "typescript",
-    "axios"
+    "axios",
+    "rxjs",
+    "promise",
+    "javascript"
   ],
   "bugs": {
     "url": "https://gitlab.com/yggdrasilts/axiosfit/issues"
