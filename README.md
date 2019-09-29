@@ -14,7 +14,7 @@ This project use [compodoc](https://compodoc.app/) to generate the full document
 
 This project has been thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend or backend applications.
 
-Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be stored in an unique object and be managed. See our [Examples section](#samples_section) to know more about it.
+Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be stored in a unique object and be managed. See our [Examples section](#samples_section) to know more about it.
 
 ### Available Decorators
 
