@@ -1,11 +1,14 @@
 import 'reflect-metadata';
-import { Observable, defer } from 'rxjs';
+
+import { Observable, defer, isObservable } from 'rxjs';
 
 import { AxiosResponse } from 'axios';
 
-import { IAxiosfit } from 'src/interfaces';
-import { serviceMap, createServiceMap } from './utilities';
+import { ReturnedTypeNotValidException } from '../exceptions';
+
+import { IAxiosfit } from '../interfaces';
 import { Method } from '../http/enums';
+import { serviceMap, createServiceMap } from './utilities';
 
 /**
  * Method decorator.
@@ -75,8 +78,14 @@ export const PATCH = (endpoint: string) => {
 const isAPromise = <T>(type: new () => T): boolean => {
   try {
     const service = new type();
-    return false;
+    if (isObservable(service)) {
+      return false;
+    }
+    throw new ReturnedTypeNotValidException();
   } catch (error) {
+    if (error instanceof ReturnedTypeNotValidException) {
+      throw error;
+    }
     return true;
   }
 };

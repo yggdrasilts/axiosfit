@@ -17,13 +17,13 @@ describe('Testing Methods using Observable responses', () => {
   };
 
   describe('TestServiceNoBase', () => {
-    const TestServiceNoBase = new Axiosfit<TestObservableServiceNoBase>()
+    const testServiceNoBase = new Axiosfit<TestObservableServiceNoBase>()
       .baseUrl(process.env.MOCK_SERVER_URL)
       .create(TestObservableServiceNoBase);
 
     describe('GET methods', () => {
       it('without parameters', done => {
-        TestServiceNoBase.performGetRequest().subscribe(
+        testServiceNoBase.performGetRequest().subscribe(
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequest.check, done);
           },
@@ -32,7 +32,7 @@ describe('Testing Methods using Observable responses', () => {
       });
 
       it('without parameters and getting an error', done => {
-        TestServiceNoBase.performGetRequestWithError().subscribe(
+        testServiceNoBase.performGetRequestWithError().subscribe(
           axiosResponse => done.fail(),
           error => {
             expect(error).not.toBeNull();
@@ -43,12 +43,12 @@ describe('Testing Methods using Observable responses', () => {
     });
   });
 
-  describe('MethodsService', () => {
-    const methodsService = new Axiosfit<TestObservableService>().baseUrl(process.env.MOCK_SERVER_URL).create(TestObservableService);
+  describe('TestObservableService', () => {
+    const testObservableService = new Axiosfit<TestObservableService>().baseUrl(process.env.MOCK_SERVER_URL).create(TestObservableService);
 
     describe('GET methods', () => {
       it('without parameters', done => {
-        methodsService.performGetRequest().subscribe(
+        testObservableService.performGetRequest().subscribe(
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequest.check, done);
           },
@@ -57,7 +57,7 @@ describe('Testing Methods using Observable responses', () => {
       });
 
       it('with only one parameter', done => {
-        methodsService.performGetRequestUsingAPathVariable('param1').subscribe(
+        testObservableService.performGetRequestUsingAPathVariable('param1').subscribe(
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingAPathVariable.check, done);
           },
@@ -66,7 +66,7 @@ describe('Testing Methods using Observable responses', () => {
       });
 
       it('with some parameters', done => {
-        methodsService.performGetRequestUsingPathVariables('param1', 'param2').subscribe(
+        testObservableService.performGetRequestUsingPathVariables('param1', 'param2').subscribe(
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingPathVariables.check, done);
           },
@@ -77,7 +77,7 @@ describe('Testing Methods using Observable responses', () => {
 
     describe('DELETE methods', () => {
       it('without parameters', done => {
-        methodsService.performDeleteRequest().subscribe(
+        testObservableService.performDeleteRequest().subscribe(
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.DELETE.performDeleteRequest.check, done);
           },
@@ -88,7 +88,7 @@ describe('Testing Methods using Observable responses', () => {
 
     describe('POST methods', () => {
       it('without parameters', done => {
-        methodsService.performPostRequest({ data: 'data' }).subscribe(
+        testObservableService.performPostRequest({ data: 'data' }).subscribe(
           (response: AxiosResponse<string>) => {
             expect(response.data).toEqual(testData.POST.performPostRequest.check);
             done();
@@ -100,7 +100,7 @@ describe('Testing Methods using Observable responses', () => {
 
     describe('PUT methods', () => {
       it('without parameters', done => {
-        methodsService.performPutRequest({ data: 'data' }).subscribe(
+        testObservableService.performPutRequest({ data: 'data' }).subscribe(
           (response: AxiosResponse<string>) => {
             expect(response.data).toEqual(testData.PUT.performPutRequest.check);
             done();
@@ -112,7 +112,7 @@ describe('Testing Methods using Observable responses', () => {
 
     describe('PATCH methods', () => {
       it('without parameters', done => {
-        methodsService.performPatchRequest({ data: 'data' }).subscribe(
+        testObservableService.performPatchRequest({ data: 'data' }).subscribe(
           (response: AxiosResponse<string>) => {
             expect(response.data).toEqual(testData.PATCH.performPatchRequest.check);
             done();
