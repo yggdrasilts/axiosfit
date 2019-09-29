@@ -1,0 +1,13 @@
+# Folders
+allure-results
+config
+coverage
+test
+
+# Files
+package-lock.json
+.compodocrc.json
+.editorconfig
+.gitignore
+.prettierrc
+*.test.json
