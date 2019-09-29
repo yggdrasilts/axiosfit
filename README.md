@@ -1,6 +1,6 @@
 # Axiosfit
 
-Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the Observable powers (*also, you can use Promises as well*).
+Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the Observable powers (_also, you can use Promises as well_).
 
 ## Install
 
@@ -12,9 +12,9 @@ This project use [compodoc](https://compodoc.app/) to generate the full document
 
 ## Purpose
 
-This project is thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend or backend applications. 
+This project has been thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend or backend applications.
 
-Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be store in an unique object and be managed. See our [Examples section](#samples_section) to know more about it.
+Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be stored in an unique object and be managed. See our [Examples section](#samples_section) to know more about it.
 
 ### Available Decorators
 
@@ -22,27 +22,27 @@ As we all know, to build a request is necessary a [URL](https://en.wikipedia.org
 
 #### Class Decorators
 
-* [@HTTP(endpointPath?: string)](miscellaneous/functions.html#HTTP)
+- [@HTTP(endpointPath?: string)](miscellaneous/functions.html#HTTP)
 
-**@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its *endpointPath* property. 
+**@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its _endpointPath_ property.
 
 #### Method Decorators
 
-* [@GET(endpoint: string)](miscellaneous/functions.html#GET)
-* [@POST(endpoint: string)](miscellaneous/functions.html#POST)
-* [@PUT(endpoint: string)](miscellaneous/functions.html#PUT)
-* [@DELETE(endpoint: string)](miscellaneous/functions.html#DELETE)
-* [@HEAD(endpoint: string)](miscellaneous/functions.html#HEAD)
-* [@PATCH(endpoint: string)](miscellaneous/functions.html#PATCH)
+- [@GET(endpoint: string)](miscellaneous/functions.html#GET)
+- [@POST(endpoint: string)](miscellaneous/functions.html#POST)
+- [@PUT(endpoint: string)](miscellaneous/functions.html#PUT)
+- [@DELETE(endpoint: string)](miscellaneous/functions.html#DELETE)
+- [@HEAD(endpoint: string)](miscellaneous/functions.html#HEAD)
+- [@PATCH(endpoint: string)](miscellaneous/functions.html#PATCH)
 
-To request any API server, it is needed to know with method is necessary. For this reason Axiosfit give you Decorators to indicates which method has to be used.
+To request any API server, it is needed to know with method is necessary. For this reason Axiosfit give you Decorators to indicate which method has to be used.
 
 #### Parameter Decorators
 
-* [@Path(paramName: string)](miscellaneous/functions.html#Path)
-* [@Body()](miscellaneous/functions.html#Body)
+- [@Path(paramName: string)](miscellaneous/functions.html#Path)
+- [@Body()](miscellaneous/functions.html#Body)
 
-Another part are the *path* and the *body* of your request and Axiosfit also has these Decorators to configure your service.
+Another part is the _path_ and the _body_ of your request and Axiosfit also has these Decorators to configure your service.
 
 ---
 
@@ -73,9 +73,7 @@ export class SimpleService {
 Once the service class is created, the Axiosfit instance can be built:
 
 ```typescript
-const simpleService = new Axiosfit<SimpleService>()
-  .baseUrl('http://simpleservice.com')
-  .create(SimpleService);
+const simpleService = new Axiosfit<SimpleService>().baseUrl('http://simpleservice.com').create(SimpleService);
 ```
 
 ### 3. Perform an Axiosfit request
@@ -83,11 +81,7 @@ const simpleService = new Axiosfit<SimpleService>()
 After all steps, the service can be managed as a typical class:
 
 ```typescript
-simpleService.getSimpleService()
-  .subscribe(
-    axiosResponse => console.log(axiosResponse.data),
-    axiosError => console.error(axiosError)
-  );
+simpleService.getSimpleService().subscribe(axiosResponse => console.log(axiosResponse.data), axiosError => console.error(axiosError));
 ```
 
 ### 4. Using Promises
@@ -109,7 +103,8 @@ export class SimpleService {
 Once the change is made, you can use Axiosfit response like a typical Promise:
 
 ```typescript
-simpleService.getSimpleService()
+simpleService
+  .getSimpleService()
   .then(axiosResponse => console.log(axiosResponse.data))
   .catch(axiosError => console.error(axiosError));
 ```
@@ -120,7 +115,7 @@ simpleService.getSimpleService()
 
 Interceptors are other [axios](https://github.com/axios/axios#interceptors) feature that Axiosfit implements.
 
-Both, a request and response interceptors must be createbe when the Axiosfit instance is created.
+Both, a request and response interceptors must be created when the Axiosfit instance is created.
 
 ```typescript
 const simpleService = new Axiosfit<SimpleService>()
@@ -166,6 +161,7 @@ const interceptor: AxiosfitInterceptor = {
 - Create class with the endpoints methods:
 
   - Using Observables:
+
 ```typescript
 import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse } from '../../src';
 import { TestRoutes } from './TestRoutes';
@@ -227,7 +223,7 @@ export class TestObservableService {
 }
 ```
 
-  - Using Promises:
+- Using Promises:
 
 ```typescript
 import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, AxiosResponse } from '../../src';
@@ -295,9 +291,7 @@ export class TestService {
 ```typescript
 import { Axiosfit } from '@yggdrasilts/axiosfit';
 
-const methodsService = new Axiosfit<TestService>()
-  .baseUrl(process.env.MOCK_SERVER_URL)
-  .create(TestService);
+const methodsService = new Axiosfit<TestService>().baseUrl(process.env.MOCK_SERVER_URL).create(TestService);
 ```
 
 - Call methods using observables:
@@ -309,13 +303,10 @@ import { AxiosResponse, AxiosError } from '@yggdrasilts/axiosfit';
 
 methodsService
   .performGetRequest()
-  .subscribe(
-    (response: AxiosResponse<string>) => console.log('OK', response.data),
-    (error: AxiosError<any>) => console.error('KO', error)
-  );
+  .subscribe((response: AxiosResponse<string>) => console.log('OK', response.data), (error: AxiosError<any>) => console.error('KO', error));
 ```
 
-  - Using Promises:
+- Using Promises:
 
 ```typescript
 import { AxiosResponse, AxiosError } from '@yggdrasilts/axiosfit';
