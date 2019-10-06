@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2019-10-06
+### Bugfixes
+
+- [Modify AxiosfitInterceptor import](https://gitlab.com/yggdrasilts/axiosfit/merge_requests/3)
+
 ## [0.4.0] - 2019-10-06
 ### Changes
 
@@ -43,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [Unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.4.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.1
 [0.4.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.0
 [0.3.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.3.x%2F0.3.0
 [0.2.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.2.x%2F0.2.0
