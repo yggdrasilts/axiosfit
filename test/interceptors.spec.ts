@@ -1,9 +1,9 @@
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
 import { TestObservableServiceInterceptor } from './services/observables/TestObservableServiceInterceptor';
+import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
 
 import testData from './mockServer/data/testData.json';
-import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
 
 describe('Testing Interceptors in MethodsService', () => {
   const errorFunc = (error: AxiosError<any>, done: any) => {
@@ -53,7 +53,7 @@ describe('Testing Interceptors in MethodsService', () => {
   });
 
   describe('RESPONSE INTERCEPTORS', () => {
-    it('without parameters', done => {
+    it('without parameters using Observables', done => {
       const methodsService = new Axiosfit<TestObservableServiceInterceptor>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .create(TestObservableServiceInterceptor);
@@ -65,6 +65,31 @@ describe('Testing Interceptors in MethodsService', () => {
         },
         error => errorFunc(error, done),
       );
+    });
+
+    describe('Using Promises', () => {
+      const methodsService = new Axiosfit<TestPromiseServiceInterceptor>()
+        .baseUrl(process.env.MOCK_SERVER_URL)
+        .create(TestPromiseServiceInterceptor);
+
+      it('not parameters, not async', done => {
+        methodsService
+          .performGetRequestAddingResInterceptor()
+          .then((response: AxiosResponse<string>) => {
+            expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
+            done();
+          })
+          .catch(error => errorFunc(error, done));
+      });
+
+      it('not parameters, with async', async () => {
+        try {
+          const axiosResponse = await methodsService.performGetRequestAddingResInterceptor();
+          expect(axiosResponse.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
+        } catch (error) {
+          expect(error).toBeNull();
+        }
+      });
     });
   });
 });
