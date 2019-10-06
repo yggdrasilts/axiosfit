@@ -47,7 +47,7 @@
     "jest": "^24.9.0",
     "jest-allure": "^0.1.1",
     "prettier": "^1.18.2",
-    "testcontainers": "^2.0.0",
+    "testcontainers": "^2.1.0",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
