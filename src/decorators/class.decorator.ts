@@ -1,5 +1,5 @@
 import { createServiceMap, serviceMap } from './utilities';
-import { AxiosfitInterceptor } from 'src/interfaces';
+import { AxiosfitInterceptor } from '../interfaces';
 
 /**
  * Class decorator.
