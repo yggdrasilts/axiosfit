@@ -25,6 +25,8 @@ export const createServiceMap = function(constructor) {
        */
       private baseServiceEndpoint: string;
 
+      private globalInterceptors: AxiosfitInterceptor[];
+
       /**
        * Contains the urls for every method.
        *
@@ -58,6 +60,14 @@ export const createServiceMap = function(constructor) {
         this.baseServiceEndpoint = baseServiceEndpoint;
       }
 
+      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]) {
+        const list: AxiosfitInterceptor[] = [];
+        for (const interceptor of globalInterceptors) {
+          list.push(new (interceptor as any)());
+        }
+        this.setInterceptors(list);
+      }
+
       /**
        * Mixes the Axiosfit configurations with defaults.
        *
@@ -75,7 +85,7 @@ export const createServiceMap = function(constructor) {
        */
       setInterceptors(interceptors: AxiosfitInterceptor[]) {
         // tslint:disable-next-line: no-console
-        const defaultError = (error: any) => console.log(error);
+        const defaultError = (error: any) => console.error(error);
         for (const interceptor of interceptors) {
           if (interceptor.request) {
             this.axiosInstance.interceptors.request.use(interceptor.request.onFulFilled, interceptor.request.onRejected || defaultError);

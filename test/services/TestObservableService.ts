@@ -1,4 +1,4 @@
-import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse } from '../../src';
+import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse, Interceptors } from '../../src';
 import { TestRoutes } from './TestRoutes';
 
 @HTTP(TestRoutes.BASE)
