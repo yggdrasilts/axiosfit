@@ -1,5 +1,5 @@
-import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, AxiosResponse } from '../../src';
-import { TestRoutes } from './TestRoutes';
+import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, AxiosResponse } from '../../../src';
+import { TestRoutes } from './../TestRoutes';
 
 @HTTP(TestRoutes.BASE)
 export class TestPromiseService {

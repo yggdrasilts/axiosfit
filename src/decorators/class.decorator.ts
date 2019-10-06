@@ -1,4 +1,5 @@
 import { createServiceMap, serviceMap } from './utilities';
+import { AxiosfitInterceptor } from 'src/interfaces';
 
 /**
  * Class decorator.
@@ -12,5 +13,14 @@ export const HTTP = (endpointPath?: string) => {
       createServiceMap(constructor);
     }
     serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath || '');
+  };
+};
+
+export const Interceptors = <T = AxiosfitInterceptor>(...interceptors: T[]) => {
+  return constructor => {
+    if (!serviceMap[constructor.name]) {
+      createServiceMap(constructor);
+    }
+    serviceMap[constructor.name].setGlobalInterceptors(interceptors);
   };
 };

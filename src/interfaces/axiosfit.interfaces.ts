@@ -13,6 +13,7 @@ export interface IAxiosfit {
   config: AxiosRequestConfig;
 
   setBaseServiceEndpoint(baseServiceEndpoint: string);
+  setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]);
   setConfig(config: AxiosRequestConfig);
   setInterceptors(interceptors: AxiosfitInterceptor[]);
 

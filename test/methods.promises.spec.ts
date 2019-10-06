@@ -1,7 +1,7 @@
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
-import { TestPromiseServiceNoBase } from './services/TestPromiseServicesNoBase';
-import { TestPromiseService } from './services/TestPromiseService';
+import { TestPromiseServiceNoBase } from './services/promises/TestPromiseServicesNoBase';
+import { TestPromiseService } from './services/promises/TestPromiseService';
 
 import testData from './mockServer/data/testData.json';
 

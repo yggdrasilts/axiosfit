@@ -22,25 +22,26 @@ As we all know, to build a request is necessary a [URL](https://en.wikipedia.org
 
 #### Class Decorators
 
-- [@HTTP(endpointPath?: string)](miscellaneous/functions.html#HTTP)
+- [@HTTP(endpointPath?: string)](miscellaneous/variables.html#HTTP)
+- [@Interceptors(...interceptors: AxiosfitInterceptor[])](miscellaneous/variables.html#Interceptors)
 
 **@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its _endpointPath_ property.
 
 #### Method Decorators
 
-- [@GET(endpoint: string)](miscellaneous/functions.html#GET)
-- [@POST(endpoint: string)](miscellaneous/functions.html#POST)
-- [@PUT(endpoint: string)](miscellaneous/functions.html#PUT)
-- [@DELETE(endpoint: string)](miscellaneous/functions.html#DELETE)
-- [@HEAD(endpoint: string)](miscellaneous/functions.html#HEAD)
-- [@PATCH(endpoint: string)](miscellaneous/functions.html#PATCH)
+- [@GET(endpoint: string)](miscellaneous/variables.html#GET)
+- [@POST(endpoint: string)](miscellaneous/variables.html#POST)
+- [@PUT(endpoint: string)](miscellaneous/variables.html#PUT)
+- [@DELETE(endpoint: string)](miscellaneous/variables.html#DELETE)
+- [@HEAD(endpoint: string)](miscellaneous/variables.html#HEAD)
+- [@PATCH(endpoint: string)](miscellaneous/variables.html#PATCH)
 
 To request any API server, it is needed to know with method is necessary. For this reason Axiosfit give you Decorators to indicate which method has to be used.
 
 #### Parameter Decorators
 
-- [@Path(paramName: string)](miscellaneous/functions.html#Path)
-- [@Body()](miscellaneous/functions.html#Body)
+- [@Path(paramName: string)](miscellaneous/variables.html#Path)
+- [@Body()](miscellaneous/variables.html#Body)
 
 Another part is the _path_ and the _body_ of your request and Axiosfit also has these Decorators to configure your service.
 
@@ -115,7 +116,55 @@ simpleService
 
 Interceptors are other [axios](https://github.com/axios/axios#interceptors) feature that Axiosfit implements.
 
-Both, a request and response interceptors must be created when the Axiosfit instance is created.
+There are 2 ways to use interceptors:
+
+1. Using the [@Interceptors(...interceptors: AxiosfitInterceptor[])](miscellaneous/variables.html#Interceptors) decorator:
+
+With this first way, the interceptor, or a list of interceptors separated by commas, needs to be added as a decorator parameter:
+
+```typescript
+@HTTP('/simple')
+@Interceptors(SimpleInterceptor)
+export class SimpleService {
+  @GET('/service')
+  public getSimpleService(): Promise<AxiosResponse<string>> {
+    return null;
+  }
+}
+```
+
+```typescript
+class SimpleInterceptor implements AxiosfitInterceptor {
+  request?: AxiosfitInterceptorRequest;
+  response?: AxiosfitInterceptorResponse;
+
+  constructor() {
+    this.request = {
+      onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
+        // tslint:disable-next-line: no-string-literal
+        config.headers['authorization'] = 'Bearer token';
+        return config;
+      },
+    };
+
+    this.response = {
+      onFulFilled: (response: AxiosResponse): AxiosResponse => {
+        // tslint:disable-next-line: no-string-literal
+        const currentData = response.data;
+        response.data = {
+          ...currentData,
+          newData: 'new',
+        };
+        return response;
+      },
+    };
+  }
+}
+```
+
+2. Add the interceptor when the Axiosfit service is created.
+
+Using this second method, a request and/or response interceptors must be created when the Axiosfit instance is created.
 
 ```typescript
 const simpleService = new Axiosfit<SimpleService>()
