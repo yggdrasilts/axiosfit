@@ -1,7 +1,7 @@
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
-import { TestObservableService } from './services/TestObservableService';
-import { TestObservableServiceNoBase } from './services/TestObservableServicesNoBase';
+import { TestObservableService } from './services/observables/TestObservableService';
+import { TestObservableServiceNoBase } from './services/observables/TestObservableServicesNoBase';
 
 import testData from './mockServer/data/testData.json';
 

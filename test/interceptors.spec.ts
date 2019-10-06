@@ -1,10 +1,9 @@
-import { Axiosfit, AxiosResponse, AxiosError, AxiosfitInterceptor, AxiosRequestConfig } from '../src';
+import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
-import { TestObservableServiceInterceptor } from './services/TestObservableServiceInterceptor';
-import { TestPromiseService } from './services/TestPromiseService';
+import { TestObservableServiceInterceptor } from './services/observables/TestObservableServiceInterceptor';
 
 import testData from './mockServer/data/testData.json';
-import { TestPromiseServiceInterceptor } from './services/TestPromiseServiceInterceptor';
+import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
 
 describe('Testing Interceptors in MethodsService', () => {
   const errorFunc = (error: AxiosError<any>, done: any) => {

@@ -1,6 +1,6 @@
-import { HTTP, GET, Observable, AxiosResponse, Interceptors } from '../../src';
-import { TestRoutes } from './TestRoutes';
-import { TestInterceptor } from './interceptors/test.interceptor';
+import { HTTP, GET, Observable, AxiosResponse, Interceptors } from '../../../src';
+import { TestRoutes } from '../TestRoutes';
+import { TestInterceptor } from '../interceptors/test.interceptor';
 
 @HTTP(TestRoutes.BASE)
 @Interceptors(TestInterceptor)

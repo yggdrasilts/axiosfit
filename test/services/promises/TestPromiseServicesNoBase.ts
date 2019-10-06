@@ -1,5 +1,5 @@
-import { HTTP, GET, AxiosResponse } from '../../src';
-import { TestRoutes } from './TestRoutes';
+import { HTTP, GET, AxiosResponse } from '../../../src';
+import { TestRoutes } from '../TestRoutes';
 
 @HTTP()
 export class TestPromiseServiceNoBase {
