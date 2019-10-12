@@ -1,0 +1,34 @@
+<div class="container wrapper">
+  <div class="row">
+
+    <!-- Issue table -->
+    <div class="col-md-12">
+      <div class="inner">
+        <h3>My Issues</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Issue Name</th>
+              <th scope="col">Issue Details</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let issues of issuesList">
+              <th scope="row">{{issues.id}}</th>
+              <td>{{issues.issue_name}}</td>
+              <td>{{issues.issue_message}}</td>
+              <td>
+                <button type="button" class="btn btn-success btn-sm move-right"
+                  [routerLink]="['/edit-issue/', issues.id]">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteIusse(issues)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

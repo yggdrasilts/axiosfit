@@ -1,0 +1,21 @@
+<div class="container wrapper wrapper2">
+    <div class="row">
+
+        <!-- Form -->
+        <div class="col-md-12">
+            <h3>Add Issue</h3>
+            <form [formGroup]="updateIssueForm" (ngSubmit)="submitForm()" novalidate>
+                <div class="form-group">
+                    <label>Issue</label>
+                    <input type="text" formControlName="issue_name" class="form-control" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label>Issue Details</label>
+                    <textarea class="form-control" formControlName="issue_message" rows="3" maxlength="50"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+
+    </div>
+</div>
