@@ -47,7 +47,7 @@ Another part is the _path_ and the _body_ of your request and Axiosfit also has 
 
 ---
 
-Examples of using all of these Decartors are shown in the [Examples section](#samples_section)
+Examples of using all of these Decartors are shown in the [Examples section](#samples_section) or you can find specific samples inside the [samples folder](./samples).
 
 ---
 
