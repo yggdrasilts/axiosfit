@@ -1,0 +1,26 @@
+.wrapper {
+    width: 100%;
+    margin: 60px 0;
+}
+
+.inner {
+    padding-left: 50px;
+}
+
+h3 {
+    padding-bottom: 12px;
+    margin: 0 0 25px !important;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.move-right {
+    margin-right: 10px;
+}
+
+.container.wrapper {
+    width: 700px;
+}
+
+.wrapper2 {
+    width: 450px !important;
+}
