@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular8-axiosfit": {
+    "angular-axiosfit": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular8-axiosfit",
+            "outputPath": "dist/angular-axiosfit",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular8-axiosfit:build"
+            "browserTarget": "angular-axiosfit:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular8-axiosfit:build:production"
+              "browserTarget": "angular-axiosfit:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular8-axiosfit:build"
+            "browserTarget": "angular-axiosfit:build"
           }
         },
         "test": {
@@ -102,16 +102,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular8-axiosfit:serve"
+            "devServerTarget": "angular-axiosfit:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular8-axiosfit:serve:production"
+              "devServerTarget": "angular-axiosfit:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular8-axiosfit"
+  "defaultProject": "angular-axiosfit"
 }
