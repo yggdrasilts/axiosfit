@@ -1,20 +1,26 @@
 # Axiosfit
 
-Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using all the Observable powers (_also, you can use Promises as well_).
+Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) and all the Observable powers (_also, you can use Promises as well_).
+
+## Purpose
+
+This project has been thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend and/or backend applications.
+
+Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be stored in a unique object and be managed. See our [Examples section](#samples_section) or our [application samples](./samples) to know more about how to use it.
+
+**IMPORTANT**: [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) only works for building frontend applications using [Angular](https://angular.io/) or backend applications using nodejs with [TypeScript](http://www.typescriptlang.org/). Althought [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) can be used in a typical [TypeScript](http://www.typescriptlang.org/) application, we strongly recommend to use [NestJS](https://nestjs.com/) framework to build backend applications.
 
 ## Install
 
 `npm i --save @yggdrasilts/axiosfit`
 
+## Contributing
+
+If you want to contribute this amazing project, see [CONTRIBUTING Guide](CONTRIBUTING.md).
+
 ## Documentation
 
 This project use [compodoc](https://compodoc.app/) to generate the full documentation. To see it, executes `npm run compodoc`.
-
-## Purpose
-
-This project has been thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend or backend applications.
-
-Using [Axiosfit](https://www.npmjs.com/package/@yggdrasilts/axiosfit?activeTab=readme) inside your project, you will be able to organize all your requests as a typical [TypeScript class](https://www.typescriptlang.org/docs/handbook/classes.html). In that way, all of your application requests can be stored in a unique object and be managed. See our [Examples section](#samples_section) to know more about it.
 
 ### Available Decorators
 

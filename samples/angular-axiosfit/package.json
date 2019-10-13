@@ -1,6 +1,8 @@
 {
   "name": "angular-axiosfit",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "David López <davidlopez.david@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
     "clean:all": "rm -rf node_modules dist package-lock.json",
