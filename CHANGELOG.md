@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -6,12 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2019-10-13
+
+### Changes
+
+- Documentation changes and more samples added.
+
 ## [0.4.1] - 2019-10-06
+
 ### Bugfixes
 
 - [Modify AxiosfitInterceptor import](https://gitlab.com/yggdrasilts/axiosfit/merge_requests/3)
 
 ## [0.4.0] - 2019-10-06
+
 ### Changes
 
 - Add new Interceptors decorators. See README.md for more information.
@@ -22,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update test dependencies.
 
 ## [0.3.0] - 2019-09-29
+
 ### Changes
 
 - Manage responses with Observables or Promises.
@@ -33,11 +43,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update documentation.
 
 ## [0.2.0] - 2019-09-22
+
 ### Changes
 
 - Code refactor.
 
 ## [0.1.1] - 2019-09-14
+
 ### Changes
 
 - Updated dependencies: rxjs:6.5.3.
@@ -45,9 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated README file.+
 
 ## [0.1.0] - 2019-09-08
+
 ### First version
 
-[Unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.4.2]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.2
 [0.4.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.1
 [0.4.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.0
 [0.3.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.3.x%2F0.3.0
