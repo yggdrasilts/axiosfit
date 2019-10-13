@@ -3,6 +3,7 @@ allure-results
 config
 coverage
 test
+samples
 
 # Files
 package-lock.json
