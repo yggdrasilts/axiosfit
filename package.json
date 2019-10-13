@@ -30,6 +30,7 @@
     "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
     "compodoc": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\"",
+    "format:samples": "prettier --write \"samples/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lint:test": "tslint -p tsconfig.test.json -c tslint.json",
     "prepublish": "npm run build",
