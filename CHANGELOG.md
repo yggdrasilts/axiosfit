@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2019-10-20
+
+### Bugfixes
+
+- [#1 - Problems compiling in Angular for production](https://gitlab.com/yggdrasilts/axiosfit/issues/1)
+
 ## [0.4.2] - 2019-10-13
 
 ### Changes
@@ -61,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.4.3]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.3
 [0.4.2]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.2
 [0.4.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.1
 [0.4.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.0
