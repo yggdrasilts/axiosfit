@@ -7,7 +7,7 @@ import { IAxiosfit } from 'src/interfaces';
  *
  * @param {string} paramName Parameter name.
  */
-export const Path = (paramName: string) => {
+export function Path(paramName: string) {
   return (target: any, methodName: string, parameterIndex: number) => {
     let service: IAxiosfit = serviceMap[target.constructor.name];
     if (!service) {
@@ -16,13 +16,13 @@ export const Path = (paramName: string) => {
     }
     service.addSegment(methodName, { name: paramName, index: parameterIndex });
   };
-};
+}
 
 /**
  * Parameter decorator.
  * Indicates that this parameter is used as body to be sent as data.
  */
-export const Body = () => {
+export function Body() {
   return (target: any, methodName: string, parameterIndex: number) => {
     let service: IAxiosfit = serviceMap[target.constructor.name];
     if (!service) {
@@ -31,4 +31,4 @@ export const Body = () => {
     }
     service.setData(methodName, parameterIndex);
   };
-};
+}
