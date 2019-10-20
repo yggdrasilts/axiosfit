@@ -7,20 +7,26 @@ import { AxiosfitInterceptor } from '../interfaces';
  *
  * @param {string} [endpointPath] Optional. Common endpoint for all the methods inside the class.
  */
-export const HTTP = (endpointPath?: string) => {
+export function HTTP(endpointPath?: string) {
   return constructor => {
     if (!serviceMap[constructor.name]) {
       createServiceMap(constructor);
     }
     serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath || '');
   };
-};
+}
 
-export const Interceptors = <T = AxiosfitInterceptor>(...interceptors: T[]) => {
+/**
+ * Class decorator.
+ * Decorator to be used to add a global request interceptor.
+ *
+ * @param {AxiosfitInterceptor[]} interceptors The interceptors.
+ */
+export function Interceptors<T = AxiosfitInterceptor>(...interceptors: T[]) {
   return constructor => {
     if (!serviceMap[constructor.name]) {
       createServiceMap(constructor);
     }
     serviceMap[constructor.name].setGlobalInterceptors(interceptors);
   };
-};
+}

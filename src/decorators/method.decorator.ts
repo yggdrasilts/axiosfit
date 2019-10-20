@@ -16,9 +16,9 @@ import { serviceMap, createServiceMap } from './utilities';
  *
  * @param {string} endpoint Method endpoint.
  */
-export const GET = (endpoint: string) => {
+export function GET(endpoint: string) {
   return noDataFunction(endpoint, Method.GET);
-};
+}
 
 /**
  * Method decorator.
@@ -26,9 +26,9 @@ export const GET = (endpoint: string) => {
  *
  * @param {string} endpoint Method endpoint.
  */
-export const DELETE = (endpoint: string) => {
+export function DELETE(endpoint: string) {
   return noDataFunction(endpoint, Method.DELETE);
-};
+}
 
 /**
  * Method decorator.
@@ -36,9 +36,9 @@ export const DELETE = (endpoint: string) => {
  *
  * @param {string} endpoint Method endpoint.
  */
-export const HEAD = (endpoint: string) => {
+export function HEAD(endpoint: string) {
   return noDataFunction(endpoint, Method.HEAD);
-};
+}
 
 /**
  * Method decorator.
@@ -46,9 +46,9 @@ export const HEAD = (endpoint: string) => {
  *
  * @param {string} endpoint Method endpoint.
  */
-export const POST = (endpoint: string) => {
+export function POST(endpoint: string) {
   return dataFunction(endpoint, Method.POST);
-};
+}
 
 /**
  * Method decorator.
@@ -56,9 +56,9 @@ export const POST = (endpoint: string) => {
  *
  * @param {string} endpoint Method endpoint.
  */
-export const PUT = (endpoint: string) => {
+export function PUT(endpoint: string) {
   return dataFunction(endpoint, Method.PUT);
-};
+}
 
 /**
  * Method decorator.
@@ -66,9 +66,9 @@ export const PUT = (endpoint: string) => {
  *
  * @param {string} endpoint Method endpoint.
  */
-export const PATCH = (endpoint: string) => {
+export function PATCH(endpoint: string) {
   return dataFunction(endpoint, Method.PATCH);
-};
+}
 
 /**
  * Check if the type is a Promise.
