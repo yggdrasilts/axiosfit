@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.4] - 2019-10-27
+
+### Bugfixes
+
+- [#2 - Problems uglifying axiosfit for Angular application](https://gitlab.com/yggdrasilts/axiosfit/issues/2)
+
 ## [0.4.3] - 2019-10-20
 
 ### Bugfixes
@@ -67,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.4.4]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.4
 [0.4.3]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.3
 [0.4.2]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.2
 [0.4.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.1
