@@ -9,10 +9,11 @@ import { AxiosfitInterceptor } from '../interfaces';
  */
 export function HTTP(endpointPath?: string) {
   return constructor => {
-    if (!serviceMap[constructor.name]) {
+    const serviceName = constructor.serviceName || constructor.name;
+    if (!serviceMap[serviceName]) {
       createServiceMap(constructor);
     }
-    serviceMap[constructor.name].setBaseServiceEndpoint(endpointPath || '');
+    serviceMap[serviceName].setBaseServiceEndpoint(endpointPath || '');
   };
 }
 
@@ -24,9 +25,10 @@ export function HTTP(endpointPath?: string) {
  */
 export function Interceptors<T = AxiosfitInterceptor>(...interceptors: T[]) {
   return constructor => {
-    if (!serviceMap[constructor.name]) {
+    const serviceName = constructor.serviceName || constructor.name;
+    if (!serviceMap[serviceName]) {
       createServiceMap(constructor);
     }
-    serviceMap[constructor.name].setGlobalInterceptors(interceptors);
+    serviceMap[serviceName].setGlobalInterceptors(interceptors);
   };
 }

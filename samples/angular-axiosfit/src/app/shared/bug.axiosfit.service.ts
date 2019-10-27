@@ -14,6 +14,8 @@ import { Bug } from './bug';
 
 @HTTP('/bugtracking')
 export class RestBugService {
+  private static readonly serviceName = 'RestBugService';
+
   @POST('/')
   public createBug(@Body() data: Bug): Observable<AxiosResponse<Bug>> {
     return null;

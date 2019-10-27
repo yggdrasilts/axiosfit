@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "David Lopez <davidlopez.david@gmail.com>",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -42,7 +42,7 @@
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.10",
+    "@compodoc/compodoc": "^1.1.11",
     "allure-commandline": "^2.13.0",
     "express": "^4.17.1",
     "jest": "^24.9.0",
@@ -52,7 +52,7 @@
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "engines": {
     "node": ">= 12.3.0",

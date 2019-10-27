@@ -33,6 +33,12 @@ As we all know, to build a request is necessary a [URL](https://en.wikipedia.org
 
 **@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its _endpointPath_ property.
 
+**@Interceptors** decorator can be use to add interceptors to the requests or responses. These interceptors must implements AxiosfitInterceptor interface and you can add as many as you want separated by comma. You can see the [Interceptors section](#interceptors) for more information.
+
+##### Considerations
+
+**Angular applications**: Due to the uglify process when you build an Angular application with --prod parameters, you need to create a static readonly property  called `serviceName` inside the class to give it a unique name that works as unique identifier used by Axiosfit. In the [Usage section](#usage) you can see how to use it. You also have more samples inside the [samples folder](./samples).
+
 #### Method Decorators
 
 - [@GET(endpoint: string)](miscellaneous/variables.html#GET)
@@ -57,7 +63,7 @@ Examples of using all of these Decartors are shown in the [Examples section](#sa
 
 ---
 
-## Usage
+## <a name="usage"></a>Usage
 
 To build an Axiosfit service a few steps need to be done:
 
@@ -68,6 +74,20 @@ A service class needs to be created because it will store all the requests infor
 ```typescript
 @HTTP('/simple')
 export class SimpleService {
+  @GET('/service')
+  public getSimpleService(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+}
+```
+
+#### 1.1 Service class for Angular application uglifying the code to deploy in production
+
+```typescript
+@HTTP('/simple')
+export class SimpleService {
+  private static readonly serviceName = 'SimpleService';
+
   @GET('/service')
   public getSimpleService(): Observable<AxiosResponse<string>> {
     return null;
@@ -118,7 +138,9 @@ simpleService
 
 ### Other features
 
-#### Interceptors
+## <a name="samples_section"></a>Examples
+
+#### <a name="interceptors"></a>Interceptors
 
 Interceptors are other [axios](https://github.com/axios/axios#interceptors) feature that Axiosfit implements.
 

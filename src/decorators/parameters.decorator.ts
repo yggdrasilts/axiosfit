@@ -9,10 +9,11 @@ import { IAxiosfit } from 'src/interfaces';
  */
 export function Path(paramName: string) {
   return (target: any, methodName: string, parameterIndex: number) => {
-    let service: IAxiosfit = serviceMap[target.constructor.name];
+    const serviceName = target.constructor.serviceName || target.constructor.name;
+    let service: IAxiosfit = serviceMap[serviceName];
     if (!service) {
       createServiceMap(target.constructor);
-      service = serviceMap[target.constructor.name];
+      service = serviceMap[serviceName];
     }
     service.addSegment(methodName, { name: paramName, index: parameterIndex });
   };
@@ -24,10 +25,11 @@ export function Path(paramName: string) {
  */
 export function Body() {
   return (target: any, methodName: string, parameterIndex: number) => {
-    let service: IAxiosfit = serviceMap[target.constructor.name];
+    const serviceName = target.constructor.serviceName || target.constructor.name;
+    let service: IAxiosfit = serviceMap[serviceName];
     if (!service) {
       createServiceMap(target.constructor);
-      service = serviceMap[target.constructor.name];
+      service = serviceMap[serviceName];
     }
     service.setData(methodName, parameterIndex);
   };
