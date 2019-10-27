@@ -3,6 +3,8 @@ import { TestRoutes } from '../TestRoutes';
 
 @HTTP(TestRoutes.BASE)
 export class TestObservableService {
+  private static readonly serviceName = 'TestObservableService';
+
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Observable<AxiosResponse<string>> {
     return null;

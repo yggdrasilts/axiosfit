@@ -187,11 +187,8 @@ const dataFunction = (endpoint: string, method: Method) => {
  * @param {any[]} args Parameters arguments.
  */
 const prepareService = (target: any, methodName: string, endpoint: string, args: any[]): IAxiosfit => {
-  let service: IAxiosfit = serviceMap[target.constructor.name];
-  if (!service) {
-    createServiceMap(target.constructor);
-    service = serviceMap[target.constructor.name];
-  }
+  const serviceName = target.constructor.serviceName || target.constructor.name;
+  const service: IAxiosfit = serviceMap[serviceName];
   const segments = service.getSegments(methodName);
   let replacedEndpoint = endpoint;
   if (segments) {

@@ -12,8 +12,9 @@ export const serviceMap: Map<string, IAxiosfit> = new Map();
  */
 // tslint:disable-next-line: only-arrow-functions
 export const createServiceMap = function(constructor) {
-  if (!serviceMap[constructor.name]) {
-    serviceMap[constructor.name] = new (class extends constructor implements IAxiosfit {
+  const serviceName = constructor.serviceName || constructor.name;
+  if (!serviceMap[serviceName]) {
+    serviceMap[serviceName] = new (class extends constructor implements IAxiosfit {
       private axiosInstance: AxiosInstance = Axios;
       private axiosConfig: AxiosRequestConfig = {};
 

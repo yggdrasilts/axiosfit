@@ -49,9 +49,10 @@ export class Axiosfit<S> {
    */
   create<T>(type: new () => T): S {
     const service = new type();
-    serviceMap[service.constructor.name].setConfig(this.config);
-    serviceMap[service.constructor.name].setInterceptors(this.interceptors);
-    this.service = (serviceMap[service.constructor.name] as unknown) as S;
+    const serviceName = (service.constructor as any).serviceName || service.constructor.name;
+    serviceMap[serviceName].setConfig(this.config);
+    serviceMap[serviceName].setInterceptors(this.interceptors);
+    this.service = (serviceMap[serviceName] as unknown) as S;
     return this.service;
   }
 }
