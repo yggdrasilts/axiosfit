@@ -16,7 +16,7 @@ export enum PokemonType {
   ROCK = 'Rock',
   GHOST = 'Ghost',
   DARK = 'Dark',
-  STEEL = 'Steel'
+  STEEL = 'Steel',
 }
 
 export interface PokemonName {
@@ -27,16 +27,16 @@ export interface PokemonName {
 }
 
 export interface PokemonBase {
-  HP: Number;
-  Attack: Number;
-  Defense: Number;
-  'SP. Attack': Number;
-  'SP. Defence': Number;
-  Speed: Number;
+  HP: number;
+  Attack: number;
+  Defense: number;
+  'SP. Attack': number;
+  'SP. Defence': number;
+  Speed: number;
 }
 
 export interface Pokemon {
-  id: Number;
+  id: number;
   name: PokemonName;
   type: PokemonType;
   base: PokemonBase;

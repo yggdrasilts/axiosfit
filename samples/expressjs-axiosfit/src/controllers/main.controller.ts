@@ -1,19 +1,20 @@
-import { Application } from 'express';
+import { Router } from 'express';
 
-import { IPokemonService } from '../interfaces/pokemon-service.interface';
-import { PokeService } from '../services/pokemon.service';
+import { IPokemonService } from '../services/ipokemon.service';
+import IControllerBase from './ibase.controller';
 
-export class Controller {
-  constructor(private app: Application, private pokeService: IPokemonService) {
-    this.routes();
+export class Controller implements IControllerBase {
+  public path = '/';
+  public router = Router();
+
+  constructor(private pokeService: IPokemonService) {
+    this.initRoutes();
   }
 
-  public routes() {
-    this.app.route('/pokemons').get(this.pokeService.getAllPokemon);
-
-    this.app.route('/pokemon').post(this.pokeService.addNewPokemon);
-
-    this.app
+  public initRoutes() {
+    this.router.get('/pokemons', this.pokeService.getAllPokemon);
+    this.router.post('/pokemon', this.pokeService.addNewPokemon);
+    this.router
       .route('/pokemon/:id')
       .delete(this.pokeService.deletePokemon)
       .put(this.pokeService.updatePokemon);

@@ -7,7 +7,7 @@ import {
   GET,
   Path,
   PUT,
-  DELETE
+  DELETE,
 } from '@yggdrasilts/axiosfit';
 
 import { Pokemon } from '../models/pokemon.model';
@@ -16,7 +16,7 @@ import { Pokemon } from '../models/pokemon.model';
 export class PokedexService {
   @GET('/:id')
   public getPokemon(
-    @Path('id') id: string
+    @Path('id') id: string,
   ): Observable<AxiosResponse<Pokemon>> {
     return null;
   }
@@ -28,7 +28,7 @@ export class PokedexService {
 
   @POST('/')
   public createPokemon(
-    @Body() data: Pokemon
+    @Body() data: Pokemon,
   ): Observable<AxiosResponse<Pokemon>> {
     return null;
   }
@@ -36,14 +36,14 @@ export class PokedexService {
   @PUT('/:id')
   public updatePokemon(
     @Path('id') id: string,
-    @Body() data: Pokemon
+    @Body() data: Pokemon,
   ): Observable<AxiosResponse<Pokemon>> {
     return null;
   }
 
   @DELETE('/:id')
   public deletePokemon(
-    @Path('id') id: string
+    @Path('id') id: string,
   ): Observable<AxiosResponse<void>> {
     return null;
   }
