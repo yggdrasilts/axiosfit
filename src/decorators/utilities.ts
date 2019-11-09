@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IAxiosfit, ISegment, AxiosfitInterceptor } from 'src/interfaces';
+import { IAxiosfit, ISegment, AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from 'src/interfaces';
 
 /**
  * Contains the url mappings.
@@ -61,7 +61,7 @@ export const createServiceMap = function(constructor) {
         this.baseServiceEndpoint = baseServiceEndpoint;
       }
 
-      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]) {
+      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
         const list: AxiosfitInterceptor[] = [];
         for (const interceptor of globalInterceptors) {
           list.push(new (interceptor as any)());
@@ -82,17 +82,37 @@ export const createServiceMap = function(constructor) {
       /**
        * Set axios interceptors.
        *
-       * @param {AxiosfitInterceptor} interceptors Array with the interceptors.
+       * @param {AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor} interceptors Array with the interceptors.
        */
-      setInterceptors(interceptors: AxiosfitInterceptor[]) {
+      setInterceptors(interceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
         // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.error(error);
         for (const interceptor of interceptors) {
-          if (interceptor.request) {
-            this.axiosInstance.interceptors.request.use(interceptor.request.onFulFilled, interceptor.request.onRejected || defaultError);
+          // REMOVE: Delete this in version 0.6.0
+          if ((interceptor as AxiosfitInterceptor).request) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitInterceptor).request.onFulFilled,
+              (interceptor as AxiosfitInterceptor).request.onRejected || defaultError,
+            );
           }
-          if (interceptor.response) {
-            this.axiosInstance.interceptors.response.use(interceptor.response.onFulFilled, interceptor.response.onRejected || defaultError);
+          // REMOVE: Delete this in version 0.6.0
+          if ((interceptor as AxiosfitInterceptor).response) {
+            this.axiosInstance.interceptors.response.use(
+              (interceptor as AxiosfitInterceptor).response.onFulFilled,
+              (interceptor as AxiosfitInterceptor).response.onRejected || defaultError,
+            );
+          }
+          if ((interceptor as AxiosfitRequestInterceptor).onRequest !== undefined) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitRequestInterceptor).onRequest,
+              (interceptor as AxiosfitRequestInterceptor).onError || defaultError,
+            );
+          }
+          if ((interceptor as AxiosfitResponseInterceptor).onResponse !== undefined) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitResponseInterceptor).onResponse,
+              (interceptor as AxiosfitResponseInterceptor).onError || defaultError,
+            );
           }
         }
       }
