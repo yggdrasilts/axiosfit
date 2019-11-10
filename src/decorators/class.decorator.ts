@@ -1,5 +1,5 @@
 import { createServiceMap, serviceMap } from './utilities';
-import { AxiosfitInterceptor } from '../interfaces';
+import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from '../interfaces';
 
 /**
  * Class decorator.
@@ -23,7 +23,7 @@ export function HTTP(endpointPath?: string) {
  *
  * @param {AxiosfitInterceptor[]} interceptors The interceptors.
  */
-export function Interceptors<T = AxiosfitInterceptor>(...interceptors: T[]) {
+export function Interceptors<T = AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor>(...interceptors: T[]) {
   return constructor => {
     const serviceName = constructor.serviceName || constructor.name;
     if (!serviceMap[serviceName]) {
