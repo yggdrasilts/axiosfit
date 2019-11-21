@@ -13,12 +13,12 @@ today! As a contributor, here are the guidelines we would like you to follow:
 ## <a name="issue"></a> Found a Bug?
 
 If you find a bug in the source code, you can help us by
-[submitting an issue](#submit-issue) to our [Gitlab Repository][gitlab]. Even better, you can
-[submit a Merge Request](#submit-mr) with a fix.
+[submitting an issue](#submit-issue) to our [Github Repository][github]. Even better, you can
+[submit a Pull Request](#submit-pr) with a fix.
 
 ## <a name="feature"></a> Missing a Feature?
 
-You can _request_ a new feature by [submitting an issue](#submit-issue) to our Gitlab
+You can _request_ a new feature by [submitting an issue](#submit-issue) to our Github
 Repository. If you would like to _implement_ a new feature, please submit an issue with
 a proposal for your work first, to be sure that we can use it.
 Please consider what kind of change it is:
@@ -26,7 +26,7 @@ Please consider what kind of change it is:
 - For a **Major Feature**, first open an issue and outline your proposal so that it can be
   discussed. This will also allow us to better coordinate our efforts, prevent duplication of work,
   and help you to craft the change so that it is successfully accepted into the project. For your issue name, please prefix your proposal with `[discussion]`, for example "[discussion]: your feature idea".
-- **Small Features** can be crafted and directly [submitted as a Merge Request](#submit-mr).
+- **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
 
 ## <a name="submit"></a> Submission Guidelines
 
@@ -34,7 +34,7 @@ Please consider what kind of change it is:
 
 Before you submit an issue, please search the issue tracker, maybe an issue for your problem already exists and the discussion might inform you of workarounds readily available.
 
-We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using a repository or [Snippet](https://gitlab.com/dashboard/snippets). Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
+We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using a repository or [Gist](https://gist.github.com/). Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
 
 - version of Axiosfit used
 - 3rd-party libraries and their versions
@@ -42,15 +42,15 @@ We want to fix all the issues as soon as possible, but before fixing a bug we ne
 
 Unfortunately, we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that don't have enough info to be reproduced.
 
-You can file new issues by filling out our [new issue form](https://gitlab.com/yggdrasilts/axiosfit/issues/new).
+You can file new issues by filling out our [new issue form](https://github.com/yggdrasilts/axiosfit/issues/new).
 
-### <a name="submit-mr"></a> Submitting a Merge Request (MR)
+### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 
 <!-- TODO: Review the merging flow -->
 
-Before you submit your Merge Request (MR) consider the following guidelines:
+Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [Gitlab](https://gitlab.com/yggdrasilts/axiosfit/merge_requests) for an open or closed MR
+1. Search [Github](https://github.com/yggdrasilts/axiosfit/pulls) for an open or closed PR
    that relates to your submission. You don't want to duplicate effort.
 2. Fork the yggdrasilts/axiosfit repo.
 3. Make your changes in a new git branch:
@@ -73,19 +73,19 @@ Before you submit your Merge Request (MR) consider the following guidelines:
 
    Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
 
-8. Push your branch to Gitlab:
+8. Push your branch to Github:
 
    ```shell
    git push origin my-fix-branch
    ```
 
-9. In Gitlab, send a merge request to `axiosfit:master`.
+9. In Github, send a pull request to `axiosfit:master`.
 
 - If we suggest changes then:
 
   - Make the required updates.
   - Re-run the Axiosfit test suites to ensure tests are still passing.
-  - Rebase your branch and force push to your Gitlab repository (this will update your Merge Request):
+  - Rebase your branch and force push to your Github repository (this will update your Pull Request):
 
     ```shell
     git rebase master -i
@@ -94,12 +94,12 @@ Before you submit your Merge Request (MR) consider the following guidelines:
 
 That's it! Thank you for your contribution!
 
-#### After your merge request is merged
+#### After your pull request is merged
 
-After your merge request is merged, you can safely delete your branch and pull the changes
+After your pull request is merged, you can safely delete your branch and pull the changes
 from the main (upstream) repository:
 
-- Delete the remote branch on Gitlab either through the Gitlab web UI or your local shell as follows:
+- Delete the remote branch on Github either through the Github web UI or your local shell as follows:
 
   ```shell
   git push origin --delete my-fix-branch
@@ -127,8 +127,8 @@ from the main (upstream) repository:
 
 ### Requirements
 
- - [docker](https://docs.docker.com/install/) is needed to execute all test suites.
- - You will need Node.js version 12.3.0+.
+- [docker](https://docs.docker.com/install/) is needed to execute all test suites.
+- You will need Node.js version 12.3.0+.
 
 1. After cloning the repo, run:
 
@@ -182,9 +182,9 @@ format that includes a **type**, a **scope** and a **subject**:
 The **header** is mandatory and the **scope** of the header is optional.
 
 Any line of the commit message cannot be longer 160 characters! This allows the message to be easier
-to read on Gitlab as well as in various git tools.
+to read on Github as well as in various git tools.
 
-Footer should contain a [closing reference to an issue](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues) if any.
+Footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
 Samples: <!-- (even more [samples](https://github.com/nestjs/nest/commits/master)) -->
 
@@ -242,9 +242,9 @@ The body should include the motivation for the change and contrast this with pre
 ### Footer
 
 The footer should contain any information about **Breaking Changes** and is also the place to
-reference Gitlab issues that this commit **Closes**.
+reference Github issues that this commit **Closes**.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
 
-[gitlab]: https://gitlab.com/yggdrasilts/axiosfit
+[github]: https://github.com/yggdrasilts/axiosfit
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html

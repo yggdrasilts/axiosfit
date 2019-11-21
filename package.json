@@ -15,12 +15,12 @@
     "javascript"
   ],
   "bugs": {
-    "url": "https://gitlab.com/yggdrasilts/axiosfit/issues"
+    "url": "https://github.com/yggdrasilts/axiosfit/issues"
   },
-  "homepage": "https://gitlab.com/yggdrasilts/axiosfit",
+  "homepage": "https://github.com/yggdrasilts/axiosfit",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/yggdrasilts/axiosfit.git"
+    "url": "git+https://github.com/yggdrasilts/axiosfit.git"
   },
   "scripts": {
     "allure:clean": "rm -rf allure-*",
