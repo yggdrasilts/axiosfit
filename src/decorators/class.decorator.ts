@@ -1,5 +1,9 @@
 import { createServiceMap, serviceMap } from './utilities';
-import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from '../interfaces';
+import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor, AxiosfitConfig } from '../interfaces';
+
+const defaultAxiosfitConfig: AxiosfitConfig = {
+  usePromises: false,
+};
 
 /**
  * Class decorator.
@@ -7,13 +11,18 @@ import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterc
  *
  * @param {string} [endpointPath] Optional. Common endpoint for all the methods inside the class.
  */
-export function HTTP(endpointPath?: string) {
+export function HTTP(endpointPath?: string | AxiosfitConfig, axiosfitConfig?: AxiosfitConfig) {
   return constructor => {
     const serviceName = constructor.serviceName || constructor.name;
+    const ep = endpointPath && typeof endpointPath === 'string' ? endpointPath : '';
+    if (typeof endpointPath === 'object') {
+      axiosfitConfig = endpointPath;
+    }
     if (!serviceMap[serviceName]) {
       createServiceMap(constructor);
     }
-    serviceMap[serviceName].setBaseServiceEndpoint(endpointPath || '');
+    serviceMap[serviceName].setBaseServiceEndpoint(ep);
+    serviceMap[serviceName].setAxiosfitConfig(axiosfitConfig || defaultAxiosfitConfig);
   };
 }
 

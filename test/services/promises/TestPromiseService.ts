@@ -1,7 +1,7 @@
 import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, AxiosResponse } from '../../../src';
 import { TestRoutes } from './../TestRoutes';
 
-@HTTP(TestRoutes.BASE)
+@HTTP(TestRoutes.BASE, { usePromises: true })
 export class TestPromiseService {
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Promise<AxiosResponse<string>> {

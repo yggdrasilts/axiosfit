@@ -31,9 +31,7 @@ export const createServiceMap = function(constructor) {
        * @private
        * @type {AxiosfitConfig}
        */
-      private axiosfitConfig: AxiosfitConfig = {
-        usePromises: false,
-      };
+      private axiosfitConfig: AxiosfitConfig;
 
       /**
        * Stores the service common endpoint for all the methods.
@@ -86,8 +84,8 @@ export const createServiceMap = function(constructor) {
         this.setInterceptors(list);
       }
 
-      getAxiosfitConfig(): AxiosfitConfig {
-        return this.axiosfitConfig;
+      setAxiosfitConfig(axiosfitConfig: AxiosfitConfig) {
+        this.axiosfitConfig = axiosfitConfig;
       }
 
       /**
@@ -211,6 +209,10 @@ export const createServiceMap = function(constructor) {
 
       get axiosConfig(): AxiosRequestConfig {
         return this.axiosRequestConfig;
+      }
+
+      get AxiosfitConfig(): AxiosfitConfig {
+        return this.axiosfitConfig;
       }
     })();
   }

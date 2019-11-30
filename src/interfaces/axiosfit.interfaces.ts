@@ -11,8 +11,9 @@ export interface IAxiosfit {
 
   instance: AxiosInstance;
   axiosConfig: AxiosRequestConfig;
+  AxiosfitConfig: AxiosfitConfig;
 
-  getAxiosfitConfig(): AxiosfitConfig;
+  setAxiosfitConfig(axiosfitConfig: AxiosfitConfig);
 
   setBaseServiceEndpoint(baseServiceEndpoint: string);
   setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]);

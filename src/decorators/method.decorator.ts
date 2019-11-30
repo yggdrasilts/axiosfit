@@ -8,7 +8,7 @@ import { ReturnedTypeNotValidException } from '../exceptions';
 
 import { IAxiosfit } from '../interfaces';
 import { Method } from '../http/enums';
-import { serviceMap, createServiceMap } from './utilities';
+import { serviceMap } from './utilities';
 
 /**
  * Method decorator.
@@ -101,8 +101,6 @@ const isAPromise = <T>(type: new () => T): boolean => {
 const resultFunction = <T = any>(
   usePromises: boolean = false,
   consumer: Promise<AxiosResponse<T>>,
-  target: string,
-  methodName: string,
 ): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
   if (usePromises) {
     return consumer;
@@ -128,24 +126,18 @@ const noDataFunction = (endpoint: string, method: Method) => {
       switch (method) {
         case Method.GET:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.get<T>(service.getUrl(methodName), service.axiosConfig),
-            target,
-            methodName,
           );
         case Method.DELETE:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.delete<T>(service.getUrl(methodName), service.axiosConfig),
-            target,
-            methodName,
           );
         case Method.HEAD:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.head<T>(service.getUrl(methodName), service.axiosConfig),
-            target,
-            methodName,
           );
       }
     };
@@ -171,24 +163,18 @@ const dataFunction = (endpoint: string, method: Method) => {
       switch (method) {
         case Method.POST:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
-            target,
-            methodName,
           );
         case Method.PUT:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
-            target,
-            methodName,
           );
         case Method.PATCH:
           return resultFunction(
-            service.getAxiosfitConfig().usePromises,
+            service.AxiosfitConfig.usePromises,
             service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
-            target,
-            methodName,
           );
       }
     };
