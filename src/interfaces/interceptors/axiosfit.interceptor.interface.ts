@@ -7,4 +7,6 @@ import { AxiosfitInterceptorResponse } from './axiosfit.response.interceptor.int
 export interface AxiosfitInterceptor {
   request?: AxiosfitInterceptorRequest;
   response?: AxiosfitInterceptorResponse;
+
+  onError?(error: any): any;
 }

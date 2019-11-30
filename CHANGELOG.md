@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2019-11-30
+
+### Changes
+
+- Move repository to [Github](https://github.com/yggdrasilts/axiosfit).
+
+### Bugfixes
+
+- [#1 - Check if a returned object is a promise or not](https://github.com/yggdrasilts/axiosfit/issues/1)
+- [#3 - Improve interceptor interfaces](https://gitlab.com/yggdrasilts/axiosfit/issues/3)
+
 ## [0.4.4] - 2019-10-27
 
 ### Bugfixes

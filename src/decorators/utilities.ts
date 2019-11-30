@@ -1,6 +1,13 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IAxiosfit, ISegment, AxiosfitInterceptor } from 'src/interfaces';
+import {
+  IAxiosfit,
+  ISegment,
+  AxiosfitInterceptor,
+  AxiosfitRequestInterceptor,
+  AxiosfitResponseInterceptor,
+  AxiosfitConfig,
+} from 'src/interfaces';
 
 /**
  * Contains the url mappings.
@@ -16,7 +23,15 @@ export const createServiceMap = function(constructor) {
   if (!serviceMap[serviceName]) {
     serviceMap[serviceName] = new (class extends constructor implements IAxiosfit {
       private axiosInstance: AxiosInstance = Axios;
-      private axiosConfig: AxiosRequestConfig = {};
+      private axiosRequestConfig: AxiosRequestConfig = {};
+
+      /**
+       * Axiosfit internal configuration.
+       *
+       * @private
+       * @type {AxiosfitConfig}
+       */
+      private axiosfitConfig: AxiosfitConfig;
 
       /**
        * Stores the service common endpoint for all the methods.
@@ -61,12 +76,16 @@ export const createServiceMap = function(constructor) {
         this.baseServiceEndpoint = baseServiceEndpoint;
       }
 
-      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]) {
+      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
         const list: AxiosfitInterceptor[] = [];
         for (const interceptor of globalInterceptors) {
           list.push(new (interceptor as any)());
         }
         this.setInterceptors(list);
+      }
+
+      setAxiosfitConfig(axiosfitConfig: AxiosfitConfig) {
+        this.axiosfitConfig = axiosfitConfig;
       }
 
       /**
@@ -76,23 +95,43 @@ export const createServiceMap = function(constructor) {
        */
       setConfig(config: AxiosRequestConfig) {
         // TODO: mixin configs
-        this.axiosConfig = config;
+        this.axiosRequestConfig = config;
       }
 
       /**
        * Set axios interceptors.
        *
-       * @param {AxiosfitInterceptor} interceptors Array with the interceptors.
+       * @param {AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor} interceptors Array with the interceptors.
        */
-      setInterceptors(interceptors: AxiosfitInterceptor[]) {
+      setInterceptors(interceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
         // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.error(error);
         for (const interceptor of interceptors) {
-          if (interceptor.request) {
-            this.axiosInstance.interceptors.request.use(interceptor.request.onFulFilled, interceptor.request.onRejected || defaultError);
+          // REMOVE: Delete this in version 0.6.0
+          if ((interceptor as AxiosfitInterceptor).request) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitInterceptor).request.onFulFilled,
+              (interceptor as AxiosfitInterceptor).request.onRejected || defaultError,
+            );
           }
-          if (interceptor.response) {
-            this.axiosInstance.interceptors.response.use(interceptor.response.onFulFilled, interceptor.response.onRejected || defaultError);
+          // REMOVE: Delete this in version 0.6.0
+          if ((interceptor as AxiosfitInterceptor).response) {
+            this.axiosInstance.interceptors.response.use(
+              (interceptor as AxiosfitInterceptor).response.onFulFilled,
+              (interceptor as AxiosfitInterceptor).response.onRejected || defaultError,
+            );
+          }
+          if ((interceptor as AxiosfitRequestInterceptor).onRequest !== undefined) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitRequestInterceptor).onRequest,
+              (interceptor as AxiosfitRequestInterceptor).onError || defaultError,
+            );
+          }
+          if ((interceptor as AxiosfitResponseInterceptor).onResponse !== undefined) {
+            this.axiosInstance.interceptors.request.use(
+              (interceptor as AxiosfitResponseInterceptor).onResponse,
+              (interceptor as AxiosfitResponseInterceptor).onError || defaultError,
+            );
           }
         }
       }
@@ -104,7 +143,7 @@ export const createServiceMap = function(constructor) {
        * @param {string} url Url.
        */
       addUrl(key: string, url: string): void {
-        this.urlMap[key] = `${this.axiosConfig.baseURL}${this.baseServiceEndpoint}${url}`;
+        this.urlMap[key] = `${this.axiosRequestConfig.baseURL}${this.baseServiceEndpoint}${url}`;
       }
 
       /**
@@ -168,8 +207,12 @@ export const createServiceMap = function(constructor) {
         return this.axiosInstance;
       }
 
-      get config(): AxiosRequestConfig {
-        return this.axiosConfig;
+      get axiosConfig(): AxiosRequestConfig {
+        return this.axiosRequestConfig;
+      }
+
+      get AxiosfitConfig(): AxiosfitConfig {
+        return this.axiosfitConfig;
       }
     })();
   }

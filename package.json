@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "author": "David Lopez <davidlopez.david@gmail.com>",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -15,12 +15,12 @@
     "javascript"
   ],
   "bugs": {
-    "url": "https://gitlab.com/yggdrasilts/axiosfit/issues"
+    "url": "https://github.com/yggdrasilts/axiosfit/issues"
   },
-  "homepage": "https://gitlab.com/yggdrasilts/axiosfit",
+  "homepage": "https://github.com/yggdrasilts/axiosfit",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/yggdrasilts/axiosfit.git"
+    "url": "git+https://github.com/yggdrasilts/axiosfit.git"
   },
   "scripts": {
     "allure:clean": "rm -rf allure-*",
@@ -47,12 +47,12 @@
     "express": "^4.17.1",
     "jest": "^24.9.0",
     "jest-allure": "^0.1.1",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "testcontainers": "^2.1.0",
-    "ts-jest": "^24.1.0",
-    "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.4"
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
   },
   "engines": {
     "node": ">= 12.3.0",
