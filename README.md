@@ -28,16 +28,16 @@ As we all know, to build a request is necessary a [URL](https://en.wikipedia.org
 
 #### Class Decorators
 
-- [@HTTP(endpointPath?: string)](miscellaneous/variables.html#HTTP)
+- [@HTTP(endpointPath?: string | AxiosfitConfig, axisofitConfig?: AxiosfitConfig)](miscellaneous/variables.html#HTTP)
 - [@Interceptors(...interceptors: AxiosfitInterceptor[])](miscellaneous/variables.html#Interceptors)
 
-**@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its _endpointPath_ property.
+**@HTTP** is the main Decorator to configure your Axiosfit service and indicates that the class is an Axiosfit instance. Also, it can be configured with the base path of your API server using its _endpointPath_ property and configure more Axiosfit option using the [AxiosfitConfig](#axiosfitConfig) object.
 
 **@Interceptors** decorator can be use to add interceptors to the requests or responses. These interceptors must implements AxiosfitInterceptor interface and you can add as many as you want separated by comma. You can see the [Interceptors section](#interceptors) for more information.
 
 ##### Considerations
 
-**Angular applications**: Due to the uglify process when you build an Angular application with --prod parameters, you need to create a static readonly property  called `serviceName` inside the class to give it a unique name that works as unique identifier used by Axiosfit. In the [Usage section](#usage) you can see how to use it. You also have more samples inside the [samples folder](./samples).
+**Angular applications**: Due to the uglify process when you build an Angular application with --prod parameters, you need to create a static readonly property called `serviceName` inside the class to give it a unique name that works as unique identifier used by Axiosfit. In the [Usage section](#usage) you can see how to use it. You also have more samples inside the [samples folder](./samples).
 
 #### Method Decorators
 
@@ -63,6 +63,11 @@ Examples of using all of these Decartors are shown in the [Examples section](#sa
 
 ---
 
+#### Configuration
+
+- <a name="axiosfitConfig"></a>AxiosfitConfig
+  - _usePromises_: Default _false_. Configure Axiosfit service to return Observable object or a Promise.
+
 ## <a name="usage"></a>Usage
 
 To build an Axiosfit service a few steps need to be done:
@@ -76,6 +81,18 @@ A service class needs to be created because it will store all the requests infor
 export class SimpleService {
   @GET('/service')
   public getSimpleService(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+}
+```
+
+If you want to use Promises instead of Observable:
+
+```typescript
+@HTTP('/simple', { usePromises: true })
+export class SimpleService {
+  @GET('/service')
+  public getSimpleService(): Promise<AxiosResponse<string>> {
     return null;
   }
 }
@@ -108,7 +125,10 @@ const simpleService = new Axiosfit<SimpleService>().baseUrl('http://simpleservic
 After all steps, the service can be managed as a typical class:
 
 ```typescript
-simpleService.getSimpleService().subscribe(axiosResponse => console.log(axiosResponse.data), axiosError => console.error(axiosError));
+simpleService.getSimpleService().subscribe(
+  axiosResponse => console.log(axiosResponse.data),
+  axiosError => console.error(axiosError),
+);
 ```
 
 ### 4. Using Promises
@@ -161,8 +181,10 @@ export class SimpleService {
 }
 ```
 
+- Before v0.6.0
+
 ```typescript
-class SimpleInterceptor implements AxiosfitInterceptor {
+export class SimpleInterceptor implements AxiosfitInterceptor {
   request?: AxiosfitInterceptorRequest;
   response?: AxiosfitInterceptorResponse;
 
@@ -190,12 +212,38 @@ class SimpleInterceptor implements AxiosfitInterceptor {
 }
 ```
 
+_NOTE: Improvements from version 0.5.0_
+
+The previes way to use interceptos will be removed in version 0.6.0 but, from version 0.5.0 we have changed the way to configure interceptors to be easier to implement them. Now, you can implement the new _AxiosfitRequestInterceptor_ or _AxiosfitResponseInterceptor_ depending on what you want.
+
+In the following sample you can see how to implement it and alse see the differences.
+
+```typescript
+export class SimpleNewInterceptor implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
+  onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
+    // tslint:disable-next-line: no-string-literal
+    config.headers['authorization'] = 'Bearer token';
+    return config;
+  }
+
+  onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
+    // tslint:disable-next-line: no-string-literal
+    const currentData = response.data;
+    response.data = {
+      ...currentData,
+      newData: 'new',
+    };
+    return response;
+  }
+}
+```
+
 2. Add the interceptor when the Axiosfit service is created.
 
 Using this second method, a request and/or response interceptors must be created when the Axiosfit instance is created.
 
 ```typescript
-const simpleService = new Axiosfit<SimpleService>()
+export const simpleService = new Axiosfit<SimpleService>()
   .baseUrl('http://simpleservice.com')
   .addInterceptor(interceptor)
   .create(SimpleService);
@@ -203,8 +251,10 @@ const simpleService = new Axiosfit<SimpleService>()
 
 ##### Request Interceptor
 
+- Before v0.6.0
+
 ```typescript
-const interceptor: AxiosfitInterceptor = {
+export const interceptor: AxiosfitInterceptor = {
   request: {
     onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
       // tslint:disable-next-line: no-string-literal
@@ -215,7 +265,21 @@ const interceptor: AxiosfitInterceptor = {
 };
 ```
 
+- From v0.6.0
+
+```typescript
+export class SimpleNewInterceptorRequest implements AxiosfitRequestInterceptor {
+  onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
+    // tslint:disable-next-line: no-string-literal
+    config.headers['authorization'] = 'Bearer token';
+    return config;
+  }
+}
+```
+
 ##### Response Interceptor
+
+- Before v0.6.0
 
 ```typescript
 const interceptor: AxiosfitInterceptor = {
@@ -231,6 +295,22 @@ const interceptor: AxiosfitInterceptor = {
     },
   },
 };
+```
+
+- From v0.6.0
+
+```typescript
+export class SimpleNewInterceptorResponse implements AxiosfitResponseInterceptor {
+  onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
+    // tslint:disable-next-line: no-string-literal
+    const currentData = response.data;
+    response.data = {
+      ...currentData,
+      newData: 'new',
+    };
+    return response;
+  }
+}
 ```
 
 ## <a name="samples_section"></a>Examples
@@ -306,7 +386,7 @@ export class TestObservableService {
 import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, AxiosResponse } from '../../src';
 import { TestRoutes } from './TestRoutes';
 
-@HTTP(TestRoutes.BASE)
+@HTTP(TestRoutes.BASE, { usePromises: true })
 export class TestService {
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Promise<AxiosResponse<string>> {
@@ -378,9 +458,10 @@ const methodsService = new Axiosfit<TestService>().baseUrl(process.env.MOCK_SERV
 ```typescript
 import { AxiosResponse, AxiosError } from '@yggdrasilts/axiosfit';
 
-methodsService
-  .performGetRequest()
-  .subscribe((response: AxiosResponse<string>) => console.log('OK', response.data), (error: AxiosError<any>) => console.error('KO', error));
+methodsService.performGetRequest().subscribe(
+  (response: AxiosResponse<string>) => console.log('OK', response.data),
+  (error: AxiosError<any>) => console.error('KO', error),
+);
 ```
 
 - Using Promises:

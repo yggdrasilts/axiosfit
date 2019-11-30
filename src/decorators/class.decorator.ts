@@ -30,10 +30,11 @@ export function HTTP(endpointPath?: string | AxiosfitConfig, axiosfitConfig?: Ax
  * Class decorator.
  * Decorator to be used to add a global request interceptor.
  *
- * @param {AxiosfitInterceptor[]} interceptors The interceptors.
+ * @param {(AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor)[]} interceptors The interceptors.
  */
-export function Interceptors<T = AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor>(...interceptors: T[]) {
+export function Interceptors(...interceptors: any[]) {
   return constructor => {
+    // TODO: Ensure interceptors are one of them
     const serviceName = constructor.serviceName || constructor.name;
     if (!serviceMap[serviceName]) {
       createServiceMap(constructor);
