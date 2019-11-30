@@ -84,12 +84,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
-[0.4.4]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.4
-[0.4.3]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.3
-[0.4.2]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.2
-[0.4.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.1
-[0.4.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.4.x%2F0.4.0
-[0.3.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.3.x%2F0.3.0
-[0.2.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.2.x%2F0.2.0
-[0.1.1]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.1
-[0.1.0]: https://gitlab.com/yggdrasilts/axiosfit/-/tags/v0.1.x%2F0.1.0
+[0.5.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.5.x/0.5.0
+[0.4.4]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.4
+[0.4.3]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.3
+[0.4.2]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.2
+[0.4.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.1
+[0.4.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.0
+[0.3.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.3.x/0.3.0
+[0.2.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.2.x/0.2.0
+[0.1.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.1.x/0.1.1
+[0.1.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.1.x/0.1.0
