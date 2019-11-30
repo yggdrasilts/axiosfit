@@ -2,7 +2,7 @@ import { HTTP, GET, AxiosResponse, Interceptors } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
 import { TestInterceptor } from '../interceptors/test.interceptor';
 
-@HTTP(TestRoutes.BASE)
+@HTTP(TestRoutes.BASE, { usePromises: true })
 @Interceptors(TestInterceptor)
 export class TestPromiseServiceInterceptor {
   @GET(TestRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL)

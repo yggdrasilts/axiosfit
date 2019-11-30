@@ -53,3 +53,25 @@ export class TestNewInterceptor implements AxiosfitRequestInterceptor, AxiosfitR
     return response;
   }
 }
+
+// tslint:disable-next-line: max-classes-per-file
+export class TestNewInterceptorRequest implements AxiosfitRequestInterceptor {
+  onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
+    // tslint:disable-next-line: no-string-literal
+    config.headers['authorization'] = 'Bearer token';
+    return config;
+  }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class TestNewInterceptorResponse implements AxiosfitResponseInterceptor {
+  onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
+    // tslint:disable-next-line: no-string-literal
+    const currentData = response.data;
+    response.data = {
+      ...currentData,
+      newData: 'new',
+    };
+    return response;
+  }
+}

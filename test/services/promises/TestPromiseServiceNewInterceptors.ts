@@ -1,10 +1,10 @@
 import { HTTP, GET, AxiosResponse, Interceptors } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
-import { TestNewInterceptor } from '../interceptors/test.interceptor';
+import { TestNewInterceptorRequest, TestNewInterceptorResponse } from '../interceptors/test.interceptor';
 
 @HTTP(TestRoutes.BASE, { usePromises: true })
-@Interceptors(TestNewInterceptor)
-export class TestPromiseServiceNewInterceptor {
+@Interceptors(TestNewInterceptorRequest, TestNewInterceptorResponse)
+export class TestPromiseServiceNewInterceptors {
   @GET(TestRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL)
   public performGetRequestAddingReqInterceptor(): Promise<AxiosResponse<string>> {
     return null;
