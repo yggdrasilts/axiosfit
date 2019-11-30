@@ -93,21 +93,21 @@ const isAPromise = <T>(type: new () => T): boolean => {
 /**
  * Function to return the results.
  *
+ * @param {boolean} usePromises Indicates is the result is returned as Promise or not. Default: false.
  * @param {Function} consumer Function to be executed.
  * @param {string} target The prototype of our class (or the constructor of the class if the decorated method is static).
  * @param {string} methodName The name of the decorated method.
  */
 const resultFunction = <T = any>(
+  usePromises: boolean = false,
   consumer: Promise<AxiosResponse<T>>,
   target: string,
   methodName: string,
 ): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
-  const returnTypeIsPromise = isAPromise(Reflect.getMetadata('design:returntype', target, methodName));
-  if (returnTypeIsPromise) {
+  if (usePromises) {
     return consumer;
-  } else {
-    return defer(() => consumer);
   }
+  return defer(() => consumer);
 };
 
 /**
@@ -127,11 +127,26 @@ const noDataFunction = (endpoint: string, method: Method) => {
       const service = prepareService(target, methodName, endpoint, args);
       switch (method) {
         case Method.GET:
-          return resultFunction(service.instance.get<T>(service.getUrl(methodName), service.config), target, methodName);
+          return resultFunction(
+            service.getAxiosfitConfig().usePromises,
+            service.instance.get<T>(service.getUrl(methodName), service.axiosConfig),
+            target,
+            methodName,
+          );
         case Method.DELETE:
-          return resultFunction(service.instance.delete<T>(service.getUrl(methodName), service.config), target, methodName);
+          return resultFunction(
+            service.getAxiosfitConfig().usePromises,
+            service.instance.delete<T>(service.getUrl(methodName), service.axiosConfig),
+            target,
+            methodName,
+          );
         case Method.HEAD:
-          return resultFunction(service.instance.head<T>(service.getUrl(methodName), service.config), target, methodName);
+          return resultFunction(
+            service.getAxiosfitConfig().usePromises,
+            service.instance.head<T>(service.getUrl(methodName), service.axiosConfig),
+            target,
+            methodName,
+          );
       }
     };
     return descriptor;
@@ -156,19 +171,22 @@ const dataFunction = (endpoint: string, method: Method) => {
       switch (method) {
         case Method.POST:
           return resultFunction(
-            service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            service.getAxiosfitConfig().usePromises,
+            service.instance.post<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
             target,
             methodName,
           );
         case Method.PUT:
           return resultFunction(
-            service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            service.getAxiosfitConfig().usePromises,
+            service.instance.put<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
             target,
             methodName,
           );
         case Method.PATCH:
           return resultFunction(
-            service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.config),
+            service.getAxiosfitConfig().usePromises,
+            service.instance.patch<T>(service.getUrl(methodName), args[service.getData(methodName)], service.axiosConfig),
             target,
             methodName,
           );

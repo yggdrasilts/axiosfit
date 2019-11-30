@@ -10,7 +10,9 @@ export interface IAxiosfit {
   baseEndpoint: string;
 
   instance: AxiosInstance;
-  config: AxiosRequestConfig;
+  axiosConfig: AxiosRequestConfig;
+
+  getAxiosfitConfig(): AxiosfitConfig;
 
   setBaseServiceEndpoint(baseServiceEndpoint: string);
   setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[]);
@@ -25,4 +27,8 @@ export interface IAxiosfit {
 
   setData(key: string, parameterIndex: number): void;
   getData(key: string): number;
+}
+
+export interface AxiosfitConfig {
+  usePromises: boolean;
 }

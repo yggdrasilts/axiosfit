@@ -1,6 +1,13 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IAxiosfit, ISegment, AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from 'src/interfaces';
+import {
+  IAxiosfit,
+  ISegment,
+  AxiosfitInterceptor,
+  AxiosfitRequestInterceptor,
+  AxiosfitResponseInterceptor,
+  AxiosfitConfig,
+} from 'src/interfaces';
 
 /**
  * Contains the url mappings.
@@ -16,7 +23,17 @@ export const createServiceMap = function(constructor) {
   if (!serviceMap[serviceName]) {
     serviceMap[serviceName] = new (class extends constructor implements IAxiosfit {
       private axiosInstance: AxiosInstance = Axios;
-      private axiosConfig: AxiosRequestConfig = {};
+      private axiosRequestConfig: AxiosRequestConfig = {};
+
+      /**
+       * Axiosfit internal configuration.
+       *
+       * @private
+       * @type {AxiosfitConfig}
+       */
+      private axiosfitConfig: AxiosfitConfig = {
+        usePromises: false,
+      };
 
       /**
        * Stores the service common endpoint for all the methods.
@@ -69,6 +86,10 @@ export const createServiceMap = function(constructor) {
         this.setInterceptors(list);
       }
 
+      getAxiosfitConfig(): AxiosfitConfig {
+        return this.axiosfitConfig;
+      }
+
       /**
        * Mixes the Axiosfit configurations with defaults.
        *
@@ -76,7 +97,7 @@ export const createServiceMap = function(constructor) {
        */
       setConfig(config: AxiosRequestConfig) {
         // TODO: mixin configs
-        this.axiosConfig = config;
+        this.axiosRequestConfig = config;
       }
 
       /**
@@ -124,7 +145,7 @@ export const createServiceMap = function(constructor) {
        * @param {string} url Url.
        */
       addUrl(key: string, url: string): void {
-        this.urlMap[key] = `${this.axiosConfig.baseURL}${this.baseServiceEndpoint}${url}`;
+        this.urlMap[key] = `${this.axiosRequestConfig.baseURL}${this.baseServiceEndpoint}${url}`;
       }
 
       /**
@@ -188,8 +209,8 @@ export const createServiceMap = function(constructor) {
         return this.axiosInstance;
       }
 
-      get config(): AxiosRequestConfig {
-        return this.axiosConfig;
+      get axiosConfig(): AxiosRequestConfig {
+        return this.axiosRequestConfig;
       }
     })();
   }
