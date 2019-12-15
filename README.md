@@ -186,7 +186,7 @@ export class SimpleService {
 In the following sample you can see how to implement it and alse see the differences.
 
 ```typescript
-export class SimpleNewInterceptor implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
+export class SimpleInterceptor implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
   onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
     // tslint:disable-next-line: no-string-literal
     config.headers['authorization'] = 'Bearer token';
@@ -231,7 +231,7 @@ export class SimpleNewInterceptorRequest implements AxiosfitRequestInterceptor {
 ##### Response Interceptor
 
 ```typescript
-export class SimpleNewInterceptorResponse implements AxiosfitResponseInterceptor {
+export class SimpleInterceptorResponse implements AxiosfitResponseInterceptor {
   onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
     // tslint:disable-next-line: no-string-literal
     const currentData = response.data;
