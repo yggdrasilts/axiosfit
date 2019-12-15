@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "David Lopez <davidlopez.david@gmail.com>",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -48,11 +48,11 @@
     "jest": "^24.9.0",
     "jest-allure": "^0.1.1",
     "prettier": "^1.19.1",
-    "testcontainers": "^2.1.0",
+    "testcontainers": "^2.2.0",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "engines": {
     "node": ">= 12.3.0",

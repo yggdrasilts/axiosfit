@@ -172,11 +172,30 @@ const prepareService = (target: any, methodName: string, endpoint: string, args:
   const serviceName = target.constructor.serviceName || target.constructor.name;
   const service: IAxiosfit = serviceMap[serviceName];
   const segments = service.getSegments(methodName);
+  const parameters = service.getParameters(methodName);
+  const params = new Map<string, string>();
   let replacedEndpoint = endpoint;
+  // Get segments, if there are, to be replaced in the path
   if (segments) {
     for (const [index, paramValue] of segments.entries()) {
       replacedEndpoint = replacedEndpoint.replace(`:${paramValue}`, args[index]);
     }
+  }
+  // Get parameteres, if there are, to be added to the request
+  if (parameters) {
+    for (const [index, paramValue] of parameters.entries()) {
+      if (typeof args[index] === 'string') {
+        params[paramValue] = args[index];
+      } else {
+        const paramMap = args[index];
+        for (const mapKey in paramMap) {
+          if (paramMap.hasOwnProperty(mapKey)) {
+            params[mapKey] = paramMap[mapKey];
+          }
+        }
+      }
+    }
+    service.setParameters(params);
   }
   service.addUrl(methodName, replacedEndpoint);
   return service;
