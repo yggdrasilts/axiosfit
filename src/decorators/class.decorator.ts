@@ -1,5 +1,5 @@
 import { createServiceMap, serviceMap } from './utilities';
-import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor, AxiosfitConfig } from '../interfaces';
+import { AxiosfitConfig } from '../interfaces';
 
 const defaultAxiosfitConfig: AxiosfitConfig = {
   usePromises: false,

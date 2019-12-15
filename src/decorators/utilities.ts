@@ -116,20 +116,6 @@ export const createServiceMap = function(constructor) {
         // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.error(error);
         for (const interceptor of interceptors) {
-          // REMOVE: Delete this in version 0.6.0
-          if ((interceptor as AxiosfitInterceptor).request) {
-            this.axiosInstance.interceptors.request.use(
-              (interceptor as AxiosfitInterceptor).request.onFulFilled,
-              (interceptor as AxiosfitInterceptor).request.onRejected || defaultError,
-            );
-          }
-          // REMOVE: Delete this in version 0.6.0
-          if ((interceptor as AxiosfitInterceptor).response) {
-            this.axiosInstance.interceptors.response.use(
-              (interceptor as AxiosfitInterceptor).response.onFulFilled,
-              (interceptor as AxiosfitInterceptor).response.onRejected || defaultError,
-            );
-          }
           if ((interceptor as AxiosfitRequestInterceptor).onRequest !== undefined) {
             this.axiosInstance.interceptors.request.use(
               (interceptor as AxiosfitRequestInterceptor).onRequest,
@@ -137,7 +123,7 @@ export const createServiceMap = function(constructor) {
             );
           }
           if ((interceptor as AxiosfitResponseInterceptor).onResponse !== undefined) {
-            this.axiosInstance.interceptors.request.use(
+            this.axiosInstance.interceptors.response.use(
               (interceptor as AxiosfitResponseInterceptor).onResponse,
               (interceptor as AxiosfitResponseInterceptor).onError || defaultError,
             );

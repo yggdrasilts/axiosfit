@@ -183,45 +183,10 @@ export class SimpleService {
 }
 ```
 
-- Before v0.6.0
-
-```typescript
-export class SimpleInterceptor implements AxiosfitInterceptor {
-  request?: AxiosfitInterceptorRequest;
-  response?: AxiosfitInterceptorResponse;
-
-  constructor() {
-    this.request = {
-      onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
-        // tslint:disable-next-line: no-string-literal
-        config.headers['authorization'] = 'Bearer token';
-        return config;
-      },
-    };
-
-    this.response = {
-      onFulFilled: (response: AxiosResponse): AxiosResponse => {
-        // tslint:disable-next-line: no-string-literal
-        const currentData = response.data;
-        response.data = {
-          ...currentData,
-          newData: 'new',
-        };
-        return response;
-      },
-    };
-  }
-}
-```
-
-_NOTE: Improvements from version 0.5.0_
-
-The previes way to use interceptos will be removed in version 0.6.0 but, from version 0.5.0 we have changed the way to configure interceptors to be easier to implement them. Now, you can implement the new _AxiosfitRequestInterceptor_ or _AxiosfitResponseInterceptor_ depending on what you want.
-
 In the following sample you can see how to implement it and alse see the differences.
 
 ```typescript
-export class SimpleNewInterceptor implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
+export class SimpleInterceptor implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
   onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
     // tslint:disable-next-line: no-string-literal
     config.headers['authorization'] = 'Bearer token';
@@ -240,7 +205,7 @@ export class SimpleNewInterceptor implements AxiosfitRequestInterceptor, Axiosfi
 }
 ```
 
-2. Add the interceptor when the Axiosfit service is created.
+1. Add the interceptor when the Axiosfit service is created.
 
 Using this second method, a request and/or response interceptors must be created when the Axiosfit instance is created.
 
@@ -252,22 +217,6 @@ export const simpleService = new Axiosfit<SimpleService>()
 ```
 
 ##### Request Interceptor
-
-- Before v0.6.0
-
-```typescript
-export const interceptor: AxiosfitInterceptor = {
-  request: {
-    onFulFilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
-      // tslint:disable-next-line: no-string-literal
-      config.headers['authorization'] = 'Bearer token';
-      return config;
-    },
-  },
-};
-```
-
-- From v0.6.0
 
 ```typescript
 export class SimpleNewInterceptorRequest implements AxiosfitRequestInterceptor {
@@ -281,28 +230,8 @@ export class SimpleNewInterceptorRequest implements AxiosfitRequestInterceptor {
 
 ##### Response Interceptor
 
-- Before v0.6.0
-
 ```typescript
-const interceptor: AxiosfitInterceptor = {
-  response: {
-    onFulFilled: (response: AxiosResponse): AxiosResponse => {
-      // tslint:disable-next-line: no-string-literal
-      const currentData = response.data;
-      response.data = {
-        ...currentData,
-        newData: 'new',
-      };
-      return response;
-    },
-  },
-};
-```
-
-- From v0.6.0
-
-```typescript
-export class SimpleNewInterceptorResponse implements AxiosfitResponseInterceptor {
+export class SimpleInterceptorResponse implements AxiosfitResponseInterceptor {
   onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
     // tslint:disable-next-line: no-string-literal
     const currentData = response.data;

@@ -1,11 +1,11 @@
 import { HTTP, GET, Observable, AxiosResponse, Interceptors } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
-import { TestNewInterceptor } from '../interceptors/test.interceptor';
+import { TestInterceptorRequest, TestInterceptorResponse } from '../interceptors/test.interceptor';
 
 @HTTP(TestRoutes.BASE)
-@Interceptors(TestNewInterceptor)
-export class TestObservableServiceNewInterceptor {
-  private static readonly serviceName = 'TestObservableServiceNewInterceptor';
+@Interceptors(TestInterceptorRequest, TestInterceptorResponse)
+export class TestObservableServiceInterceptors {
+  private static readonly serviceName = 'TestObservableServiceInterceptors';
 
   @GET(TestRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL)
   public performGetRequestAddingReqInterceptor(): Observable<AxiosResponse<string>> {

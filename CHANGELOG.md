@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 - [#6 - Add query parameters to requests](https://github.com/yggdrasilts/axiosfit/issues/6).
+- [#4 - Remove deprecated](https://github.com/yggdrasilts/axiosfit/issues/4)
 
 ## [0.5.0] - 2019-11-30
 
