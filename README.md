@@ -53,6 +53,8 @@ To request any API server, it is needed to know with method is necessary. For th
 #### Parameter Decorators
 
 - [@Path(paramName: string)](miscellaneous/variables.html#Path)
+- [@Param(paramName: string)](miscellaneous/variables.html#Param)
+- [@ParamMap(paramName: string)](miscellaneous/variables.html#ParamMap)
 - [@Body()](miscellaneous/variables.html#Body)
 
 Another part is the _path_ and the _body_ of your request and Axiosfit also has these Decorators to configure your service.
@@ -327,6 +329,25 @@ import { TestRoutes } from './TestRoutes';
 export class TestObservableService {
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParameter(@Param('id') id: string): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParametersMap(@ParamMap('map') map: IParamMap): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParameters(
+    @Param('id1') id1: string,
+    @Param('id2') id2: string,
+    @ParamMap('map') map: IParamMap,
+  ): Observable<AxiosResponse<string>> {
     return null;
   }
 

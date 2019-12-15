@@ -1,7 +1,8 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { AxiosfitInterceptor } from './interceptors/axiosfit.interceptor.interface';
-import { ISegment } from './segment.interfaces';
+import { ISegment } from './segment.interface';
+import { IParam } from './param.interface';
 
 /**
  * Interface to match the Axiosfit service.
@@ -25,6 +26,11 @@ export interface IAxiosfit {
 
   addSegment(key: string, segment: ISegment): void;
   getSegments(key: string): Map<number, string>;
+
+  addParameter(key: string, param: IParam): void;
+  getParameters(key: string): Map<number, string>;
+
+  setParameters(parametersMap: Map<string, string>);
 
   setData(key: string, parameterIndex: number): void;
   getData(key: string): number;

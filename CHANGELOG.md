@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - YYYY-MM-DD
+
+### Changes
+
+- [#6 - Add query parameters to requests](https://github.com/yggdrasilts/axiosfit/issues/6).
+
 ## [0.5.0] - 2019-11-30
 
 ### Changes

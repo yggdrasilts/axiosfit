@@ -3,6 +3,7 @@ import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   IAxiosfit,
   ISegment,
+  IParam,
   AxiosfitInterceptor,
   AxiosfitRequestInterceptor,
   AxiosfitResponseInterceptor,
@@ -58,6 +59,14 @@ export const createServiceMap = function(constructor) {
        * @type {Map<string, Map<number, string>>} key: methodName; value: segment map where: [key: index, value: segmentName]
        */
       private segmentsMap: Map<string, Map<number, string>> = new Map();
+
+      /**
+       * Contains all the parameters to be sent.
+       *
+       * @private
+       * @type {Map<string, Map<number, string>>} key: methodName; value: parameter map where: [key: index, value: paramValue]
+       */
+      private parametersMap: Map<string, Map<number, string>> = new Map();
 
       /**
        * Contains the data to be sent in a post request.
@@ -160,7 +169,7 @@ export const createServiceMap = function(constructor) {
        * Adds segments to be replaced in the correspondent url.
        *
        * @param {string} key Key to localize the segments.
-       * @param {ISegment} segment Segmet.
+       * @param {ISegment} segment Segmet data.
        */
       addSegment(key: string, segment: ISegment): void {
         if (!this.segmentsMap[key]) {
@@ -177,6 +186,38 @@ export const createServiceMap = function(constructor) {
        */
       getSegments(key: string): Map<number, string> {
         return this.segmentsMap[key];
+      }
+
+      /**
+       * Adds parameters to the request.
+       *
+       * @param {string} key Key to localize the parameters.
+       * @param {IParam} param Parameter data.
+       */
+      addParameter(key: string, param: IParam): void {
+        if (!this.parametersMap[key]) {
+          this.parametersMap[key] = new Map();
+        }
+        this.parametersMap[key].set(param.index, param.name);
+      }
+
+      /**
+       * Gets the parameters to be sent in the request.
+       *
+       * @param {string} key Key to localize the parameters.
+       * @returns {Map<number, string>} Parameters to add.
+       */
+      getParameters(key: string): Map<number, string> {
+        return this.parametersMap[key];
+      }
+
+      /**
+       * Set the parameters to the request.
+       *
+       * @param {Map<string, string>} parametersMap Parameters map
+       */
+      setParameters(parametersMap: Map<string, string>) {
+        this.axiosConfig.params = parametersMap;
       }
 
       /**
