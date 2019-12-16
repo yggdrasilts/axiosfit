@@ -1,4 +1,4 @@
-import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse, Interceptors } from '../../../src';
+import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse, Param, ParamMap, IParamMap } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
 
 @HTTP(TestRoutes.BASE)
@@ -7,6 +7,25 @@ export class TestObservableService {
 
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParameter(@Param('id') id: string): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParametersMap(@ParamMap('map') map: IParamMap): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithParameters(
+    @Param('id1') id1: string,
+    @Param('id2') id2: string,
+    @ParamMap('map') map: IParamMap,
+  ): Observable<AxiosResponse<string>> {
     return null;
   }
 

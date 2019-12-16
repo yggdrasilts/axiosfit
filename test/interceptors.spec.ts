@@ -1,11 +1,9 @@
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
 import { TestObservableServiceInterceptor } from './services/observables/TestObservableServiceInterceptor';
-import { TestObservableServiceNewInterceptor } from './services/observables/TestObservableServiceNewInterceptor';
 import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
-import { TestPromiseServiceNewInterceptor } from './services/promises/TestPromiseServiceNewInterceptor';
-import { TestObservableServiceNewInterceptors } from './services/observables/TestObservableServiceNewInterceptors';
-import { TestPromiseServiceNewInterceptors } from './services/promises/TestPromiseServiceNewInterceptors';
+import { TestObservableServiceInterceptors } from './services/observables/TestObservableServiceInterceptors';
+import { TestPromiseServiceInterceptors } from './services/promises/TestPromiseServiceInterceptors';
 
 import testData from './mockServer/data/testData.json';
 
@@ -16,7 +14,7 @@ describe('Testing Interceptors in MethodsService', () => {
   };
 
   describe('REQUEST INTERCEPTORS', () => {
-    it('without parameters using Observables', done => {
+    it('without parameters using Observables and the Interceptor', done => {
       const methodsService = new Axiosfit<TestObservableServiceInterceptor>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .create(TestObservableServiceInterceptor);
@@ -30,10 +28,10 @@ describe('Testing Interceptors in MethodsService', () => {
       );
     });
 
-    it('without parameters using Observables and the NewInterceptor', done => {
-      const methodsService = new Axiosfit<TestObservableServiceNewInterceptor>()
+    it('without parameters using Observables and the Interceptors', done => {
+      const methodsService = new Axiosfit<TestObservableServiceInterceptors>()
         .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestObservableServiceNewInterceptor);
+        .create(TestObservableServiceInterceptors);
 
       methodsService.performGetRequestAddingReqInterceptor().subscribe(
         (response: AxiosResponse<string>) => {
@@ -44,21 +42,7 @@ describe('Testing Interceptors in MethodsService', () => {
       );
     });
 
-    it('without parameters using Observables and the NewInterceptors', done => {
-      const methodsService = new Axiosfit<TestObservableServiceNewInterceptors>()
-        .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestObservableServiceNewInterceptors);
-
-      methodsService.performGetRequestAddingReqInterceptor().subscribe(
-        (response: AxiosResponse<string>) => {
-          expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
-          done();
-        },
-        error => errorFunc(error, done),
-      );
-    });
-
-    describe('Using Promises', () => {
+    describe('Using Promises and the Interceptor', () => {
       const methodsService = new Axiosfit<TestPromiseServiceInterceptor>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .create(TestPromiseServiceInterceptor);
@@ -83,35 +67,10 @@ describe('Testing Interceptors in MethodsService', () => {
       });
     });
 
-    describe('Using Promises and the NewInterceptor', () => {
-      const methodsService = new Axiosfit<TestPromiseServiceNewInterceptor>()
+    describe('Using Promises and the Interceptors', () => {
+      const methodsService = new Axiosfit<TestPromiseServiceInterceptors>()
         .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestPromiseServiceNewInterceptor);
-
-      it('not parameters, not async', done => {
-        methodsService
-          .performGetRequestAddingReqInterceptor()
-          .then((response: AxiosResponse<string>) => {
-            expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
-            done();
-          })
-          .catch(error => errorFunc(error, done));
-      });
-
-      it('not parameters, with async', async () => {
-        try {
-          const axiosResponse = await methodsService.performGetRequestAddingReqInterceptor();
-          expect(axiosResponse.data).toHaveProperty('headers.authorization', 'Bearer token');
-        } catch (error) {
-          expect(error).toBeNull();
-        }
-      });
-    });
-
-    describe('Using Promises and the NewInterceptors', () => {
-      const methodsService = new Axiosfit<TestPromiseServiceNewInterceptors>()
-        .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestPromiseServiceNewInterceptors);
+        .create(TestPromiseServiceInterceptors);
 
       it('not parameters, not async', done => {
         methodsService
@@ -135,7 +94,7 @@ describe('Testing Interceptors in MethodsService', () => {
   });
 
   describe('RESPONSE INTERCEPTORS', () => {
-    it('without parameters using Observables', done => {
+    it('without parameters using Observables and the Interceptor', done => {
       const methodsService = new Axiosfit<TestObservableServiceInterceptor>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .create(TestObservableServiceInterceptor);
@@ -149,10 +108,10 @@ describe('Testing Interceptors in MethodsService', () => {
       );
     });
 
-    it('without parameters using Observables and the NewInterceptor', done => {
-      const methodsService = new Axiosfit<TestObservableServiceNewInterceptor>()
+    it('without parameters using Observables and the Interceptors', done => {
+      const methodsService = new Axiosfit<TestObservableServiceInterceptors>()
         .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestObservableServiceNewInterceptor);
+        .create(TestObservableServiceInterceptors);
 
       methodsService.performGetRequestAddingResInterceptor().subscribe(
         (response: AxiosResponse<string>) => {
@@ -163,21 +122,7 @@ describe('Testing Interceptors in MethodsService', () => {
       );
     });
 
-    it('without parameters using Observables and the NewInterceptors', done => {
-      const methodsService = new Axiosfit<TestObservableServiceNewInterceptors>()
-        .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestObservableServiceNewInterceptors);
-
-      methodsService.performGetRequestAddingResInterceptor().subscribe(
-        (response: AxiosResponse<string>) => {
-          expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
-          done();
-        },
-        error => errorFunc(error, done),
-      );
-    });
-
-    describe('Using Promises', () => {
+    describe('Using Promises and the Interceptor', () => {
       const methodsService = new Axiosfit<TestPromiseServiceInterceptor>()
         .baseUrl(process.env.MOCK_SERVER_URL)
         .create(TestPromiseServiceInterceptor);
@@ -202,35 +147,10 @@ describe('Testing Interceptors in MethodsService', () => {
       });
     });
 
-    describe('Using Promises and the NewInterceptor', () => {
-      const methodsService = new Axiosfit<TestPromiseServiceNewInterceptor>()
+    describe('Using Promises and the Interceptors', () => {
+      const methodsService = new Axiosfit<TestPromiseServiceInterceptors>()
         .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestPromiseServiceNewInterceptor);
-
-      it('not parameters, not async', done => {
-        methodsService
-          .performGetRequestAddingResInterceptor()
-          .then((response: AxiosResponse<string>) => {
-            expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
-            done();
-          })
-          .catch(error => errorFunc(error, done));
-      });
-
-      it('not parameters, with async', async () => {
-        try {
-          const axiosResponse = await methodsService.performGetRequestAddingResInterceptor();
-          expect(axiosResponse.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
-        } catch (error) {
-          expect(error).toBeNull();
-        }
-      });
-    });
-
-    describe('Using Promises and the NewInterceptors', () => {
-      const methodsService = new Axiosfit<TestPromiseServiceNewInterceptors>()
-        .baseUrl(process.env.MOCK_SERVER_URL)
-        .create(TestPromiseServiceNewInterceptors);
+        .create(TestPromiseServiceInterceptors);
 
       it('not parameters, not async', done => {
         methodsService
