@@ -1,9 +1,11 @@
 import { Axiosfit, AxiosResponse, AxiosError } from '../src';
 
 import { TestObservableServiceInterceptor } from './services/observables/TestObservableServiceInterceptor';
-import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
+import { TestObservableServiceNoInterceptor } from './services/observables/TestObservableServiceNoInterceptor';
 import { TestObservableServiceInterceptors } from './services/observables/TestObservableServiceInterceptors';
 import { TestPromiseServiceInterceptors } from './services/promises/TestPromiseServiceInterceptors';
+import { TestPromiseServiceInterceptor } from './services/promises/TestPromiseServiceInterceptor';
+import { TestInterceptorRequest, TestInterceptorResponse } from './services/interceptors/test.interceptor';
 
 import testData from './mockServer/data/testData.json';
 
@@ -12,6 +14,34 @@ describe('Testing Interceptors in MethodsService', () => {
     expect(error).toBeNull();
     done.fail();
   };
+
+  describe('ADDING INTERCEPTORS', () => {
+    it('adding the Interceptor', done => {
+      const interceptorRequest = new TestInterceptorRequest();
+      const interceptorResponse = new TestInterceptorResponse();
+      const methodsService = new Axiosfit<TestObservableServiceNoInterceptor>()
+        .baseUrl(process.env.MOCK_SERVER_URL)
+        .addInterceptor(interceptorRequest)
+        .addInterceptor(interceptorResponse)
+        .create(TestObservableServiceNoInterceptor);
+
+      methodsService.performGetRequestAddingReqInterceptor().subscribe(
+        (response: AxiosResponse<string>) => {
+          expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
+          done();
+        },
+        error => errorFunc(error, done),
+      );
+
+      methodsService.performGetRequestAddingResInterceptor().subscribe(
+        (response: AxiosResponse<string>) => {
+          expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
+          done();
+        },
+        error => errorFunc(error, done),
+      );
+    });
+  });
 
   describe('REQUEST INTERCEPTORS', () => {
     it('without parameters using Observables and the Interceptor', done => {
