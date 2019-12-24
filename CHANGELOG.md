@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.6.0] - YYYY-MM-DD
+## [0.6.0] - 2019-12-16
 
 ### Changes
 
@@ -91,6 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.6.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.0
 [0.5.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.5.x/0.5.0
 [0.4.4]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.4
 [0.4.3]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.3
