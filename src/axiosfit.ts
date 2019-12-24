@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { AxiosfitInterceptor } from './interfaces';
+import { AxiosfitInterceptor, AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from './interfaces';
 import { serviceMap } from './decorators/utilities';
 
 /**
@@ -34,7 +34,7 @@ export class Axiosfit<S> {
    * @returns {Axiosfit<S>} The service.
    * @memberof Axiosfit
    */
-  addInterceptor(interceptor: AxiosfitInterceptor): Axiosfit<S> {
+  addInterceptor(interceptor: AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor): Axiosfit<S> {
     this.interceptors.push(interceptor);
     return this;
   }

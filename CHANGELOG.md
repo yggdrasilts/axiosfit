@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.7.0] - YYYY-MM-DD
 
+## [0.6.1] - 2019-12-24
+
+### Bugfixes
+
+- [#10 - Add interceptors methods does not work well with the new v0.6.0 version](https://github.com/yggdrasilts/axiosfit/issues/10)
+
 ## [0.6.0] - 2019-12-16
 
 ### Changes
@@ -93,6 +99,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.6.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.1
 [0.6.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.0
 [0.5.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.5.x/0.5.0
 [0.4.4]: https://github.com/yggdrasilts/axiosfit/tree/v0.4.x/0.4.4
