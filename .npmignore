@@ -4,6 +4,8 @@ config
 coverage
 test
 samples
+src
+test
 
 # Files
 package-lock.json
@@ -11,4 +13,8 @@ package-lock.json
 .editorconfig
 .gitignore
 .prettierrc
-*.test.json
+CHANGELOG.md
+CONTRIBUTING.md
+tsconfig.json
+tsconfig.*.json
+tslint.json
