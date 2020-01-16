@@ -7,6 +7,7 @@
   ],
   "license": "MIT",
   "description": "Project inspired in Retrofit.",
+  "main": "dist/index.js",
   "keywords": [
     "typescript",
     "axios",
@@ -58,7 +59,6 @@
     "node": ">= 12.3.0",
     "npm": ">= 6.9.0"
   },
-  "main": "dist/index.js",
   "directories": {
     "test": "test"
   }
