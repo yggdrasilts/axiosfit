@@ -37,5 +37,6 @@ export interface IAxiosfit {
 }
 
 export interface AxiosfitConfig {
-  usePromises: boolean;
+  usePromises?: boolean;
+  enableAxiosLogger?: boolean;
 }
