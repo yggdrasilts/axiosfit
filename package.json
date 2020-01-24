@@ -32,7 +32,7 @@
     "build:test": "tsc -p tsconfig.test.json",
     "clean": "rimraf -rf allure* coverage dist documentation",
     "clean:all": "run-s clean clean:all:cmd",
-    "clean:all:cmd": "rimraf -rf node_modules package-lock.json",
+    "clean:all:cmd": "rimraf -rf node_modules package-lock.json yarn.lock",
     "clean:coverage": "rimraf -rf coverage",
     "compodoc": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\"",
