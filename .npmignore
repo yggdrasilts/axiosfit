@@ -9,6 +9,7 @@ test
 
 # Files
 package-lock.json
+yarn.lock
 .compodocrc.json
 .editorconfig
 .gitignore
