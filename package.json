@@ -56,6 +56,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "allure-commandline": "^2.13.0",
     "cz-conventional-changelog": "^3.1.0",
+    "cz-customizable": "^6.2.0",
     "express": "^4.17.1",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
@@ -84,7 +85,10 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/path/to/my/config.js"
     }
   }
 }
