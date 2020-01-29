@@ -30,6 +30,7 @@
     "build": "run-s clean lint test build:prod",
     "build:prod": "tsc -p tsconfig.prod.json",
     "build:test": "tsc -p tsconfig.test.json",
+    "commit": "git-cz",
     "clean": "rimraf -rf allure* coverage dist documentation",
     "clean:all": "run-s clean clean:all:cmd",
     "clean:all:cmd": "rimraf -rf node_modules package-lock.json yarn.lock",
@@ -54,6 +55,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@compodoc/compodoc": "^1.1.11",
     "allure-commandline": "^2.13.0",
+    "cz-conventional-changelog": "^3.1.0",
     "express": "^4.17.1",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
@@ -76,7 +78,13 @@
   },
   "husky": {
     "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
