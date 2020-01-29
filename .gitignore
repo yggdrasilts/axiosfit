@@ -1,5 +1,7 @@
+# Files
 package-lock.json
 yarn.lock
+CURRENT_CHANGES.md
 
 # compodoc
 documentation
