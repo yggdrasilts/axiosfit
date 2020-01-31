@@ -4,19 +4,37 @@
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
-    "hookyqr.beautify",
-    "streetsidesoftware.code-spell-checker",
-    "eamodio.gitlens",
-    "eriklynd.json-tools",
-    "yzhang.markdown-all-in-one",
-    "davidanson.vscode-markdownlint",
+    // Angular
+    "doggy8088.angular-extension-pack",
+    "ghaschel.vscode-angular-html",
+
+    // NodeJS
     "waderyan.nodejs-extension-pack",
+
+    // TypeScript
+    "ms-vscode.vscode-typescript-tslint-plugin",
+
+    // Styling
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "hookyqr.beautify",
     "esbenp.prettier-vscode",
+    "vscode-icons-team.vscode-icons",
+
+    // Git
+    "eamodio.gitlens",
+
+    // Utilities
     "wayou.vscode-todo-highlight",
     "gruntfuggly.todo-tree",
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "ghaschel.vscode-angular-html",
-    "vscode-icons-team.vscode-icons"
+    "eriklynd.json-tools",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+
+    // Others
+    "streetsidesoftware.code-spell-checker"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
