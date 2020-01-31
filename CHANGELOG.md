@@ -7,7 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.7.0] - YYYY-MM-DD
+## 0.7.0 (2020-01-31)
+
+### Build System / Dependencies
+
+- **cz:** update commitizen types descriptions ([9244646f](https://github.com/yggdrasilts/axiosfit/commit/9244646f6efa5f3111ad9a3499844d44c5a25565))
+
+### Chores
+
+- add extension recomendations for vscode ([420805d8](https://github.com/yggdrasilts/axiosfit/commit/420805d84c5f210494d3b56f117f15362495c9e7))
+- update engines ([7c860dbd](https://github.com/yggdrasilts/axiosfit/commit/7c860dbd263e5a8b5e1c866888c5ffb88b55e74c))
+- update README.md ([ad10b8b3](https://github.com/yggdrasilts/axiosfit/commit/ad10b8b39d5c9174ccbcb2435d6a96dcfd894c42))
+- check commit message before commiting ([c435f119](https://github.com/yggdrasilts/axiosfit/commit/c435f11953916fe87c46af8e0b95a9e2a1db2cb4))
+- lint on commitmsg ([4d440111](https://github.com/yggdrasilts/axiosfit/commit/4d44011170fe4b9ae28fbfc6287929863d8f5671))
+
+### Documentation Changes
+
+- **samples:** update samples with last versions ([6ee7b547](https://github.com/yggdrasilts/axiosfit/commit/6ee7b547bf914105a2a9ba5abcf46c89efeb47d7))
+- **changelog:** add changelog dependency to generate the changelog automatically ([883ce82a](https://github.com/yggdrasilts/axiosfit/commit/883ce82ae63980c22d5b92cd852e891395cdd1b9))
+- **readme:** update commit hooks to ensure a valid message ([d08242b4](https://github.com/yggdrasilts/axiosfit/commit/d08242b41fcabfde4de01c01b8699f158daf086d))
+- Update LICENSE ([fefe3c46](https://github.com/yggdrasilts/axiosfit/commit/fefe3c46883c28431dcc21a629d8a306f0ffd3d3))
+- README optimizations ([89990c4f](https://github.com/yggdrasilts/axiosfit/commit/89990c4f3ee3163b805c37c457703cf8bd6b9491))
+- Add shields ([f7b17741](https://github.com/yggdrasilts/axiosfit/commit/f7b17741bece18a909c22418d9d7216e947cb2f4))
+
+### Other Changes
+
+- Lighten distributable ([9000bbf9](https://github.com/yggdrasilts/axiosfit/commit/9000bbf93925797b59c8fb0e1323565cff935914))
+- Update changelog ([de6ff3ec](https://github.com/yggdrasilts/axiosfit/commit/de6ff3ec4d9cf752920aa27572ca5481415adc17))
+- add necessary interfaces ([5a707283](https://github.com/yggdrasilts/axiosfit/commit/5a7072838523b9a578d690d6404eba8b659bd584))
+- Update v0.7.0 ([af61a4a4](https://github.com/yggdrasilts/axiosfit/commit/af61a4a4fc333621694f89360dd3049f7e7b1012))
+
+### Code Style Changes
+
+- **vscode:** update vscode extensions recomendations ([ca18486e](https://github.com/yggdrasilts/axiosfit/commit/ca18486e574b11c6a0ddbcbeea1ff2f7e64d6292))
 
 ## [0.6.1] - 2019-12-24
 
