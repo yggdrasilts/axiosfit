@@ -6,6 +6,7 @@ test
 samples
 src
 test
+.vscode
 
 # Files
 package-lock.json
@@ -14,6 +15,8 @@ yarn.lock
 .editorconfig
 .gitignore
 .prettierrc
+.commitlintrc.json
+.cz-config.js
 CHANGELOG.md
 CONTRIBUTING.md
 tsconfig.json

@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": "YggdrasilTS Team 🌳",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "axios-logger": "^2.3.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.4"
   },

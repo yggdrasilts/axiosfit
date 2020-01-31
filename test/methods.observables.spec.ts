@@ -27,14 +27,14 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequest.check, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
       it('without parameters and getting an error', done => {
         testServiceNoBase.performGetRequestWithError().subscribe(
-          axiosResponse => done.fail(),
-          error => {
+          (response: AxiosResponse<any>) => done.fail(),
+          (error: AxiosError<any>) => {
             expect(error).not.toBeNull();
             done();
           },
@@ -52,7 +52,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequest.check, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
@@ -61,7 +61,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, { id: 'identifier' }, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
@@ -70,7 +70,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, { query: 'common' }, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
@@ -86,7 +86,7 @@ describe('Testing Methods using Observable responses', () => {
             expect((response.data as any).query).toEqual('common');
             done();
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
@@ -95,7 +95,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingAPathVariable.check, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
 
@@ -104,7 +104,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingPathVariables.check, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });
@@ -115,7 +115,7 @@ describe('Testing Methods using Observable responses', () => {
           (response: AxiosResponse<string>) => {
             okFunc(response.data, testData.DELETE.performDeleteRequest.check, done);
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });
@@ -127,7 +127,7 @@ describe('Testing Methods using Observable responses', () => {
             expect(response.data).toEqual(testData.POST.performPostRequest.check);
             done();
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });
@@ -139,7 +139,7 @@ describe('Testing Methods using Observable responses', () => {
             expect(response.data).toEqual(testData.PUT.performPutRequest.check);
             done();
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });
@@ -151,7 +151,7 @@ describe('Testing Methods using Observable responses', () => {
             expect(response.data).toEqual(testData.PATCH.performPatchRequest.check);
             done();
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });
