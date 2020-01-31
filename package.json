@@ -1,12 +1,13 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.6.1",
-  "author": "David Lopez <davidlopez.david@gmail.com>",
+  "version": "0.7.0",
+  "author": "YggdrasilTS Team 🌳",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
   ],
   "license": "MIT",
   "description": "Project inspired in Retrofit.",
+  "main": "dist/index.js",
   "keywords": [
     "typescript",
     "axios",
@@ -23,43 +24,73 @@
     "url": "git+https://github.com/yggdrasilts/axiosfit.git"
   },
   "scripts": {
-    "allure:clean": "rm -rf allure-*",
-    "allure:serve": "npm test && allure serve",
-    "build": "npm run clean && npm run lint && npm test && tsc -p tsconfig.prod.json",
-    "clean": "rm -rf allure* coverage dist documentation",
-    "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
+    "allure:clean": "rimraf -rf allure-*",
+    "allure:serve": "run-s test allure:serve:cmd",
+    "allure:serve:cmd": "allure serve",
+    "build": "run-s clean lint test build:prod",
+    "build:prod": "tsc -p tsconfig.prod.json",
+    "build:test": "tsc -p tsconfig.test.json",
+    "changelog": "changelog -f CURRENT_CHANGES.md",
+    "commit": "git-cz",
+    "clean": "rimraf -rf allure* coverage dist documentation",
+    "clean:all": "run-s clean clean:all:cmd",
+    "clean:all:cmd": "rimraf -rf node_modules package-lock.json yarn.lock",
+    "clean:coverage": "rimraf -rf coverage",
     "compodoc": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:samples": "prettier --write \"samples/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lint:test": "tslint -p tsconfig.test.json -c tslint.json",
-    "prepublish": "npm run build",
-    "test": "rm -rf coverage && npm run allure:clean && tsc -p tsconfig.test.json && DEBUG=testcontainers jest --config ./config/jest.config.js"
+    "prepublish": "run-s build",
+    "test": "run-s clean:coverage allure:clean build:test test:cmd",
+    "test:cmd": "DEBUG=testcontainers jest --config ./config/jest.config.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
+    "axios-logger": "^2.3.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@compodoc/compodoc": "^1.1.11",
     "allure-commandline": "^2.13.0",
+    "cz-conventional-changelog": "^3.1.0",
+    "cz-customizable": "^6.2.0",
     "express": "^4.17.1",
-    "jest": "^24.9.0",
+    "generate-changelog": "^1.8.0",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
     "jest-allure": "^0.1.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
-    "testcontainers": "^2.2.0",
-    "ts-jest": "^24.2.0",
-    "ts-node": "^8.5.4",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.3"
+    "rimraf": "^3.0.0",
+    "testcontainers": "^2.3.1",
+    "ts-jest": "^25.0.0",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
   },
   "engines": {
-    "node": ">= 12.3.0",
-    "npm": ">= 6.9.0"
+    "node": ">=12.0.0",
+    "npm": ">=6.9.0"
   },
-  "main": "dist/index.js",
   "directories": {
     "test": "test"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/path/to/my/config.js"
+    }
   }
 }

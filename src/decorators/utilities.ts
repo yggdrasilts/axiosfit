@@ -1,4 +1,5 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import * as AxiosLogger from 'axios-logger';
 
 import {
   IAxiosfit,
@@ -93,7 +94,7 @@ export const createServiceMap = function(constructor) {
         this.setInterceptors(list);
       }
 
-      setAxiosfitConfig(axiosfitConfig: AxiosfitConfig) {
+      setAxiosfitConfig(axiosfitConfig: AxiosfitConfig = { usePromises: false, enableAxiosLogger: false }) {
         this.axiosfitConfig = axiosfitConfig;
       }
 
@@ -128,6 +129,10 @@ export const createServiceMap = function(constructor) {
               (interceptor as AxiosfitResponseInterceptor).onError || defaultError,
             );
           }
+        }
+        if (this.axiosfitConfig?.enableAxiosLogger) {
+          this.axiosInstance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
+          this.axiosInstance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
         }
       }
 

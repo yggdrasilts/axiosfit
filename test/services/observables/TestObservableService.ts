@@ -1,7 +1,7 @@
 import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse, Param, ParamMap, IParamMap } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
 
-@HTTP(TestRoutes.BASE)
+@HTTP(TestRoutes.BASE, { enableAxiosLogger: true })
 export class TestObservableService {
   private static readonly serviceName = 'TestObservableService';
 

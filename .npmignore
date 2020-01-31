@@ -4,11 +4,18 @@ config
 coverage
 test
 samples
+src
+test
 
 # Files
 package-lock.json
+yarn.lock
 .compodocrc.json
 .editorconfig
 .gitignore
 .prettierrc
-*.test.json
+CHANGELOG.md
+CONTRIBUTING.md
+tsconfig.json
+tsconfig.*.json
+tslint.json
