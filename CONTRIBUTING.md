@@ -204,13 +204,16 @@ If the commit reverts a previous commit, it should begin with `revert:`, followe
 Must be one of the following:
 
 - **build**: Changes that affect the build system or external dependencies (example scopes: npm)
+- **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation',
 - **docs**: Documentation only changes
-- **feature**: A new feature
-- **bugfix**: A bug fix
+- **feat**: A new feature
+- **fix**: A bug fix
 - **perf**: A code change that improves performance
 - **refactor**: A code change that neither fixes a bug nor adds a feature
+- **revert**: Revert to a commit
 - **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - **test**: Adding missing tests or correcting existing tests
+- **WP**: Work in progress
 
 ### Scope
 
