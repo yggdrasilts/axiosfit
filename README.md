@@ -73,6 +73,7 @@ Examples of using all of these Decartors are shown in the [Examples section](#sa
 
 - <a name="axiosfitConfig"></a>AxiosfitConfig
   - _usePromises_: Default _false_. Configure Axiosfit service to return Observable object or a Promise.
+  - _enableAxiosLogger_: Default _false_. Configure Axiosfit service to use the axiosfit logger to print the request and response to the console.
 
 ## <a name="usage"></a>Usage
 
