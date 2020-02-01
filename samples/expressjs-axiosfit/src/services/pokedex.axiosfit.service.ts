@@ -12,7 +12,7 @@ import {
 
 import { Pokemon } from '../models/pokemon.model';
 
-@HTTP('/pokedex')
+@HTTP('/pokedex', { enableAxiosLogger: true })
 export class PokedexService {
   @GET('/:id')
   public getPokemon(
