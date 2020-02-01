@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.7.1 (2020-02-01)
+
+### Bug Fixes
+
+- **logger:**
+  - update sample to use the new axiosfit logger class ([eae25cbd](https://github.com/yggdrasilts/axiosfit/commit/eae25cbdeca86f5db0c6642f525bd2bc9fb49ef4))
+  - change axios-logger to use a custom axiosfit logger ([d001c36d](https://github.com/yggdrasilts/axiosfit/commit/d001c36d15cfa1064f074af1d55a7610a5295312))
+
 ## 0.7.0 (2020-01-31)
 
 ### Build System / Dependencies
