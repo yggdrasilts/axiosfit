@@ -1,5 +1,4 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import * as AxiosLogger from 'axios-logger';
 
 import {
   IAxiosfit,
@@ -10,6 +9,7 @@ import {
   AxiosfitResponseInterceptor,
   AxiosfitConfig,
 } from 'src/interfaces';
+import { AxiosfitLogger } from '../logger/axiosfit.logger';
 
 /**
  * Contains the url mappings.
@@ -116,6 +116,7 @@ export const createServiceMap = function(constructor) {
       setInterceptors(interceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
         // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.error(error);
+        const axiosfitLogger = new AxiosfitLogger();
         for (const interceptor of interceptors) {
           if ((interceptor as AxiosfitRequestInterceptor).onRequest !== undefined) {
             this.axiosInstance.interceptors.request.use(
@@ -131,8 +132,8 @@ export const createServiceMap = function(constructor) {
           }
         }
         if (this.axiosfitConfig?.enableAxiosLogger) {
-          this.axiosInstance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
-          this.axiosInstance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+          this.axiosInstance.interceptors.request.use(axiosfitLogger.onRequest, axiosfitLogger.onError);
+          this.axiosInstance.interceptors.response.use(axiosfitLogger.onResponse, axiosfitLogger.onError);
         }
       }
 

@@ -12,7 +12,7 @@ import {
 
 import { Bug } from './bug';
 
-@HTTP('/bugtracking')
+@HTTP('/bugtracking', { enableAxiosLogger: true })
 export class RestBugService {
   private static readonly serviceName = 'RestBugService';
 

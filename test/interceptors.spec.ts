@@ -30,7 +30,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
 
       methodsService.performGetRequestAddingResInterceptor().subscribe(
@@ -38,7 +38,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
     });
   });
@@ -54,7 +54,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
     });
 
@@ -68,7 +68,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
     });
 
@@ -84,7 +84,7 @@ describe('Testing Interceptors in MethodsService', () => {
             expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('not parameters, with async', async () => {
@@ -109,7 +109,7 @@ describe('Testing Interceptors in MethodsService', () => {
             expect(response.data).toHaveProperty('headers.authorization', 'Bearer token');
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('not parameters, with async', async () => {
@@ -134,7 +134,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
     });
 
@@ -148,7 +148,7 @@ describe('Testing Interceptors in MethodsService', () => {
           expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
           done();
         },
-        error => errorFunc(error, done),
+        (error: AxiosError<any>) => errorFunc(error, done),
       );
     });
 
@@ -164,7 +164,7 @@ describe('Testing Interceptors in MethodsService', () => {
             expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('not parameters, with async', async () => {
@@ -189,7 +189,7 @@ describe('Testing Interceptors in MethodsService', () => {
             expect(response.data).toEqual({ ...testData.GET.performGetRequestAddingResInterceptor.check, newData: 'new' });
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('not parameters, with async', async () => {
