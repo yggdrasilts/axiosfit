@@ -27,11 +27,12 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@yggdrasilts/axiosfit": "^0.6.1",
+    "@yggdrasilts/axiosfit": "../../",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
+    "rxjs": "^6.5.4",
     "winston": "^3.2.1"
   }
 }

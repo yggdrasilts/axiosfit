@@ -27,7 +27,7 @@ describe('Testing Methods using Promise responses', () => {
           .then(axiosResponse => {
             okFunc(axiosResponse.data, testData.GET.performGetRequest.check, done);
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('without parameters and getting an error', done => {
@@ -54,7 +54,7 @@ describe('Testing Methods using Promise responses', () => {
           .then((response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequest.check, done);
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('with only one parameter', done => {
@@ -63,7 +63,7 @@ describe('Testing Methods using Promise responses', () => {
           .then((response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingAPathVariable.check, done);
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
 
       it('with some parameters', done => {
@@ -72,7 +72,7 @@ describe('Testing Methods using Promise responses', () => {
           .then((response: AxiosResponse<string>) => {
             okFunc(response.data, testData.GET.performGetRequestUsingPathVariables.check, done);
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
     });
 
@@ -83,7 +83,7 @@ describe('Testing Methods using Promise responses', () => {
           .then((response: AxiosResponse<string>) => {
             okFunc(response.data, testData.DELETE.performDeleteRequest.check, done);
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
     });
 
@@ -95,7 +95,7 @@ describe('Testing Methods using Promise responses', () => {
             expect(response.data).toEqual(testData.POST.performPostRequest.check);
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
     });
 
@@ -107,7 +107,7 @@ describe('Testing Methods using Promise responses', () => {
             expect(response.data).toEqual(testData.PUT.performPutRequest.check);
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
     });
 
@@ -119,7 +119,7 @@ describe('Testing Methods using Promise responses', () => {
             expect(response.data).toEqual(testData.PATCH.performPatchRequest.check);
             done();
           })
-          .catch(error => errorFunc(error, done));
+          .catch((error: AxiosError<any>) => errorFunc(error, done));
       });
     });
   });

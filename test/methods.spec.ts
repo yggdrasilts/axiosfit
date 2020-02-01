@@ -34,7 +34,7 @@ describe('Testing Methods errors', () => {
             expect((response.data as any).test).toEqual('param1');
             done();
           },
-          error => errorFunc(error, done),
+          (error: AxiosError<any>) => errorFunc(error, done),
         );
       });
     });

@@ -27,9 +27,10 @@
     "@nestjs/common": "^6.11.5",
     "@nestjs/core": "^6.11.5",
     "@nestjs/platform-express": "^6.11.5",
-    "@yggdrasilts/axiosfit": "^0.6.1",
+    "@yggdrasilts/axiosfit": "../../",
     "dotenv": "^8.2.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.4"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.14.1",
