@@ -150,6 +150,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.7.2]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.2
+[0.7.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.1
+[0.7.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.0_valid
 [0.6.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.1
 [0.6.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.0
 [0.5.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.5.x/0.5.0
