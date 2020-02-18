@@ -9,64 +9,45 @@ import { Method } from '../http/enums';
 import { serviceMap } from './utilities';
 
 /**
- * Method decorator.
- * Indicates that this method use a get request.
+ * Prepare the service to be requested.
  *
- * @param {string} endpoint Method endpoint.
+ * @param {any} target
+ * @param {string} methodName Method name.
+ * @param {string} endpoint Endpoint to be used.
+ * @param {any[]} args Parameters arguments.
  */
-export function GET(endpoint: string) {
-  return noDataFunction(endpoint, Method.GET);
-}
-
-/**
- * Method decorator.
- * Indicates that this method use a delete request.
- *
- * @param {string} endpoint Method endpoint.
- */
-export function DELETE(endpoint: string) {
-  return noDataFunction(endpoint, Method.DELETE);
-}
-
-/**
- * Method decorator.
- * Indicates that this method use a head request.
- *
- * @param {string} endpoint Method endpoint.
- */
-export function HEAD(endpoint: string) {
-  return noDataFunction(endpoint, Method.HEAD);
-}
-
-/**
- * Method decorator.
- * Indicates that this method use a post request.
- *
- * @param {string} endpoint Method endpoint.
- */
-export function POST(endpoint: string) {
-  return dataFunction(endpoint, Method.POST);
-}
-
-/**
- * Method decorator.
- * Indicates that this method use a put request.
- *
- * @param {string} endpoint Method endpoint.
- */
-export function PUT(endpoint: string) {
-  return dataFunction(endpoint, Method.PUT);
-}
-
-/**
- * Method decorator.
- * Indicates that this method use a patch request.
- *
- * @param {string} endpoint Method endpoint.
- */
-export function PATCH(endpoint: string) {
-  return dataFunction(endpoint, Method.PATCH);
-}
+const prepareService = (target: any, methodName: string, endpoint: string, args: any[]): IAxiosfit => {
+  const serviceName = target.constructor.serviceName || target.constructor.name;
+  const service: IAxiosfit = serviceMap[serviceName];
+  const segments = service.getSegments(methodName);
+  const parameters = service.getParameters(methodName);
+  const params = new Map<string, string>();
+  let replacedEndpoint = endpoint;
+  // Get segments, if there are, to be replaced in the path
+  if (segments) {
+    for (const [index, paramValue] of segments.entries()) {
+      replacedEndpoint = replacedEndpoint.replace(`:${paramValue}`, args[index]);
+    }
+  }
+  // Get parameteres, if there are, to be added to the request
+  if (parameters) {
+    for (const [index, paramValue] of parameters.entries()) {
+      if (typeof args[index] === 'string') {
+        params[paramValue] = args[index];
+      } else {
+        const paramMap = args[index];
+        for (const mapKey in paramMap) {
+          if (paramMap.hasOwnProperty(mapKey)) {
+            params[mapKey] = paramMap[mapKey];
+          }
+        }
+      }
+    }
+    service.setParameters(params);
+  }
+  service.addUrl(methodName, replacedEndpoint);
+  return service;
+};
 
 /**
  * Function to return the results.
@@ -77,7 +58,7 @@ export function PATCH(endpoint: string) {
  * @param {string} methodName The name of the decorated method.
  */
 const resultFunction = <T = any>(
-  usePromises: boolean = false,
+  usePromises = false,
   consumer: Promise<AxiosResponse<T>>,
 ): Observable<AxiosResponse<T>> | Promise<AxiosResponse<T>> => {
   if (usePromises) {
@@ -161,42 +142,61 @@ const dataFunction = (endpoint: string, method: Method) => {
 };
 
 /**
- * Prepare the service to be requested.
+ * Method decorator.
+ * Indicates that this method use a get request.
  *
- * @param {any} target
- * @param {string} methodName Method name.
- * @param {string} endpoint Endpoint to be used.
- * @param {any[]} args Parameters arguments.
+ * @param {string} endpoint Method endpoint.
  */
-const prepareService = (target: any, methodName: string, endpoint: string, args: any[]): IAxiosfit => {
-  const serviceName = target.constructor.serviceName || target.constructor.name;
-  const service: IAxiosfit = serviceMap[serviceName];
-  const segments = service.getSegments(methodName);
-  const parameters = service.getParameters(methodName);
-  const params = new Map<string, string>();
-  let replacedEndpoint = endpoint;
-  // Get segments, if there are, to be replaced in the path
-  if (segments) {
-    for (const [index, paramValue] of segments.entries()) {
-      replacedEndpoint = replacedEndpoint.replace(`:${paramValue}`, args[index]);
-    }
-  }
-  // Get parameteres, if there are, to be added to the request
-  if (parameters) {
-    for (const [index, paramValue] of parameters.entries()) {
-      if (typeof args[index] === 'string') {
-        params[paramValue] = args[index];
-      } else {
-        const paramMap = args[index];
-        for (const mapKey in paramMap) {
-          if (paramMap.hasOwnProperty(mapKey)) {
-            params[mapKey] = paramMap[mapKey];
-          }
-        }
-      }
-    }
-    service.setParameters(params);
-  }
-  service.addUrl(methodName, replacedEndpoint);
-  return service;
-};
+export function GET(endpoint: string) {
+  return noDataFunction(endpoint, Method.GET);
+}
+
+/**
+ * Method decorator.
+ * Indicates that this method use a delete request.
+ *
+ * @param {string} endpoint Method endpoint.
+ */
+export function DELETE(endpoint: string) {
+  return noDataFunction(endpoint, Method.DELETE);
+}
+
+/**
+ * Method decorator.
+ * Indicates that this method use a head request.
+ *
+ * @param {string} endpoint Method endpoint.
+ */
+export function HEAD(endpoint: string) {
+  return noDataFunction(endpoint, Method.HEAD);
+}
+
+/**
+ * Method decorator.
+ * Indicates that this method use a post request.
+ *
+ * @param {string} endpoint Method endpoint.
+ */
+export function POST(endpoint: string) {
+  return dataFunction(endpoint, Method.POST);
+}
+
+/**
+ * Method decorator.
+ * Indicates that this method use a put request.
+ *
+ * @param {string} endpoint Method endpoint.
+ */
+export function PUT(endpoint: string) {
+  return dataFunction(endpoint, Method.PUT);
+}
+
+/**
+ * Method decorator.
+ * Indicates that this method use a patch request.
+ *
+ * @param {string} endpoint Method endpoint.
+ */
+export function PATCH(endpoint: string) {
+  return dataFunction(endpoint, Method.PATCH);
+}

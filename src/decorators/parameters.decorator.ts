@@ -2,6 +2,23 @@ import { serviceMap, createServiceMap } from './utilities';
 import { IAxiosfit } from 'src/interfaces';
 
 /**
+ * Private function to add parameters.
+ *
+ * @param {string} name Parameter name.
+ */
+function _addParameter(name: string) {
+  return (target: any, methodName: string, parameterIndex: number) => {
+    const serviceName = target.constructor.serviceName || target.constructor.name;
+    let service: IAxiosfit = serviceMap[serviceName];
+    if (!service) {
+      createServiceMap(target.constructor);
+      service = serviceMap[serviceName];
+    }
+    service.addParameter(methodName, { name, index: parameterIndex });
+  };
+}
+
+/**
  * Parameter decorator.
  * Add a parameter to the request.
  *
@@ -52,22 +69,5 @@ export function Body() {
       service = serviceMap[serviceName];
     }
     service.setData(methodName, parameterIndex);
-  };
-}
-
-/**
- * Private function to add parameters.
- *
- * @param {string} name Parameter name.
- */
-function _addParameter(name: string) {
-  return (target: any, methodName: string, parameterIndex: number) => {
-    const serviceName = target.constructor.serviceName || target.constructor.name;
-    let service: IAxiosfit = serviceMap[serviceName];
-    if (!service) {
-      createServiceMap(target.constructor);
-      service = serviceMap[serviceName];
-    }
-    service.addParameter(methodName, { name, index: parameterIndex });
   };
 }

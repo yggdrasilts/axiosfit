@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.7.2 (2020-02-18)
+
+### Documentation Changes
+
+- **samples:** update sample dependencies to last versions ([45bcd266](https://github.com/yggdrasilts/axiosfit/commit/45bcd266e3f0e2c7674c0b5610c8d9dbac09f878))
+- **logger:** update AxiosfitConfig parameters ([c3fce041](https://github.com/yggdrasilts/axiosfit/commit/c3fce041ae54fbd9a96f5580a6f23ce9680865f3))
+
+### New Features
+
+- **logger:** update logger to show more info and update dependencies as well ([e050bfe4](https://github.com/yggdrasilts/axiosfit/commit/e050bfe4a0d55f25e98892100ea347cf6b077a4c))
+
 ## 0.7.1 (2020-02-01)
 
 ### Bug Fixes
@@ -139,6 +150,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.7.2]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.2
+[0.7.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.1
+[0.7.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.0_valid
 [0.6.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.1
 [0.6.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.6.x/0.6.0
 [0.5.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.5.x/0.5.0

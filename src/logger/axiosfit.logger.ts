@@ -3,26 +3,41 @@ import buildURL from 'axios/lib/helpers/buildURL';
 
 import { AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from '../interfaces';
 
-const getURL = (config: AxiosRequestConfig): string => {
+const INFO = false;
+const ERROR = true;
+
+const _getURL = (config: AxiosRequestConfig): string => {
   return buildURL(config.url, config.params, config.paramsSerializer);
+};
+
+const _printLog = (error: boolean, ...message: any[]): void => {
+  const date = new Date();
+  const timestamp = [date.toLocaleDateString(), date.toLocaleTimeString()];
+  const axiosfitMessage = ['[Axiosfit] -', ...timestamp, ...message];
+  if (error) {
+    // tslint:disable-next-line: no-console
+    console.error(...axiosfitMessage);
+  } else {
+    // tslint:disable-next-line: no-console
+    console.log(...axiosfitMessage);
+  }
 };
 
 export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
   onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
-    // tslint:disable-next-line: no-console
-    console.log('[REQUEST]', config.method.toUpperCase(), getURL(config));
+    _printLog(INFO, '[REQUEST]', config.method.toUpperCase(), _getURL(config));
     return config;
   }
 
   onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
-    // tslint:disable-next-line: no-console
-    console.log(
+    _printLog(
+      INFO,
       '[RESPONSE]',
       response.status,
       response.statusText,
       '(',
       response.config.method.toUpperCase(),
-      getURL(response.config),
+      _getURL(response.config),
       ')',
     );
     return response;
@@ -30,11 +45,9 @@ export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitRespo
 
   onError(error: AxiosError<any>): AxiosError<any> {
     if (error.config) {
-      // tslint:disable-next-line: no-console
-      console.log('[ERROR]', error.name, ':', error.message, '(', error.config.method.toUpperCase(), getURL(error.config), ')');
+      _printLog(ERROR, '[ERROR]', error.name, ':', error.message, '(', error.config.method.toUpperCase(), _getURL(error.config), ')');
     } else {
-      // tslint:disable-next-line: no-console
-      console.log('[ERROR]', error.name, ':', error.message);
+      _printLog(ERROR, '[ERROR]', error.name, ':', error.message);
     }
     throw error;
   }
