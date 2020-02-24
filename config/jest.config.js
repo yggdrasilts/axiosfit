@@ -3,17 +3,14 @@ module.exports = {
   testEnvironment: 'node',
   globalSetup: '<rootDir>/test/setup.ts',
   globalTeardown: '<rootDir>/test/teardown.ts',
-  setupFilesAfterEnv: ["jest-allure/dist/setup"],
-  moduleFileExtensions: [
-    'js',
-    'json',
-    'ts'
-  ],
+  setupFilesAfterEnv: ['jest-allure/dist/setup'],
+  moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '..',
+  roots: ['test'],
   testRegex: '.*.spec.ts$',
   testPathIgnorePatterns: ['mockServer'],
   transform: {
-    '^.+\\.(t|j)s$': 'ts-jest'
+    '^.+\\.(t|j)s$': 'ts-jest',
   },
   collectCoverage: true,
   coverageReporters: ['text', 'html'],
@@ -24,8 +21,8 @@ module.exports = {
       branches: 80,
       functions: 80,
       lines: 80,
-      statements: -10
-    }
+      statements: -10,
+    },
   },
-  reporters: ["default", "jest-allure"],
+  reporters: ['default', 'jest-allure'],
 };

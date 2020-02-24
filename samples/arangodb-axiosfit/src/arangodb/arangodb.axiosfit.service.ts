@@ -36,7 +36,7 @@ export class ArangoDBService {
     this.bulkService = new Axiosfit<BulkService>().baseUrl(baseUrl).create(BulkService);
   }
 
-  initGOTData() {
+  async initGOTData() {
     const databaseResponse = await this.databaseService.createDatabase({ name: this.db });
     if (databaseResponse.data.error) {
       this.logger.error(`Error creating database '${this.db}'`, databaseResponse.data.errorMessage);
@@ -68,6 +68,5 @@ export class ArangoDBService {
         throw new Error(`Error importing data for collection '${collection.name}'.`);
       }
     }
-  }
   }
 }
