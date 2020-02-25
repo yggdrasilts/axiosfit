@@ -10,7 +10,7 @@ export class AdminService {
    * @returns {Promise<AxiosResponse<Status>>} {@link Status}
    * @memberof AdminService
    */
-  @GET('/_admin/status')
+  @GET('_admin/status')
   public getStatus(): Promise<AxiosResponse<Status>> {
     return null;
   }

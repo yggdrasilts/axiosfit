@@ -39,7 +39,6 @@ export class ArangoDBService {
   async initGOTData() {
     const databaseResponse = await this.databaseService.createDatabase({ name: this.db });
     if (databaseResponse.data.error) {
-      this.logger.error(`Error creating database '${this.db}'`, databaseResponse.data.errorMessage);
       throw new Error(`Problems creating database '${this.db}'. ${databaseResponse.data.errorMessage}`);
     }
     this.logger.debug(`Database ${this.db} created.`);
@@ -50,12 +49,10 @@ export class ArangoDBService {
         type: collection.type,
       });
       if (createCollectionResponse.data.error) {
-        this.logger.error(`Error creating collection '${collection.name}'.`);
         throw new Error(`Error creating collection '${collection.name}'.`);
       }
       const collectionInfo = await this.collectionService.getCollectionInfo(this.db, collection.name);
       if (collectionInfo.data.error) {
-        this.logger.error(`Error checking collection '${collection.name}'.`);
         throw new Error(`Error checking collection '${collection.name}'.`);
       }
       const bulkImportResponse = await this.bulkService.importJson(
@@ -64,7 +61,6 @@ export class ArangoDBService {
         collection.data,
       );
       if (bulkImportResponse.data.error) {
-        this.logger.error(`Error importing data for collection '${collection.name}'.`);
         throw new Error(`Error importing data for collection '${collection.name}'.`);
       }
     }

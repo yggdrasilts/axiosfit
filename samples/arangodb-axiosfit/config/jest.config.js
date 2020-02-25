@@ -14,7 +14,7 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['text', 'html'],
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['src/arangodb/services/entities'],
+  coveragePathIgnorePatterns: ['src/arangodb/services'],
   coverageThreshold: {
     global: {
       branches: 80,

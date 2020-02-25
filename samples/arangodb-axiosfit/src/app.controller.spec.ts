@@ -25,7 +25,7 @@ describe('AppController', () => {
   describe('root', () => {
     it('should return ArangoDB status object', async () => {
       await appController.initArangoDB();
-      const status: Status = await appController.getArangoDBStatus();
+      const status: Status = (await appController.getArangoDBStatus()).data;
       expect(status).toHaveProperty('server', 'arango');
       expect(status).toHaveProperty('version');
     });

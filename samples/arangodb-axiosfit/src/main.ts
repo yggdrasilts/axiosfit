@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { INestApplication, Logger } from '@nestjs/common';
 
+import { AllExceptionsFilter } from './filters/all-exceptions.filter';
+
 import { startMockServer, stopMockServer } from '../test/setup';
 
 import { AppModule } from './app.module';
@@ -37,6 +39,7 @@ async function bootstrap() {
   await startArangoDBServer();
 
   app = await NestFactory.create(AppModule.register(baseUrl));
+  app.useGlobalFilters(new AllExceptionsFilter());
   await app.listen(3000);
 }
 
