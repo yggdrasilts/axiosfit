@@ -8,6 +8,7 @@ import { startMockServer, stopMockServer } from '../test/setup';
 import { AppModule } from './app.module';
 
 let baseUrl = '';
+const port = process.env.PORT || 3000;
 let app: INestApplication;
 const logger = new Logger('Bootstrap');
 
@@ -21,10 +22,10 @@ async function stopArangoDBServer() {
 async function startArangoDBServer() {
   try {
     logger.debug('Starting ArangoDB instance.');
-    const port: number = Number(process.env.ARANGODB_PORT) || 8529;
+    const arangodbPort: number = Number(process.env.ARANGODB_PORT) || 8529;
     const arangodbServer = await startMockServer();
     const arangoDBserverIP = await arangodbServer.getContainerIpAddress();
-    const arangoDBserverPort = String(await arangodbServer.getMappedPort(port));
+    const arangoDBserverPort = String(await arangodbServer.getMappedPort(arangodbPort));
     baseUrl = `http://${arangoDBserverIP}:${arangoDBserverPort}`;
     process.env.BASE_URL = baseUrl;
     logger.log(`ArangoDB server running at ${baseUrl}`);
@@ -40,7 +41,8 @@ async function bootstrap() {
 
   app = await NestFactory.create(AppModule.register(baseUrl));
   app.useGlobalFilters(new AllExceptionsFilter());
-  await app.listen(3000);
+  await app.listen(port);
+  logger.log(`arangodb-axiosfit application running at http://localhost:${port}`);
 }
 
 bootstrap();

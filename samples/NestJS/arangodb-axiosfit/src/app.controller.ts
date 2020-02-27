@@ -13,9 +13,10 @@ export class AppController {
   constructor(private readonly arangodbService: ArangoDBService) {}
 
   @Get('bootstrap')
-  async initArangoDB(): Promise<void> {
+  async initArangoDB(): Promise<string> {
     this.logger.debug('Initializing ArangoDB with GOT data...');
     await this.arangodbService.initGOTData();
+    return 'Game Of Thrones data added to ArangoDB server.';
   }
 
   @Get('status')
