@@ -4,6 +4,8 @@ import { Observable, defer } from 'rxjs';
 
 import { AxiosResponse } from 'axios';
 
+import { StringUtils } from '@yggdrasilts/volundr';
+
 import { IAxiosfit } from '../interfaces';
 import { Method } from '../http/enums';
 import { serviceMap } from './utilities';
@@ -22,7 +24,8 @@ const prepareService = (target: any, methodName: string, endpoint: string, args:
   const segments = service.getSegments(methodName);
   const parameters = service.getParameters(methodName);
   const params = new Map<string, string>();
-  let replacedEndpoint = endpoint;
+  // TODO: Use StringUtils.SLASH from last @yggdrasilts/volundr version
+  let replacedEndpoint = endpoint.startsWith('/') ? endpoint : StringUtils.join('/', endpoint);
   // Get segments, if there are, to be replaced in the path
   if (segments) {
     for (const [index, paramValue] of segments.entries()) {
