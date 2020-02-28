@@ -3,10 +3,9 @@ module.exports = {
   testEnvironment: 'node',
   globalSetup: '<rootDir>/test/setup.ts',
   globalTeardown: '<rootDir>/test/teardown.ts',
-  setupFilesAfterEnv: ['jest-allure/dist/setup'],
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '..',
-  roots: ['test'],
+  roots: ['src'],
   testRegex: '.*.spec.ts$',
   testPathIgnorePatterns: ['mockServer'],
   transform: {
@@ -15,14 +14,14 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['text', 'html'],
   coverageDirectory: 'coverage',
-  coveragePathIgnorePatterns: ['test/services'],
+  coveragePathIgnorePatterns: ['src/arangodb/services'],
   coverageThreshold: {
     global: {
       branches: 80,
-      functions: 80,
-      lines: 80,
+      functions: 60,
+      lines: 60,
       statements: -10,
     },
   },
-  reporters: ['default', 'jest-allure'],
+  reporters: ['default'],
 };

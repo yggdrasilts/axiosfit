@@ -1,4 +1,9 @@
 {
   "vsicons.presets.nestjs": false,
   "vsicons.presets.angular": false,
+  "cSpell.words": [
+	"Arango",
+	"arangodb",
+	"axiosfit"
+],
 }
