@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.8.0 (2020-02-28)
+
+### Build System / Dependencies
+
+- **eslint:** add eslint ignore file to ignore samples folder ([4c417eed](https://github.com/yggdrasilts/axiosfit/commit/4c417eeddeb0ac72d7990d0d0ebfd3e2c8215ae3))
+- **tests:** update jest config to not execute sample tests ([9cba90f2](https://github.com/yggdrasilts/axiosfit/commit/9cba90f25c766555a619dcd8882ae9c504c76c89))
+
+### Chores
+
+- update package.json version to develop ([0e230306](https://github.com/yggdrasilts/axiosfit/commit/0e2303061a0b88e6fab6e1e767fca9d46a356523))
+
+### Documentation Changes
+
+- **samples:**
+  - update samples folders ([7365d8b5](https://github.com/yggdrasilts/axiosfit/commit/7365d8b5d025900a87bd02c3a36d4da7b59cee09))
+  - update README ([7c2fe8be](https://github.com/yggdrasilts/axiosfit/commit/7c2fe8beb926f4ae0b5740f26539350c4fed875c))
+  - update samples README adding more descriptions ([96488d3a](https://github.com/yggdrasilts/axiosfit/commit/96488d3adf5f4dff7f54337af506eff8ab09dc1c))
+  - add new sample using NestJS and ArangoDB ([1adde929](https://github.com/yggdrasilts/axiosfit/commit/1adde929c3ecfe6a5a47f03a6da0b56d9e092fb0))
+
 ## 0.7.2 (2020-02-18)
 
 ### Documentation Changes
@@ -150,6 +169,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.8.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.8.x/0.8.0
 [0.7.2]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.2
 [0.7.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.1
 [0.7.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.0_valid
