@@ -2,10 +2,12 @@
   "vsicons.presets.nestjs": false,
   "vsicons.presets.angular": false,
   "cSpell.words": [
-	"Arango",
-	"arangodb",
-	"axiosfit"
-],
+    "Arango",
+    "arangodb",
+    "axiosfit",
+    "doctoc",
+    "markdownlint"
+  ],
 "workbench.colorCustomizations": {
   "activityBar.background": "#1f6fd0",
   "activityBar.activeBorder": "#ee90bb",

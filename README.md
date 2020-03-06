@@ -43,8 +43,8 @@ Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/)
         - [Request Interceptor](#request-interceptor)
         - [Response Interceptor](#response-interceptor)
   - [<a name="samples_section"></a>Examples](#examples-1)
-    <!-- markdownlint-restore -->
 
+<!-- markdownlint-restore -->
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Purpose
