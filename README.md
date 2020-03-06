@@ -17,6 +17,8 @@ Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/)
 
 **Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
+<!-- markdownlint-disable -->
+
 - [Axiosfit](#axiosfit)
   - [Purpose](#purpose)
   - [Install](#install)
@@ -41,6 +43,7 @@ Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/)
         - [Request Interceptor](#request-interceptor)
         - [Response Interceptor](#response-interceptor)
   - [<a name="samples_section"></a>Examples](#examples-1)
+    <!-- markdownlint-restore -->
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
