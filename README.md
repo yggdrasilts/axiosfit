@@ -12,6 +12,38 @@
 
 Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) and all the Observable powers (_also, you can use Promises as well_).
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [Axiosfit](#axiosfit)
+  - [Purpose](#purpose)
+  - [Install](#install)
+  - [Contributing](#contributing)
+  - [Documentation](#documentation)
+    - [Available Decorators](#available-decorators)
+      - [Class Decorators](#class-decorators)
+        - [Considerations](#considerations)
+      - [Method Decorators](#method-decorators)
+      - [Parameter Decorators](#parameter-decorators)
+      - [Configuration](#configuration)
+  - [<a name="usage"></a>Usage](#usage)
+    - [1. Create a service class](#1-create-a-service-class)
+      - [1.1 Service class for Angular application uglifying the code to deploy in production](#11-service-class-for-angular-application-uglifying-the-code-to-deploy-in-production)
+    - [2. Create Axiosfit instance](#2-create-axiosfit-instance)
+    - [3. Perform an Axiosfit request](#3-perform-an-axiosfit-request)
+    - [4. Using Promises](#4-using-promises)
+      - [4.1 Modify service class return type](#41-modify-service-class-return-type)
+    - [Other features](#other-features)
+  - [<a name="samples_section"></a>Examples](#examples)
+      - [<a name="interceptors"></a>Interceptors](#interceptors)
+        - [Request Interceptor](#request-interceptor)
+        - [Response Interceptor](#response-interceptor)
+  - [<a name="samples_section"></a>Examples](#examples-1)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Purpose
 
 This project has been thought to be used inside [TypeScript](http://www.typescriptlang.org/) projects to use its incredible features to build frontend and/or backend applications.
