@@ -32,7 +32,7 @@ const prepareService = (target: any, methodName: string, endpoint: string, args:
       replacedEndpoint = replacedEndpoint.replace(`:${paramValue}`, args[index]);
     }
   }
-  // Get parameteres, if there are, to be added to the request
+  // Get parameters, if there are, to be added to the request
   if (parameters) {
     for (const [index, paramValue] of parameters.entries()) {
       if (typeof args[index] === 'string') {
@@ -49,6 +49,24 @@ const prepareService = (target: any, methodName: string, endpoint: string, args:
     service.setParameters(params);
   }
   service.addUrl(methodName, replacedEndpoint);
+
+  const headers = service.getHeadersMap(methodName);
+  const innerHeaders = {};
+  if (headers) {
+    for (const [index, headerValue] of headers.entries()) {
+      if (typeof args[index] === 'string') {
+        innerHeaders[headerValue] = args[index];
+      } else {
+        const paramMap = args[index];
+        for (const mapKey in paramMap) {
+          if (paramMap.hasOwnProperty(mapKey)) {
+            innerHeaders[mapKey] = paramMap[mapKey];
+          }
+        }
+      }
+    }
+  }
+  service.setConfig({ headers: innerHeaders });
   return service;
 };
 
@@ -203,3 +221,20 @@ export function PUT(endpoint: string) {
 export function PATCH(endpoint: string) {
   return dataFunction(endpoint, Method.PATCH);
 }
+
+// TODO: Add this decorator
+//export function Headers(headers: string | { [key: string]: string }) {
+/**
+ * @param {any} target The prototype of our class (or the constructor of the class if the decorated method is static).
+ * @param {string} methodName The name of the decorated method.
+ * @param {PropertyDescriptor} descriptor An object that holds the decorated function and some meta-data regarding it.
+ */
+/*return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
+    const serviceName = target.constructor.serviceName || target.constructor.name;
+    console.log('[method.decorator] - Headers - serviceName', serviceName);
+    console.log('[method.decorator] - Headers - serviceMap', serviceMap);
+    const service: IAxiosfit = serviceMap[serviceName];
+    console.log('[method.decorator] - Headers - headers', headers);
+    service.addHeaders(headers);
+  };
+}*/

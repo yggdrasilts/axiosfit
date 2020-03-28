@@ -23,9 +23,13 @@ const _printLog = (error: boolean, ...message: any[]): void => {
   }
 };
 
+const _getHeaders = (config: AxiosRequestConfig): string => {
+  return `[HEADERS: ${JSON.stringify(config.headers)}]`;
+};
+
 export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
   onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
-    _printLog(INFO, '[REQUEST]', config.method.toUpperCase(), _getURL(config));
+    _printLog(INFO, '[REQUEST]', config.method.toUpperCase(), _getURL(config), _getHeaders(config));
     return config;
   }
 

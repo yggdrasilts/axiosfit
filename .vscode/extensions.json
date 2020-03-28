@@ -23,6 +23,7 @@
 
     // Git
     "eamodio.gitlens",
+    "mhutchie.git-graph",
 
     // Utilities
     "wayou.vscode-todo-highlight",
