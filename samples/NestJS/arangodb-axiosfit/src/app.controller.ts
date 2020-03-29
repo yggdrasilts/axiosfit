@@ -1,7 +1,5 @@
 import { Controller, Get, Logger } from '@nestjs/common';
 
-import { AxiosResponse } from '@yggdrasilts/axiosfit';
-
 import { ArangoDBService } from './arangodb/arangodb.axiosfit.service';
 
 import { Status } from './arangodb/entities';
@@ -20,8 +18,8 @@ export class AppController {
   }
 
   @Get('status')
-  getArangoDBStatus(): Promise<AxiosResponse<Status>> {
+  async getArangoDBStatus(): Promise<Status> {
     this.logger.debug('Getting ArangoDB status...');
-    return this.arangodbService.adminService.getStatus();
+    return (await this.arangodbService.adminService.getStatus()).data;
   }
 }
