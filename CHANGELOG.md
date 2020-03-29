@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.9.1 (2020-03-29)
+
+### Bug Fixes
+
+- **axios:** create different instances instead of using the default ([dba2d742](https://github.com/yggdrasilts/axiosfit/commit/dba2d742307ca9bd716b99b517b62f97f6e5f526))
+
 ## 0.9.0 (2020-03-29)
 
 ### Chores
