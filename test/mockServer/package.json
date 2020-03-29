@@ -6,6 +6,6 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "typescript": "^3.5.3"
+    "typescript": "^3.8.3"
   }
 }

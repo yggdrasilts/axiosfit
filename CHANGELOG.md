@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.9.0 (2020-03-29)
+
+### Chores
+
+- **decorator:** add Header, HeaderMap decorators for parameters ([016b9eef](https://github.com/yggdrasilts/axiosfit/commit/016b9eefa36de3a31e0b497363d91bf44449eecd))
+
+### Documentation Changes
+
+- **readme:**
+  - update README toc ([4417dd6b](https://github.com/yggdrasilts/axiosfit/commit/4417dd6bea03ab3e7d8192ca5c70d0325105fb22))
+  - update README.md ([3ef75a65](https://github.com/yggdrasilts/axiosfit/commit/3ef75a6577cdbff92b73f4c211205a576c08a9ee))
+- **doc:** add table of contents in README ([3dbd9981](https://github.com/yggdrasilts/axiosfit/commit/3dbd9981ee6d910d917702d3f0cda4b1cfce6d12))
+- add new badgets to README file ([d5acd66e](https://github.com/yggdrasilts/axiosfit/commit/d5acd66e7773820e308766d3024ac38eba856d3d))
+- **samples:** update README for samples ([797b7a70](https://github.com/yggdrasilts/axiosfit/commit/797b7a70df4d6b4d5347e14d487327a3c09ac3b7))
+
+### New Features
+
+- **decorator:** new @Header, @HeaderMap decorator ([87f994b2](https://github.com/yggdrasilts/axiosfit/commit/87f994b241ca395fdca954f62e63dfc365d77b5b))
+
 ## 0.8.0 (2020-02-28)
 
 ### Build System / Dependencies
@@ -169,6 +188,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### First version
 
 [unreleased]: https://gitlab.com/yggdrasilts/axiosfit
+[0.9.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.9.x/0.9.0
 [0.8.0]: https://github.com/yggdrasilts/axiosfit/tree/v0.8.x/0.8.0
 [0.7.2]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.2
 [0.7.1]: https://github.com/yggdrasilts/axiosfit/tree/v0.7.x/0.7.1
