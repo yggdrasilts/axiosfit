@@ -24,7 +24,7 @@ export const createServiceMap = function (constructor) {
   const serviceName = constructor.serviceName || constructor.name;
   if (!serviceMap[serviceName]) {
     serviceMap[serviceName] = new (class extends constructor implements IAxiosfit {
-      private axiosInstance: AxiosInstance = Axios;
+      private axiosInstance: AxiosInstance = Axios.create();
       private axiosRequestConfig: AxiosRequestConfig = {};
 
       /**
