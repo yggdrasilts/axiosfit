@@ -22,7 +22,7 @@ const startMockServer = async (): Promise<StartedTestContainer> => {
     mockServerIP = await mockServer.getContainerIpAddress();
     mockServerPort = String(await mockServer.getMappedPort(port));
     const url = `http://${mockServerIP}:${mockServerPort}`;
-    logger.info(url);
+    logger.info(`MOCK_SERVER_URL: ${url}`);
     process.env.MOCK_SERVER_URL = url;
 
     return mockServer;

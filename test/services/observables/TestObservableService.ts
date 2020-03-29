@@ -15,6 +15,7 @@ import {
   Param,
   ParamMap,
   IParamMap,
+  IHeadersMap,
 } from '../../../src';
 import { TestRoutes } from '../TestRoutes';
 
@@ -33,7 +34,7 @@ export class TestObservableService {
   }
 
   @GET(TestRoutes.GET.REQUEST.URL)
-  public performGetRequestWithHeaderMap(@HeaderMap('map') map: IParamMap): Observable<AxiosResponse<string>> {
+  public performGetRequestWithHeaderMap(@HeaderMap('map') map: IHeadersMap): Observable<AxiosResponse<string>> {
     return null;
   }
 

@@ -13,6 +13,7 @@
 Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/) to create declarative HTTP clients using [axios](https://github.com/axios/axios) as the http client for browsers and nodejs, all the [TypeScript](http://www.typescriptlang.org/) features and [RxJS](https://rxjs-dev.firebaseapp.com/) to manage the requests using [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) and all the Observable powers (_also, you can use Promises as well_).
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 **Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
@@ -37,14 +38,15 @@ Axiosfit is a project inspired by [Retrofit](https://square.github.io/retrofit/)
     - [3. Perform an Axiosfit request](#3-perform-an-axiosfit-request)
     - [4. Using Promises](#4-using-promises)
       - [4.1 Modify service class return type](#41-modify-service-class-return-type)
+    - [<a name="headers"></a>Headers](#headers)
     - [Other features](#other-features)
-  - [<a name="samples_section"></a>Examples](#examples)
       - [<a name="interceptors"></a>Interceptors](#interceptors)
         - [Request Interceptor](#request-interceptor)
         - [Response Interceptor](#response-interceptor)
-  - [<a name="samples_section"></a>Examples](#examples-1)
+  - [<a name="samples_section"></a>Examples](#examples)
 
 <!-- markdownlint-restore -->
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Purpose
@@ -100,13 +102,15 @@ To request any API server, it is needed to know with method is necessary. For th
 - [@Path(paramName: string)](miscellaneous/variables.html#Path)
 - [@Param(paramName: string)](miscellaneous/variables.html#Param)
 - [@ParamMap(paramName: string)](miscellaneous/variables.html#ParamMap)
+- [@Header(headerName: string)](miscellaneous/variables.html#Header)
+- [@HeaderMap(name: string)](miscellaneous/variables.html#HeaderMap)
 - [@Body()](miscellaneous/variables.html#Body)
 
 Another part is the _path_ and the _body_ of your request and Axiosfit also has these Decorators to configure your service.
 
 ---
 
-Examples of using all of these Decartors are shown in the [Examples section](#samples_section) or you can find specific samples inside the [samples folder](./samples).
+Examples of using all of these Decorators are shown in the [Examples section](#samples_section) or you can find specific samples inside the [samples folder](./samples).
 
 ---
 
@@ -204,9 +208,29 @@ simpleService
   .catch(axiosError => console.error(axiosError));
 ```
 
-### Other features
+### <a name="headers"></a>Headers
 
-## <a name="samples_section"></a>Examples
+HTTP headers let the client and the server pass additional information with an HTTP request or response. Axiosfit has various decorators that enabled you to modify these HTTP headers.
+
+- The @Header parameter decorator gives you the option to add some header individually.
+
+```typescript
+@GET(TestRoutes.GET.REQUEST.URL)
+public performGetRequestWithHeader(@Header('Authorization') token: string): Observable<AxiosResponse<string>> {
+  return null;
+}
+```
+
+- The @HeaderMap parameter decorator gives you the option to pass a map with various headers.
+
+```typescript
+@GET(TestRoutes.GET.REQUEST.URL)
+public performGetRequestWithHeaderMap(@HeaderMap('map') map: IHeadersMap): Observable<AxiosResponse<string>> {
+  return null;
+}
+```
+
+### Other features
 
 #### <a name="interceptors"></a>Interceptors
 
@@ -293,17 +317,47 @@ export class SimpleInterceptorResponse implements AxiosfitResponseInterceptor {
 ## <a name="samples_section"></a>Examples
 
 - Create class with the endpoints methods:
-
+  
   - Using Observables:
 
 ```typescript
-import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse } from '../../src';
-import { TestRoutes } from './TestRoutes';
+import {
+  HTTP,
+  Header,
+  HeaderMap,
+  GET,
+  DELETE,
+  HEAD,
+  POST,
+  PUT,
+  PATCH,
+  Path,
+  Body,
+  Observable,
+  AxiosResponse,
+  Param,
+  ParamMap,
+  IParamMap,
+  IHeadersMap,
+} from '../../../src';
+import { TestRoutes } from '../TestRoutes';
 
-@HTTP(TestRoutes.BASE)
+@HTTP(TestRoutes.BASE, { enableAxiosLogger: true })
 export class TestObservableService {
+  private static readonly serviceName = 'TestObservableService';
+
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithHeader(@Header('Authorization') token: string): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithHeaderMap(@HeaderMap('map') map: IHeadersMap): Observable<AxiosResponse<string>> {
     return null;
   }
 
@@ -448,7 +502,7 @@ const methodsService = new Axiosfit<TestService>().baseUrl(process.env.MOCK_SERV
 ```
 
 - Call methods using observables:
-
+  
   - Using Observables:
 
 ```typescript

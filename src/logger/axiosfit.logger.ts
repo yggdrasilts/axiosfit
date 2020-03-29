@@ -43,6 +43,9 @@ export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitRespo
       response.config.method.toUpperCase(),
       _getURL(response.config),
       ')',
+      _getHeaders(response.config),
+      'BODY: ',
+      response.data,
     );
     return response;
   }

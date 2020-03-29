@@ -9,3 +9,7 @@ export interface IParam {
 export interface IParamMap {
   [key: string]: string;
 }
+
+export interface IHeadersMap {
+  [key: string]: string;
+}

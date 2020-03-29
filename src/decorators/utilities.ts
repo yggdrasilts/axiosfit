@@ -112,8 +112,7 @@ export const createServiceMap = function (constructor) {
        * @param {AxiosRequestConfig} config.
        */
       setConfig(config: AxiosRequestConfig) {
-        // TODO: mixin configs
-        this.axiosRequestConfig = config;
+        this.axiosRequestConfig = { ...this.axiosRequestConfig, ...config };
       }
 
       /**
