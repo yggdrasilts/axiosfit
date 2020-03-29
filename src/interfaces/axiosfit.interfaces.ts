@@ -32,6 +32,11 @@ export interface IAxiosfit {
 
   setParameters(parametersMap: Map<string, string>);
 
+  // TODO: Use with the method decorator for headers.
+  // addHeaders(headers: string | { [key: string]: string });
+  addHeadersMap(key: string, param: IParam): void;
+  getHeadersMap(key: string): Map<number, string>;
+
   setData(key: string, parameterIndex: number): void;
   getData(key: string): number;
 }

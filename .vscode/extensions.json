@@ -23,6 +23,7 @@
 
     // Git
     "eamodio.gitlens",
+    "mhutchie.git-graph",
 
     // Utilities
     "wayou.vscode-todo-highlight",
@@ -34,7 +35,8 @@
     "davidanson.vscode-markdownlint",
 
     // Others
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "johnpapa.vscode-peacock"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

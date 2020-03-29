@@ -1,4 +1,22 @@
-import { HTTP, GET, DELETE, HEAD, POST, PUT, PATCH, Path, Body, Observable, AxiosResponse, Param, ParamMap, IParamMap } from '../../../src';
+import {
+  HTTP,
+  Header,
+  HeaderMap,
+  GET,
+  DELETE,
+  HEAD,
+  POST,
+  PUT,
+  PATCH,
+  Path,
+  Body,
+  Observable,
+  AxiosResponse,
+  Param,
+  ParamMap,
+  IParamMap,
+  IHeadersMap,
+} from '../../../src';
 import { TestRoutes } from '../TestRoutes';
 
 @HTTP(TestRoutes.BASE, { enableAxiosLogger: true })
@@ -7,6 +25,16 @@ export class TestObservableService {
 
   @GET(TestRoutes.GET.REQUEST.URL)
   public performGetRequest(): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithHeader(@Header('Authorization') token: string): Observable<AxiosResponse<string>> {
+    return null;
+  }
+
+  @GET(TestRoutes.GET.REQUEST.URL)
+  public performGetRequestWithHeaderMap(@HeaderMap('map') map: IHeadersMap): Observable<AxiosResponse<string>> {
     return null;
   }
 

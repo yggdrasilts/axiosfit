@@ -20,7 +20,7 @@ export const serviceMap: Map<string, IAxiosfit> = new Map();
  * Creates the serviceMap with the correspondent Axiosfit service.
  */
 // tslint:disable-next-line: only-arrow-functions
-export const createServiceMap = function(constructor) {
+export const createServiceMap = function (constructor) {
   const serviceName = constructor.serviceName || constructor.name;
   if (!serviceMap[serviceName]) {
     serviceMap[serviceName] = new (class extends constructor implements IAxiosfit {
@@ -78,6 +78,14 @@ export const createServiceMap = function(constructor) {
       private dataMap: Map<string, number> = new Map();
 
       /**
+       * Contains the headers to be sent.
+       *
+       * @private
+       * @type {Map<string, Map<number, string>>} key: methodName; value: parameter map where: [key: index, value: headerValue]
+       */
+      private headersMap: Map<string, Map<number, string>> = new Map();
+
+      /**
        * Sets the service common endpoint.
        *
        * @param {string} baseServiceEndpoint Common endpoint.
@@ -104,8 +112,7 @@ export const createServiceMap = function(constructor) {
        * @param {AxiosRequestConfig} config.
        */
       setConfig(config: AxiosRequestConfig) {
-        // TODO: mixin configs
-        this.axiosRequestConfig = config;
+        this.axiosRequestConfig = { ...this.axiosRequestConfig, ...config };
       }
 
       /**
@@ -210,6 +217,17 @@ export const createServiceMap = function(constructor) {
        */
       setParameters(parametersMap: Map<string, string>) {
         this.axiosConfig.params = parametersMap;
+      }
+
+      addHeadersMap(key: string, header: IParam): void {
+        if (!this.headersMap[key]) {
+          this.headersMap[key] = new Map();
+        }
+        this.headersMap[key].set(header.index, header.name);
+      }
+
+      getHeadersMap(key: string): Map<number, string> {
+        return this.headersMap[key];
       }
 
       /**

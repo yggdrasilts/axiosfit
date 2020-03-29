@@ -18,6 +18,8 @@ router.get(testRoutes.GET.ERROR.URL, function (req, res) {
 router.get(buildUrl(testRoutes.BASE, testRoutes.GET.REQUEST.URL), function (req, res) {
   if (Object.keys(req.query).length !== 0) {
     res.send(JSON.stringify(req.query));
+  } else if (req.headers.authorization) {
+    res.send(JSON.stringify(req.headers));
   } else {
     res.send(testData.GET.performGetRequest.check);
   }
@@ -25,7 +27,7 @@ router.get(buildUrl(testRoutes.BASE, testRoutes.GET.REQUEST.URL), function (req,
 
 router.get(buildUrl(testRoutes.BASE, testRoutes.GET.WITH_REQUEST_INTERCEPTOR.URL), function (req, res) {
   res.json({
-    headers: req.headers
+    headers: req.headers,
   });
 });
 
