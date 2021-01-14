@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 0.9.2 (2021-01-14)
+
+### Bug Fixes
+
+* **axios:**  update version due to security fixes ([b27e0073](https://github.com/yggdrasilts/axiosfit/commit/b27e007307fc4d324faa299dca237587a93c3b16))
+
 ## 0.9.1 (2020-03-29)
 
 ### Bug Fixes
