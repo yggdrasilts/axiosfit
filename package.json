@@ -1,6 +1,6 @@
 {
   "name": "@yggdrasilts/axiosfit",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": "YggdrasilTS Team 🌳",
   "contributors": [
     "David Lopez <davidlopez.david@gmail.com>"
@@ -46,8 +46,8 @@
     "test:cmd": "DEBUG=testcontainers jest --config ./config/jest.config.js"
   },
   "dependencies": {
-    "@yggdrasilts/volundr": "^0.1.8",
-    "axios": "^0.19.2",
+    "@yggdrasilts/volundr": "^0.1.11",
+    "axios": "^0.21.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.4"
   },
