@@ -1,5 +1,5 @@
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import buildURL from 'axios/lib/helpers/buildURL';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { AxiosfitRequestInterceptor, AxiosfitResponseInterceptor } from '../interfaces';
 
@@ -27,26 +27,30 @@ const _getHeaders = (config: AxiosRequestConfig): string => {
   return `[HEADERS: ${JSON.stringify(config.headers)}]`;
 };
 
-export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor {
+export class AxiosfitLogger implements AxiosfitRequestInterceptor, AxiosfitResponseInterceptor<any> {
   onRequest(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
     _printLog(INFO, '[REQUEST]', config.method.toUpperCase(), _getURL(config), _getHeaders(config));
     return config;
   }
 
   onResponse(response: AxiosResponse<any>): AxiosResponse<any> | Promise<AxiosResponse<any>> {
-    _printLog(
-      INFO,
-      '[RESPONSE]',
-      response.status,
-      response.statusText,
-      '(',
-      response.config.method.toUpperCase(),
-      _getURL(response.config),
-      ')',
-      _getHeaders(response.config),
-      'BODY: ',
-      response.data,
-    );
+    if (response) {
+      _printLog(
+        INFO,
+        '[RESPONSE]',
+        response.status,
+        response.statusText,
+        '(',
+        response.config.method.toUpperCase(),
+        _getURL(response.config),
+        ')',
+        _getHeaders(response.config),
+        'BODY: ',
+        response.data,
+      );
+    } else {
+      _printLog(INFO, '[RESPONSE]');
+    }
     return response;
   }
 

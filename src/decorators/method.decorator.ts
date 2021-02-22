@@ -1,9 +1,7 @@
 import 'reflect-metadata';
 
-import { Observable, defer } from 'rxjs';
-
 import { AxiosResponse } from 'axios';
-
+import { Observable, defer } from 'rxjs';
 import { StringUtils } from '@yggdrasilts/volundr';
 
 import { IAxiosfit } from '../interfaces';
@@ -221,6 +219,8 @@ export function PUT(endpoint: string) {
 export function PATCH(endpoint: string) {
   return dataFunction(endpoint, Method.PATCH);
 }
+
+export function BlobResponse() {}
 
 // TODO: Add this decorator
 //export function Headers(headers: string | { [key: string]: string }) {

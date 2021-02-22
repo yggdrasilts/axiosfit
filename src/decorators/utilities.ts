@@ -1,14 +1,14 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import {
-  IAxiosfit,
-  ISegment,
-  IParam,
+  AxiosfitConfig,
   AxiosfitInterceptor,
   AxiosfitRequestInterceptor,
   AxiosfitResponseInterceptor,
-  AxiosfitConfig,
-} from 'src/interfaces';
+  IAxiosfit,
+  IParam,
+  ISegment,
+} from '../interfaces';
 import { AxiosfitLogger } from '../logger/axiosfit.logger';
 
 /**
@@ -94,7 +94,7 @@ export const createServiceMap = function (constructor) {
         this.baseServiceEndpoint = baseServiceEndpoint;
       }
 
-      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
+      setGlobalInterceptors(globalInterceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor<any>[]) {
         const list: AxiosfitInterceptor[] = [];
         for (const interceptor of globalInterceptors) {
           list.push(new (interceptor as any)());
@@ -120,10 +120,14 @@ export const createServiceMap = function (constructor) {
        *
        * @param {AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor} interceptors Array with the interceptors.
        */
-      setInterceptors(interceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor[]) {
+      setInterceptors(interceptors: AxiosfitInterceptor[] | AxiosfitRequestInterceptor[] | AxiosfitResponseInterceptor<any>[]) {
         // tslint:disable-next-line: no-console
         const defaultError = (error: any) => console.error(error);
         const axiosfitLogger = new AxiosfitLogger();
+        if (this.axiosfitConfig?.enableAxiosLogger) {
+          this.axiosInstance.interceptors.request.use(axiosfitLogger.onRequest, axiosfitLogger.onError);
+          this.axiosInstance.interceptors.response.use(axiosfitLogger.onResponse, axiosfitLogger.onError);
+        }
         for (const interceptor of interceptors) {
           if ((interceptor as AxiosfitRequestInterceptor).onRequest !== undefined) {
             this.axiosInstance.interceptors.request.use(
@@ -131,16 +135,12 @@ export const createServiceMap = function (constructor) {
               (interceptor as AxiosfitRequestInterceptor).onError || defaultError,
             );
           }
-          if ((interceptor as AxiosfitResponseInterceptor).onResponse !== undefined) {
+          if ((interceptor as AxiosfitResponseInterceptor<any>).onResponse !== undefined) {
             this.axiosInstance.interceptors.response.use(
-              (interceptor as AxiosfitResponseInterceptor).onResponse,
-              (interceptor as AxiosfitResponseInterceptor).onError || defaultError,
+              (interceptor as AxiosfitResponseInterceptor<any>).onResponse,
+              (interceptor as AxiosfitResponseInterceptor<any>).onError || defaultError,
             );
           }
-        }
-        if (this.axiosfitConfig?.enableAxiosLogger) {
-          this.axiosInstance.interceptors.request.use(axiosfitLogger.onRequest, axiosfitLogger.onError);
-          this.axiosInstance.interceptors.response.use(axiosfitLogger.onResponse, axiosfitLogger.onError);
         }
       }
 

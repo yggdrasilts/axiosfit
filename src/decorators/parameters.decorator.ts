@@ -1,5 +1,5 @@
-import { serviceMap, createServiceMap } from './utilities';
-import { IAxiosfit } from 'src/interfaces';
+import { IAxiosfit } from '../interfaces';
+import { createServiceMap, serviceMap } from './utilities';
 
 /**
  * Get the service.

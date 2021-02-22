@@ -34,7 +34,7 @@ export class Axiosfit<S> {
    * @returns {Axiosfit<S>} The service.
    * @memberof Axiosfit
    */
-  addInterceptor(interceptor: AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor): Axiosfit<S> {
+  addInterceptor(interceptor: AxiosfitInterceptor | AxiosfitRequestInterceptor | AxiosfitResponseInterceptor<any>): Axiosfit<S> {
     this.interceptors.push(interceptor);
     return this;
   }
